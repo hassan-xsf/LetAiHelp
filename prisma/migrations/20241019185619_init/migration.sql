@@ -1,26 +1,14 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "password" TEXT,
+    "email" TEXT,
+    "image" TEXT,
+    "emailVerified" TIMESTAMP(3),
 
-  - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - You are about to drop the column `createdAt` on the `User` table. All the data in the column will be lost.
-  - You are about to drop the column `username` on the `User` table. All the data in the column will be lost.
-
-*/
--- DropIndex
-DROP INDEX "User_username_key";
-
--- AlterTable
-ALTER TABLE "User" DROP CONSTRAINT "User_pkey",
-DROP COLUMN "createdAt",
-DROP COLUMN "username",
-ADD COLUMN     "image" TEXT,
-ADD COLUMN     "name" TEXT,
-ALTER COLUMN "id" DROP DEFAULT,
-ALTER COLUMN "id" SET DATA TYPE TEXT,
-ALTER COLUMN "password" DROP NOT NULL,
-ALTER COLUMN "email" DROP NOT NULL,
-ADD CONSTRAINT "User_pkey" PRIMARY KEY ("id");
-DROP SEQUENCE "User_id_seq";
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Account" (
@@ -31,8 +19,9 @@ CREATE TABLE "Account" (
     "providerAccountId" TEXT NOT NULL,
     "refreshToken" TEXT,
     "accessToken" TEXT,
+    "access_token" TEXT,
     "expiresAt" INTEGER,
-    "tokenType" TEXT,
+    "token_type" TEXT,
     "scope" TEXT,
     "idToken" TEXT,
     "sessionState" TEXT,
@@ -49,6 +38,12 @@ CREATE TABLE "Session" (
 
     CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
