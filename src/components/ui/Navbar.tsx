@@ -14,16 +14,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { SparklesIcon } from 'lucide-react'
+import Logo from './Logo'
 
 const Navbar = async () => {
     const data = await getServerSession(authOptions)
     return (
-        <header className="px-4 lg:px-6 h-14 flex items-center border-b border-gray-200 dark:border-gray-800">
-            <Link className="flex items-center justify-center" href="/">
-                <SparklesIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
-                <span className="ml-2 text-2xl font-bold text-gray-900 dark:text-white">LetAIHelp</span>
-            </Link>
+        <header className="px-4 lg:px-6 h-14 flex items-center">
+            <Logo/>
             <nav className="ml-auto flex items-center gap-4 sm:gap-6">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

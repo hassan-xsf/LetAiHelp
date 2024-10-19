@@ -13,17 +13,15 @@ export default function page() {
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-grid-pattern">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
+              <div className="space-y-2 z-10">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-gray-900 dark:text-white">
                   Unleash the Power of AI
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-500">
                   LetAIHelp provides you AI tools that helps boost your productivity and enhance creativity.
                 </p>
               </div>
-              <Button className="bg-green-600 text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
-                Get Started
-              </Button>
+              <LinkButton name = "Get Started"/>
             </div>
           </div>
         </section>
@@ -63,9 +61,7 @@ export default function page() {
                   Join thousands of users who are already benefiting from our AI-powered tools.
                 </p>
               </div>
-              <Button className="bg-green-600 text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
-                Get Started
-              </Button>
+              <LinkButton name = "Get Started"/>
             </div>
           </div>
         </section>
@@ -84,5 +80,14 @@ export default function page() {
         </nav>
       </footer>
     </div>
+  )
+}
+
+
+const LinkButton = ({name , href = "/sign-in"} : {name: string , href?: string}) => {
+  return (
+    <Link href={href} className="bg-green-600 text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-sm p-2 rounded-md cursor-pointer z-10">
+      {name}
+    </Link>
   )
 }

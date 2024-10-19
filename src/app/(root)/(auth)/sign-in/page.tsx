@@ -61,7 +61,7 @@ const page = () => {
     }
     return (
         <div className="w-1/3 mx-auto mt-40">
-            <div className="mb-10 text-xl font-bold">Sign In</div>
+            <div className="mb-10 text-xl font-bold text-green-600">Sign In</div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col">
                     <FormField
