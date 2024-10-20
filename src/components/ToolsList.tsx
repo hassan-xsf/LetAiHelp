@@ -39,11 +39,7 @@ const ToolsList = () => {
                         </p>
                         <p className="text-gray-400 text-sm flex items-center">
                             <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                            AI Career Guidance
-                        </p>
-                        <p className="text-gray-400 text-sm flex items-center">
-                            <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                            AI Study Buddy
+                            AI Study Helper
                         </p>
                         <p className="text-gray-400 text-sm flex items-center">
                             <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
