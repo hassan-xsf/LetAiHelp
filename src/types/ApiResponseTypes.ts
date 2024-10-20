@@ -12,3 +12,8 @@ type ObjectDetectionResponse = {
         }
     ]
 }
+type TextToImageResponse = {
+    result: {
+        description: string
+    }
+}
