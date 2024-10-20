@@ -3,3 +3,12 @@ type TranslationResponse = {
         translated_text: string,
     }
 }
+
+type ObjectDetectionResponse = {
+    result: [
+        {
+            score: number,
+            label: string
+        }
+    ]
+}
