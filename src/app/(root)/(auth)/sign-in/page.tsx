@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import GithubSignIn from '@/components/ui/GithubSignIn'
+import Logo from '@/components/ui/Logo'
 
 
 const page = () => {
@@ -61,7 +62,8 @@ const page = () => {
     }
     return (
         <div className="w-1/3 mx-auto mt-40">
-            <div className="mb-10 text-xl font-bold text-green-600">Sign In</div>
+            <Logo type={2}/>
+            <div className="mb-10 text-sm font-bold text-center">Sign In</div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col">
                     <FormField
@@ -92,7 +94,7 @@ const page = () => {
                     />
                     <Link className="block" href="/sign-up">Don't have an account?</Link>
 
-                    <Button type="submit">Sign In</Button>
+                    <Button type="submit" className = "bg-green-600">Sign In</Button>
                     <GithubSignIn />
                 </form>
             </Form>

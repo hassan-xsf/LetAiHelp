@@ -1,0 +1,23 @@
+1. Work on dashboard and themes.
+(potentially a good logo?)
+2. Setup a simple pricing
+3. Make the AI tools home page better.
+4. Setup APIs using the cloudfare workers.
+5. Check how to make PPTX.
+7. Create all these possible tools
+    1. AI Translation
+    2. Image Generation
+    3. Text Summarization
+    4. Non AI Words + Auto Plagiarizer.
+    5. AI Explainer
+    6. PPT Maker?
+    7. Prompt To Video
+    8. AI Chatbot
+    9. AI Code Assistant
+    10. AI Senior Developer
+    11. Homework writing?
+
+
+
+
+Others: Setup another Git for .me

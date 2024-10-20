@@ -21,6 +21,7 @@ import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import GithubSignIn from '@/components/ui/GithubSignIn'
+import Logo from '@/components/ui/Logo'
 
 
 const page = () => {
@@ -54,7 +55,8 @@ const page = () => {
     }
     return (
         <div className="w-1/3 mx-auto mt-40">
-            <div className="mb-10 text-xl font-bold">Sign Up</div>
+            <Logo type={2}/>
+            <div className="mb-10 text-sm font-bold text-center">Sign Up</div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col">
                     <FormField
@@ -97,7 +99,7 @@ const page = () => {
                         )}
                     />
                     <Link className="block" href="/sign-in">Already have an account?</Link>
-                    <Button type="submit">Sign Up</Button>
+                    <Button type="submit" className = "bg-green-600">Sign Up</Button>
                     <GithubSignIn />
             </form>
         </Form>
