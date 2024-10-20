@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { textSchema } from "@/schemas/textSchema";
+import { modelPrompts, textSchema } from "@/schemas/textSchema";
 
 export async function POST(request: Request) {
     try {
         const { prompt, model, type } = await request.json();
 
-        const validate = textSchema.safeParse({ model })
+
+        const validate = textSchema.safeParse({ prompt , model, type })
         if (!validate.success) {
             const errorMessages = validate.error.issues.map(issue => issue.message).join(", ");
             return NextResponse.json({
@@ -15,12 +16,12 @@ export async function POST(request: Request) {
             }, { status: 400 });
         }
 
-        const response = await axios.post<CaptionResponse>(
+        const response = await axios.post<AITextResponse>(
             `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
             {
                 "messages": [
-                    { "role": "system", "content": "You are a senior web developer focused on frontend and your name is Mark" },
-                    { "role": "user", "content": "Who are you?" }
+                    { "role": "system", "content": `${modelPrompts[type]}` },
+                    { "role": "user", "content": prompt }
                 ]
             },
             {
