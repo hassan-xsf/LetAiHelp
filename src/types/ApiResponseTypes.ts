@@ -17,3 +17,24 @@ type TextToImageResponse = {
         description: string
     }
 }
+
+type SummarizeResponse = {
+    result: {
+        summary: string
+    }
+}
+
+type CaptionResponse = {
+    result: {
+        text: string,
+        word_count: number,
+        vtt: string,
+        words: [
+            {
+                word: string,
+                start: number,
+                end: number
+            }
+        ]
+    }
+}

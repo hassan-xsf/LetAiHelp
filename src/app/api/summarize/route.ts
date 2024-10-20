@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { translateSchema } from "@/schemas/translateSchema";
+import { summarizeSchema } from "@/schemas/summarizeSchema";
 
 
 export async function POST(request: Request) {
     try {
-        const { text, tr_lang, sr_lang } = await request.json();
+        const { input_text, max_length } = await request.json();
 
-        const validate = translateSchema.safeParse({  text, tr_lang, sr_lang })
+        const validate = summarizeSchema.safeParse({ input_text, max_length })
         if (!validate.success) {
-            const errorMessages = validate.error.issues.map(issue => issue.message).join(", ");
+            const errorMessages = validate.error.issues.map(issue => "Field " + issue.message).join(", ");
 
             return NextResponse.json({
                 success: false,
@@ -17,10 +17,9 @@ export async function POST(request: Request) {
             }, { status: 400 });
         }
 
-        const response = await axios.post<TranslationResponse>(`https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/m2m100-1.2b`, {
-            text: text,
-            source_lang: sr_lang,
-            target_lang: tr_lang,
+        const response = await axios.post<SummarizeResponse>(`https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/facebook/bart-large-cnn`, {
+            input_text,
+            max_length: max_length * 2,
         }, {
             headers: {
                 'Authorization': `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
@@ -30,7 +29,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
             data: response.data,
             success: true,
-            message: "Translation retreived successfully",
+            message: "Text summarized successfully",
         }, { status: 200 });
 
     } catch (error) {
