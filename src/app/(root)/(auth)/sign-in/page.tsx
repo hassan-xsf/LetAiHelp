@@ -50,8 +50,7 @@ const page = () => {
                 return toast.error("There was a problem signing you up!")
             }
             toast.success("You have been logged in!")
-            router.push("/")
-            router.refresh();
+            router.push("/dashboard")
 
         } catch (error) {
             if (error instanceof AxiosError) {
@@ -61,7 +60,7 @@ const page = () => {
 
     }
     return (
-        <div className="w-1/3 mx-auto mt-40">
+        <div className="max-w-screen-sm mx-auto mt-40">
             <Logo type={2}/>
             <div className="mb-10 text-sm font-bold text-center">Sign In</div>
             <Form {...form}>

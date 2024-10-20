@@ -15,11 +15,13 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Logo from './Logo'
+import ThemeBtn from './ThemeBtn'
+import LinkButton from './LinkButton'
 
 const Navbar = async () => {
     const data = await getServerSession(authOptions)
     return (
-        <header className="px-4 lg:px-6 h-14 flex items-center">
+        <header className="max-w-screen-2xl mx-auto px-4 lg:px-6 h-14 flex items-center bg-gray-50 dark:bg-zinc-950 text-gray-600 dark:text-white">
             <Logo/>
             <nav className="ml-auto flex items-center gap-4 sm:gap-6">
                 <DropdownMenu>
@@ -40,15 +42,16 @@ const Navbar = async () => {
                         <DropdownMenuItem>AI Code Assistant</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Link className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" href="#">
+                <Link className="text-sm font-medium" href="#">
                     Pricing
                 </Link>
-                <Link className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" href="#">
-                    About
-                </Link>
                 {
-                    data?.user ? <LogoutBtn /> : <Link href="/sign-in" className="bg-green-600 text-sm text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 py-1 px-3 rounded-md">Sign In</Link>
+                    data?.user && <Link className="text-sm font-medium" href="/dashboard">Dashboard</Link>
                 }
+                {
+                    data?.user ? <LogoutBtn /> : <Link href="/sign-in" className="bg-green-600 text-sm text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 py-1 px-3 rounded-md font-bold">Sign In</Link>
+                }
+                <ThemeBtn/>
             </nav>
         </header>
     )
