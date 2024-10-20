@@ -17,7 +17,24 @@
     10. AI Senior Developer
     11. Homework writing?
 
+All models:
 
+    "@hf/thebloke/zephyr-7b-beta-awq", - M
+    "@cf/google/gemma-7b-it-lora", - N
+    "@hf/google/gemma-7b-it", - N
+    "@hf/nousresearch/hermes-2-pro-mistral-7b", - Y
+    "@hf/thebloke/llama-2-13b-chat-awq", - Y
+    "@cf/meta/llama-3-8b-instruct", - Y
+    "@cf/meta/llama-3.2-3b-instruct", - Y
+    "@hf/thebloke/llamaguard-7b-awq", - Y
+    "@hf/meta-llama/meta-llama-3-8b-instruct", - Y
+    "@hf/thebloke/mistral-7b-instruct-v0.1-awq", - Y
+    "@cf/mistral/mistral-7b-instruct-v0.2-lora", Y
+    "@hf/thebloke/neural-chat-7b-v3-1-awq", Y
+    "@cf/openchat/openchat-3.5-0106", Y
+    "@cf/qwen/qwen1.5-7b-chat-awq", Y
+    "@hf/nexusflow/starling-lm-7b-beta", Y
+    "@cf/fblgit/una-cybertron-7b-v2-bf16" - Y
 
 
 Others: Setup another Git for .me
