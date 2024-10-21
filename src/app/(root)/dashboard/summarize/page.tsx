@@ -1,16 +1,38 @@
 
+<<<<<<< HEAD
 import { Sparkles } from 'lucide-react'
 import React from 'react'
 
 import { Textarea } from '@/components/ui/textarea'
 import { Slider } from '@/components/ui/slider'
 import ToolsHeader from '@/components/ToolsHeader'
+=======
+import { Circle, Sparkles } from 'lucide-react'
+import React from 'react'
+
+import { Textarea } from '@/components/ui/textarea'
+import CreditChart from '@/components/Credits'
+import { Slider } from '@/components/ui/slider'
+>>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
 
 const page = () => {
     return (
         <div className="flex flex-1 flex-col gap-4 p-8 min-h-[70vh]">
             <div className="flex flex-col">
+<<<<<<< HEAD
                 <ToolsHeader name="AI Summarizer" credits="5" />
+=======
+                <div className="flex items-center gap-2 justify-between">
+                    <div className="flex flex-col items-between gap-2">
+                        <div className="flex items-center gap-2">
+                            <Circle className="size-7 mt-1 text-green-400 fill-green-400 mb-2" />
+                            <span className="text-green-500 font-bold text-3xl dark:text-green-400">AI SUMMARIZER</span>
+                        </div>
+                        <span className="text-black font-bold text-xl dark:text-white ml-8">NOTE: 5 CREDITS PER SUMMARIZATION</span>
+                    </div>
+                    <CreditChart />
+                </div>
+>>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
                 <div className='pt-10 flex flex-col gap-5 max-w-sm'>
                     <Slider defaultValue={[15]} max={100} step={1} />
                     <span>Maximum Words: 15</span>
