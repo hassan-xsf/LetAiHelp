@@ -1,15 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
 import { ChevronsUpDown, LogOut, Palette, Sparkles } from "lucide-react";
-=======
-import {
-  ChevronsUpDown,
-  LogOut,
-  Palette,
-  Sparkles,
-} from "lucide-react"
->>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -26,16 +17,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-<<<<<<< HEAD
 } from "@/components/ui/sidebar";
 import { signOut, useSession } from "next-auth/react";
+import ThemeBtn from "../ThemeBtn";
 import { useTheme } from "next-themes";
-=======
-} from "@/components/ui/sidebar"
-import { signOut, useSession } from "next-auth/react"
-import ThemeBtn from "../ThemeBtn"
-import { useTheme } from "next-themes"
->>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
 
 export function NavUser() {
   const { isMobile } = useSidebar();
@@ -44,7 +29,6 @@ export function NavUser() {
 
   if (!session?.user) return null;
   const { user } = session;
-  const { theme , setTheme } = useTheme()
 
   return (
     <SidebarMenu>
@@ -121,7 +105,6 @@ export function NavUser() {
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>
-<<<<<<< HEAD
               <Palette />
               <div
                 className="cursor-pointer"
@@ -133,15 +116,6 @@ export function NavUser() {
               </div>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-=======
-              <Palette/>
-              <div className="cursor-pointer" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}</div>
-              
-
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-
->>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

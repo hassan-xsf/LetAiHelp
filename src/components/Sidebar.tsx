@@ -10,15 +10,9 @@ import {
   Home,
 } from "lucide-react";
 
-<<<<<<< HEAD
 import { NavMain } from "@/components/ui/nav-main";
 import { NavSecondary } from "@/components/ui/nav-secondary";
 import { NavUser } from "@/components/ui/nav-user";
-=======
-import { NavMain } from "@/components/ui/nav-main"
-import { NavSecondary } from "@/components/ui/nav-secondary"
-import { NavUser } from "@/components/ui/nav-user"
->>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
 import {
   Sidebar,
   SidebarContent,
@@ -27,13 +21,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-<<<<<<< HEAD
 } from "@/components/ui/sidebar";
 import Logo from "./Logo";
-=======
-} from "@/components/ui/sidebar"
-import Logo from "./Logo"
->>>>>>> a9ff8a59d2a07d0bedc83f66c208b69026f06355
 
 const data = {
   navMain: [
