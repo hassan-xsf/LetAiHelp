@@ -1,11 +1,9 @@
 "use client"
 
 import {
-  BadgeCheck,
-  Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
+  Palette,
   Sparkles,
 } from "lucide-react"
 
@@ -29,15 +27,17 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { Button } from "./ui/button"
 import { signOut, useSession } from "next-auth/react"
+import ThemeBtn from "../ThemeBtn"
+import { useTheme } from "next-themes"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
   const { data: session } = useSession()
 
-  if(!session?.user) return null;
+  if (!session?.user) return null;
   const { user } = session;
+  const { theme , setTheme } = useTheme()
 
   return (
     <SidebarMenu>
@@ -92,6 +92,16 @@ export function NavUser() {
                 callbackUrl: `${window.location.origin}/sign-in`
               })}>Sign Out</div>
             </DropdownMenuItem>
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem>
+              <Palette/>
+              <div className="cursor-pointer" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}</div>
+              
+
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

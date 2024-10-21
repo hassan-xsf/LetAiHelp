@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Logo from './Logo'
 import ThemeBtn from './ThemeBtn'
-import LinkButton from './LinkButton'
 
 const Navbar = async () => {
     const data = await getServerSession(authOptions)
