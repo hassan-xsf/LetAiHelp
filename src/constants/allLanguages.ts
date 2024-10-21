@@ -106,4 +106,4 @@ export const languageCodes = {
     "Yiddish": "yi",
     "Yoruba": "yo",
     "Zulu": "zu"
-};
+} as const;

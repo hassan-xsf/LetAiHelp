@@ -9,6 +9,7 @@ import {
   Settings2,
   GraduationCap,
   Home,
+  LoaderIcon,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -108,7 +109,7 @@ const data = {
     },
     {
       title: "Other Tools",
-      url: "#",
+      url: "",
       icon: Settings2,
       items: [
         {
@@ -144,17 +145,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-                <Logo/>
+              <Logo />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className = "py-4">
-        <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+      <SidebarContent className="py-4">
+        <React.Suspense fallback={<div className="h-screen w-full bg-gray-200 dark:bg-zinc-900 animate-pulse"></div>}>
+          <>
+            <NavMain items={data.navMain} />
+            <NavSecondary items={data.navSecondary} className="mt-auto" />
+          </>
+        </React.Suspense>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser/>
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )
