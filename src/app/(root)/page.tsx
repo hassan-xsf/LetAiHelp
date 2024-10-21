@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { PresentationIcon, MessageSquareIcon, GlobeIcon, BrainIcon, SparklesIcon, CodeIcon, PenToolIcon, MusicIcon } from "lucide-react"
 import LinkButton from "@/components/ui/LinkButton"
 import Navbar from "@/components/ui/Navbar"
 import GridSection from "@/components/ui/GridSection"

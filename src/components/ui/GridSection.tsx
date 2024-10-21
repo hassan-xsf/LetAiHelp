@@ -13,9 +13,9 @@ const GridSection = () => {
         setMounted(true);
     }, []);
 
-    if (!mounted) return null;
+    if (!mounted) return <section className= "w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gray-200 dark:bg-zinc-900 animate-pulse rounded-md"/>
     return (
-        <section className={`w-full py-12 md:py-24 lg:py-32 xl:py-48 ${theme === "light" ? "bg-grid-pattern" : "bg-grid-pattern-dark"}`}>
+        <section key = {mounted ? "1" : "2"} className={`w-full py-12 md:py-24 lg:py-32 xl:py-48 ${theme === "light" ? "bg-grid-pattern" : "bg-grid-pattern-dark"}`}>
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center space-y-4 text-center">
                     <div className="space-y-2 z-50">

@@ -20,7 +20,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Separator orientation="vertical" className="mr-2 h-4" />
             </div>
           </header>
-          {children}
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 min-h-[70vh]">
+            <div className="flex-1 rounded-xl bg-muted/50 md:min-h-min p-5">
+              {children}
+            </div>
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </>

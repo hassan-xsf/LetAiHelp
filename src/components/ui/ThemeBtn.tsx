@@ -13,10 +13,7 @@ const ThemeBtn = () => {
         setMounted(true)
     }, [])
 
-    if (!mounted) {
-        return null
-    }
-
+    if (!mounted) return <Button variant="ghost" className = "bg-gray-200 dark:bg-zinc-900 animate-pulse" size="icon" />
     return (
         <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
             {theme === 'dark' ? <Sun className="h-[1.2rem] w-[1.2rem]" /> : <Moon className="h-[1.2rem] w-[1.2rem]" />}

@@ -1,5 +1,5 @@
-"use client"
 
+"use client"
 import * as React from "react"
 import {
   BookOpen,
@@ -112,8 +112,12 @@ const data = {
       icon: Settings2,
       items: [
         {
+          title: "AI Translation",
+          url: "/dashboard/translator",
+        },
+        {
           title: "Object Recognition",
-          url: "#",
+          url: "/dashboad/object-recognition",
         },
       ],
     },
@@ -133,8 +137,7 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { data: session } = useSession()
-  if(!session?.user) return null;
+
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
@@ -151,7 +154,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={session?.user} />
+        <NavUser/>
       </SidebarFooter>
     </Sidebar>
   )
