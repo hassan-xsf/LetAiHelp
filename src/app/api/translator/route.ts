@@ -21,7 +21,6 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    console.log(text, tr_lang, sr_lang);
 
     const response = await axios.post<TranslationResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/m2m100-1.2b`,

@@ -1,4 +1,6 @@
 "use client";
+// MAKE IT FULLY TYPE SAFE
+// MAKE CREDITS SYSTEM
 
 import { Sparkles } from "lucide-react";
 import React, { useState } from "react";
