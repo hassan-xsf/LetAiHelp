@@ -11,9 +11,9 @@ import {
   Home,
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavMain } from "@/components/ui/nav-main"
+import { NavSecondary } from "@/components/ui/nav-secondary"
+import { NavUser } from "@/components/ui/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -23,7 +23,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import Logo from "./ui/Logo"
+import Logo from "./Logo"
 
 const data = {
   navMain: [

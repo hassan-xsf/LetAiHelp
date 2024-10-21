@@ -1,7 +1,7 @@
 import Link from "next/link"
-import LinkButton from "@/components/ui/LinkButton"
-import Navbar from "@/components/ui/Navbar"
-import GridSection from "@/components/ui/GridSection"
+import LinkButton from "@/components/LinkButton"
+import Navbar from "@/components/Navbar"
+import GridSection from "@/components/GridSection"
 import ToolsList from "@/components/ToolsList"
 
 
