@@ -1,6 +1,5 @@
-
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   BookOpen,
   Bot,
@@ -9,11 +8,11 @@ import {
   Settings2,
   GraduationCap,
   Home,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/ui/nav-main"
-import { NavSecondary } from "@/components/ui/nav-secondary"
-import { NavUser } from "@/components/ui/nav-user"
+import { NavMain } from "@/components/ui/nav-main";
+import { NavSecondary } from "@/components/ui/nav-secondary";
+import { NavUser } from "@/components/ui/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -22,8 +21,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import Logo from "./Logo"
+} from "@/components/ui/sidebar";
+import Logo from "./Logo";
 
 const data = {
   navMain: [
@@ -137,10 +136,9 @@ const data = {
       icon: Send,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
@@ -153,7 +151,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="py-4">
-        <React.Suspense fallback={<div className="h-screen w-full bg-gray-200 dark:bg-zinc-900 animate-pulse"></div>}>
+        <React.Suspense
+          fallback={
+            <div className="h-screen w-full bg-gray-200 dark:bg-zinc-900 animate-pulse"></div>
+          }
+        >
           <>
             <NavMain items={data.navMain} />
             <NavSecondary items={data.navSecondary} className="mt-auto" />
@@ -164,5 +166,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavUser />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

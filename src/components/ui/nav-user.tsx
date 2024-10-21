@@ -1,17 +1,8 @@
-"use client"
+"use client";
 
-import {
-  ChevronsUpDown,
-  LogOut,
-  Palette,
-  Sparkles,
-} from "lucide-react"
+import { ChevronsUpDown, LogOut, Palette, Sparkles } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,24 +11,23 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { signOut, useSession } from "next-auth/react"
-import ThemeBtn from "../ThemeBtn"
-import { useTheme } from "next-themes"
+} from "@/components/ui/sidebar";
+import { signOut, useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 
 export function NavUser() {
-  const { isMobile } = useSidebar()
-  const { data: session } = useSession()
+  const { isMobile } = useSidebar();
+  const { theme, setTheme } = useTheme();
+  const { data: session } = useSession();
 
   if (!session?.user) return null;
   const { user } = session;
-  const { theme , setTheme } = useTheme()
 
   return (
     <SidebarMenu>
@@ -49,7 +39,13 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user?.image || `https://api.dicebear.com/9.x/micah/svg?seed=${user?.name![0].toLowerCase()}`} alt={user?.name!} />
+                <AvatarImage
+                  src={
+                    user?.image ||
+                    `https://api.dicebear.com/9.x/micah/svg?seed=${user?.name![0].toLowerCase()}`
+                  }
+                  alt={user?.name!}
+                />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -68,7 +64,13 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user?.image || `https://api.dicebear.com/9.x/micah/svg?seed=${user?.name![0].toLowerCase()}`} alt={user?.name!} />
+                  <AvatarImage
+                    src={
+                      user?.image ||
+                      `https://api.dicebear.com/9.x/micah/svg?seed=${user?.name![0].toLowerCase()}`
+                    }
+                    alt={user?.name!}
+                  />
                   <AvatarFallback className="rounded-lg">TM</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
@@ -87,24 +89,35 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut />
-              <div className="cursor-pointer" onClick={() => signOut({
-                redirect: true,
-                callbackUrl: `${window.location.origin}/sign-in`
-              })}>Sign Out</div>
+              <div
+                className="cursor-pointer"
+                onClick={() =>
+                  signOut({
+                    redirect: true,
+                    callbackUrl: `${window.location.origin}/sign-in`,
+                  })
+                }
+              >
+                Sign Out
+              </div>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>
-              <Palette/>
-              <div className="cursor-pointer" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}</div>
-              
-
+              <Palette />
+              <div
+                className="cursor-pointer"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark"
+                  ? "Switch to Light Mode"
+                  : "Switch to Dark Mode"}
+              </div>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
