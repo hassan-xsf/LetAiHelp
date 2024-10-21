@@ -9,7 +9,6 @@ import {
   Settings2,
   GraduationCap,
   Home,
-  LoaderIcon,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -25,13 +24,12 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import Logo from "./ui/Logo"
-import { useSession } from "next-auth/react"
 
 const data = {
   navMain: [
     {
       title: "Home",
-      url: "/dashboard/home",
+      url: "/dashboard/",
       icon: Home,
     },
     {
