@@ -41,7 +41,6 @@ const page = () => {
     mutationFn: translatorService,
     onSuccess: (res) => {
       toast.success("Your translation is ready");
-      console.log(res.data.data.result);
       setTranslatedText(res.data.data.result.translated_text);
     },
     onError: (error) => {
