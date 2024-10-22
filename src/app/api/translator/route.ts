@@ -1,9 +1,25 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 import { translateSchema } from "@/schemas/translateSchema";
+import { db } from "@/lib/db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { Credits } from "@/constants/credits";
 
 export async function POST(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "You must be logged in inorder to perform this.",
+        },
+        { status: 401 }
+      );
+    }
+
     const { data } = await request.json();
     const { text, tr_lang, sr_lang } = data;
 
@@ -21,6 +37,16 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    await db.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        credits: {
+          decrement: Credits.Translator,
+        },
+      },
+    });
 
     const response = await axios.post<TranslationResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/m2m100-1.2b`,

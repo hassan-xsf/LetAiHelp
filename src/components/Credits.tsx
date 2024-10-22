@@ -1,5 +1,14 @@
-function CreditChart({ totalCredit = 100, usedCredit = 30 }) {
-  const remainingCredit = totalCredit - usedCredit;
+"use client";
+
+import { useSession } from "next-auth/react";
+
+function CreditChart({ totalCredit = 1000 }) {
+  const session = useSession();
+  if (!session) {
+    return null;
+  }
+  const remainingCredit = session.data?.user.credits!;
+
   const percentage = (remainingCredit / totalCredit) * 100;
 
   return (

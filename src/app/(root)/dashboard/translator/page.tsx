@@ -1,6 +1,4 @@
 "use client";
-// MAKE IT FULLY TYPE SAFE
-// MAKE CREDITS SYSTEM
 
 import { Sparkles } from "lucide-react";
 import React, { useState } from "react";
@@ -24,6 +22,8 @@ import { useMutation } from "@tanstack/react-query";
 import { translatorService } from "@/services/translator";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { useSession } from "next-auth/react";
+import { Credits } from "@/constants/credits";
 
 const page = () => {
   const [translatedText, setTranslatedText] = useState<string>("");
@@ -51,16 +51,30 @@ const page = () => {
       toast.error("There was a problem, Error code: 500");
     },
   });
+  const session = useSession();
+  if (!session.data) return null;
 
   const onSubmit = async (data: translateFormType) => {
+    if (session.data.user.credits < Credits.Translator)
+      return toast.error(
+        "You don't have enough credits to perform this action"
+      );
+
     if (translation.isPending) return;
     translation.mutate(data);
     toast.info("Translating, Please wait...");
+    session.data.user.credits -= Credits.Translator;
+    session.update({
+      credits: session.data.user.credits,
+    });
   };
   return (
     <div className="flex flex-1 flex-col gap-4 p-8 min-h-[70vh]">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-        <ToolsHeader name="AI Language Translator" credits="2" />
+        <ToolsHeader
+          name="AI Language Translator"
+          credits={Credits.Translator.toString()}
+        />
         <div className="pt-10 flex items-center gap-5">
           <Select onValueChange={(value) => setValue("sr_lang", value)}>
             <SelectTrigger className="w-[240px] border-green-400">
