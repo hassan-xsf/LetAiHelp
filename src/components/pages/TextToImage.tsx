@@ -28,6 +28,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { imageService } from "@/services/image";
+import { textLimits } from "@/constants/textLimits";
 
 export default function TextToImage() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -116,6 +117,7 @@ export default function TextToImage() {
             <Textarea
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
+              maxLength={textLimits.TextToImage}
               className="w-full h-40 bg-white dark:bg-zinc-900 border-green-400 text-white placeholder-zinc-400 mb-6"
             />
             {errors.text && (
@@ -170,9 +172,13 @@ export default function TextToImage() {
               <h2 className="text-xl font-semibold">Generated Image</h2>
               <a
                 target="_blank"
-                href={generatedImage || ""}
-                download={generatedImage ? "generated-image.jpg" : undefined}
-                className="flex items-center bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors"
+                href={generatedImage || "#"}
+                download={
+                  generatedImage ? `letaihelp.me+${Date.now()}.png` : undefined
+                }
+                className={`flex items-center bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors ${
+                  generatedImage ? "cursor-auto" : "pointer-events-none"
+                }`}
               >
                 <Download className="w-4 h-4 mr-2" />
                 Download
