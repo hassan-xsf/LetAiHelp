@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { imageSchema } from "@/schemas/imageSchema";
+import {
+  imageFormType,
+  imagePrompts,
+  imageSchema,
+} from "@/schemas/imageSchema";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
@@ -17,9 +21,9 @@ export async function POST(request: Request) {
         { status: 401 }
       );
     }
-    const { model, text } = await request.json();
+    const { model, text, type }: imageFormType = await request.json();
 
-    const validate = imageSchema.safeParse({ model, text });
+    const validate = imageSchema.safeParse({ model, text, type });
     if (!validate.success) {
       const errorMessages = validate.error.issues
         .map((issue) => "Field " + issue.message)
@@ -37,7 +41,7 @@ export async function POST(request: Request) {
     const response = await axios.post<ImageResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
       {
-        prompt: text,
+        prompt: type === "None" ? text : imagePrompts[type] + " " + text,
       },
       {
         headers: {
@@ -47,7 +51,7 @@ export async function POST(request: Request) {
     );
     return NextResponse.json(
       {
-        data: response.data.result.image,
+        data: response.data,
         success: true,
         message: "Image succesfully generated!",
       },

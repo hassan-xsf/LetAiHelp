@@ -1,9 +1,7 @@
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ToolsHeader from "@/components/ToolsHeader";
 import { Credits } from "@/constants/credits";
-import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 const DynamicTranslator = dynamic(
   () => import("@/components/pages/Translator"),
@@ -21,13 +19,8 @@ const page = () => {
           name="AI Language Translator"
           credits={Credits.Translator.toString()}
         />
-        <Suspense
-          fallback={
-            <div className="bg-red-900 h-screen w-full">Loading...</div>
-          }
-        >
-          <DynamicTranslator />
-        </Suspense>
+
+        <DynamicTranslator />
       </div>
     </div>
   );

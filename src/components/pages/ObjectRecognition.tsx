@@ -160,7 +160,7 @@ export default function ObjectDetection() {
 
           <div className="dark:bg-zinc-800 border-green-400 border-2 rounded-lg p-4 h-[50vh] overflow-auto text-black dark:text-white">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">DETECTION RESULTS</h2>
+              <h2 className="text-lg font-semibold">DETECTION RESULTS</h2>
               <Button
                 onClick={copyResults}
                 className="flex items-center bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded transition-colors"
@@ -173,8 +173,8 @@ export default function ObjectDetection() {
               <table className="w-full">
                 <thead>
                   <tr>
-                    <th className="text-left pb-2">OBJECT</th>
-                    <th className="text-right pb-2">CONFIDENCE</th>
+                    <th className="text-left text-lg pb-2">OBJECT</th>
+                    <th className="text-right text-lg pb-2">CONFIDENCE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,7 +183,7 @@ export default function ObjectDetection() {
                       result.score * 100 > 1 && (
                         <tr
                           key={index}
-                          className="border-t font-light border-zinc-700"
+                          className="border-t font-light border-zinc-700 text-sm"
                         >
                           <td className="py-2">{result.label}</td>
                           <td className="text-right py-2">

@@ -61,14 +61,10 @@ const data = {
       items: [
         {
           title: "Text to Image",
-          url: "#",
+          url: "/dashboard/text-to-image",
         },
         {
           title: "Image to Text",
-          url: "#",
-        },
-        {
-          title: "Image to Image",
           url: "#",
         },
       ],
