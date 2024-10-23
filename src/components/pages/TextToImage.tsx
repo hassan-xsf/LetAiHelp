@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
-import { Blend, Copy, ImageIcon, Loader2 } from "lucide-react";
+import { Blend, Copy, Download, ImageIcon, Link, Loader2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -168,13 +168,15 @@ export default function TextToImage() {
           <div className="bg-white border-2 border-zinc-800 dark:bg-zinc-800 rounded-lg p-6 flex flex-col">
             <div className="flex justify-between items-c enter mb-4">
               <h2 className="text-xl font-semibold">Generated Image</h2>
-              <Button
-                onClick={() => {}}
+              <a
+                target="_blank"
+                href={generatedImage || ""}
+                download={generatedImage ? "generated-image.jpg" : undefined}
                 className="flex items-center bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors"
               >
-                <Copy className="w-4 h-4 mr-2" />
-                Copy
-              </Button>
+                <Download className="w-4 h-4 mr-2" />
+                Download
+              </a>
             </div>
             {generatedImage ? (
               <img
