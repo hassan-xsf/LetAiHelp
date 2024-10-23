@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const response = await axios.post<ImageResponse>(
+    const response = await axios.post(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
       {
         prompt: type === "None" ? text : imagePrompts[type] + " " + text,
@@ -49,9 +49,20 @@ export async function POST(request: Request) {
         },
       }
     );
+    let data = {};
+
+    if (model === "@cf/black-forest-labs/flux-1-schnell") {
+      data = {
+        result: response.data.result.image,
+      };
+    } else {
+      data = {
+        result: response.data,
+      };
+    }
     return NextResponse.json(
       {
-        data: response.data,
+        data,
         success: true,
         message: "Image succesfully generated!",
       },

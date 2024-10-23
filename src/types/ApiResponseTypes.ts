@@ -42,9 +42,3 @@ type CaptionResponse = {
 type AITextResponse = {
   result: string;
 };
-
-type ImageResponse = {
-  result: {
-    image: string;
-  };
-};

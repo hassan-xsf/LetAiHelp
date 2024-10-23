@@ -52,8 +52,9 @@ export default function TextToImage() {
     mutationFn: imageService,
     onSuccess: (res) => {
       toast.success("Your image is ready");
-      setGeneratedImage("data:image/jpeg;base64," + res.data.data.result.image);
-      console.log(res.data.data.result.image);
+      console.log(res.data.data.result);
+
+      setGeneratedImage("data:image/jpeg;base64," + res.data.data.result);
     },
     onError: (error) => {
       console.log(error);
@@ -174,10 +175,10 @@ export default function TextToImage() {
                 target="_blank"
                 href={generatedImage || "#"}
                 download={
-                  generatedImage ? `letaihelp.me+${Date.now()}.png` : undefined
+                  generatedImage ? `letaihelp.me${Date.now()}.png` : undefined
                 }
                 className={`flex items-center bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors ${
-                  generatedImage ? "cursor-auto" : "pointer-events-none"
+                  generatedImage ? "cursor-pointer" : "pointer-events-none"
                 }`}
               >
                 <Download className="w-4 h-4 mr-2" />
