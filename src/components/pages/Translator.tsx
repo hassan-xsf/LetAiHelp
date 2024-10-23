@@ -26,6 +26,7 @@ import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 
 const Translator = () => {
+  console.log("LOADEDDDDDDD");
   const [translatedText, setTranslatedText] = useState<string>("");
 
   const {
@@ -69,76 +70,68 @@ const Translator = () => {
     });
   };
   return (
-    <div className="flex flex-1 flex-col gap-4 p-8 min-h-[70vh]">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-        <ToolsHeader
-          name="AI Language Translator"
-          credits={Credits.Translator.toString()}
-        />
-        <div className="pt-10 flex items-center gap-5">
-          <Select onValueChange={(value) => setValue("sr_lang", value)}>
-            <SelectTrigger className="w-[240px] border-green-400">
-              <SelectValue placeholder="Select source language" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Source Language</SelectLabel>
-                {Object.entries(languageCodes).map(([key, value]) => (
-                  <SelectItem key={key} value={value}>
-                    {key}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {errors.sr_lang && (
-            <p className="text-red-500">{errors.sr_lang.message}</p>
-          )}
-          <Select onValueChange={(value) => setValue("tr_lang", value)}>
-            <SelectTrigger className="w-[240px] border-green-400">
-              <SelectValue placeholder="Select target language" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Resulting Language</SelectLabel>
-                {Object.entries(languageCodes).map(([key, value]) => (
-                  <SelectItem key={key} value={value}>
-                    {key}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {errors.tr_lang && (
-            <p className="text-red-500">{errors.tr_lang.message}</p>
-          )}
-        </div>
-        <div className="grid grid-cols-2 gap-4 my-10">
-          <div>
-            <Textarea
-              placeholder="Enter text to translate"
-              className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
-              {...register("text")}
-            />
-            {errors.text && (
-              <p className="text-red-500">{errors.text.message}</p>
-            )}
-          </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="pt-10 flex items-center gap-5">
+        <Select onValueChange={(value) => setValue("sr_lang", value)}>
+          <SelectTrigger className="w-[240px] border-green-400">
+            <SelectValue placeholder="Select source language" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Source Language</SelectLabel>
+              {Object.entries(languageCodes).map(([key, value]) => (
+                <SelectItem key={key} value={value}>
+                  {key}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        {errors.sr_lang && (
+          <p className="text-red-500">{errors.sr_lang.message}</p>
+        )}
+        <Select onValueChange={(value) => setValue("tr_lang", value)}>
+          <SelectTrigger className="w-[240px] border-green-400">
+            <SelectValue placeholder="Select target language" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Resulting Language</SelectLabel>
+              {Object.entries(languageCodes).map(([key, value]) => (
+                <SelectItem key={key} value={value}>
+                  {key}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        {errors.tr_lang && (
+          <p className="text-red-500">{errors.tr_lang.message}</p>
+        )}
+      </div>
+      <div className="grid grid-cols-2 gap-4 my-10">
+        <div>
           <Textarea
-            placeholder="Translation will appear here"
-            value={translatedText}
-            readOnly
+            placeholder="Enter text to translate"
             className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
+            {...register("text")}
           />
+          {errors.text && <p className="text-red-500">{errors.text.message}</p>}
         </div>
-        <div className="w-1/6 mx-auto">
-          <button className="w-full px-6 py-3 flex items-center justify-center gap-3 bg-green-500 text-white rounded-lg font-semibold text-lg transition-all hover:bg-green-600 shadow-[6px_6px_0_0_#166534] hover:shadow-[2px_2px_0_0_#166534] hover:translate-x-1 hover:translate-y-1">
-            <Sparkles className="size-6 ml-2 text-white fill-green-400" />
-            {translation.isPending ? "TRANSLATING..." : "AI TRANSLATE"}
-          </button>
-        </div>
-      </form>
-    </div>
+        <Textarea
+          placeholder="Translation will appear here"
+          value={translatedText}
+          readOnly
+          className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
+        />
+      </div>
+      <div className="w-1/6 mx-auto">
+        <button className="w-full px-6 py-3 flex items-center justify-center gap-3 bg-green-500 text-white rounded-lg font-semibold text-lg transition-all hover:bg-green-600 shadow-[6px_6px_0_0_#166534] hover:shadow-[2px_2px_0_0_#166534] hover:translate-x-1 hover:translate-y-1">
+          <Sparkles className="size-6 ml-2 text-white fill-green-400" />
+          {translation.isPending ? "TRANSLATING..." : "AI TRANSLATE"}
+        </button>
+      </div>
+    </form>
   );
 };
 
