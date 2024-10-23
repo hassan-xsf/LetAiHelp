@@ -37,37 +37,48 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-
-    const response = await axios.post(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
-      {
-        prompt: type === "None" ? text : imagePrompts[type] + " " + text,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
-        },
-      }
-    );
-    let data = {};
-
     if (model === "@cf/black-forest-labs/flux-1-schnell") {
-      data = {
-        result: response.data.result.image,
-      };
+      const response = await axios.post(
+        `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
+        {
+          prompt: type === "None" ? text : imagePrompts[type] + " " + text,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+          },
+        }
+      );
+
+      return NextResponse.json(
+        {
+          data: response.data,
+          success: true,
+          message: "Image succesfully generated!",
+        },
+        { status: 200 }
+      );
     } else {
-      data = {
-        result: response.data,
-      };
+      const response = await axios.post(
+        `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
+        {
+          prompt: type === "None" ? text : imagePrompts[type] + " " + text,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+          responseType: "arraybuffer",
+        }
+      );
+      return new NextResponse(response.data, {
+        status: 200,
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
     }
-    return NextResponse.json(
-      {
-        data,
-        success: true,
-        message: "Image succesfully generated!",
-      },
-      { status: 200 }
-    );
   } catch (error) {
     console.log(error);
     return NextResponse.json(

@@ -2,13 +2,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { objectDetectionService } from "@/services/object-detection";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 import { Textarea } from "../ui/textarea";
-import Image from "next/image";
 import { Blend, Copy, Download, ImageIcon, Link, Loader2 } from "lucide-react";
 import {
   Select,
@@ -38,6 +36,7 @@ export default function TextToImage() {
     handleSubmit,
     setValue,
     watch,
+    getValues,
     formState: { errors },
   } = useForm<imageFormType>({
     defaultValues: {
@@ -52,9 +51,17 @@ export default function TextToImage() {
     mutationFn: imageService,
     onSuccess: (res) => {
       toast.success("Your image is ready");
-      console.log(res.data.data.result);
 
-      setGeneratedImage("data:image/jpeg;base64," + res.data.data.result);
+      console.log(getValues("model"));
+      console.log(res.data);
+      if (getValues("model") === "@cf/black-forest-labs/flux-1-schnell") {
+        setGeneratedImage(
+          "data:image/png;base64," + res.data.data.result.image
+        );
+      } else {
+        const url = URL.createObjectURL(res.data);
+        setGeneratedImage(url);
+      }
     },
     onError: (error) => {
       console.log(error);
@@ -206,4 +213,13 @@ export default function TextToImage() {
       </form>
     </div>
   );
+}
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary); // Convert binary string to Base64
 }

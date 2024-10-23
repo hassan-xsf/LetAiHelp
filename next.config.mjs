@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  crossOrigin: "anonymous",
+};
 
 export default nextConfig;
