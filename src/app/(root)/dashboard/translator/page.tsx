@@ -1,7 +1,17 @@
-import Translator from "@/components/pages/Translator";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import ToolsHeader from "@/components/ToolsHeader";
 import { Credits } from "@/constants/credits";
+import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
+
+const DynamicTranslator = dynamic(
+  () => import("@/components/pages/Translator"),
+  {
+    loading: () => <LoadingSpinner />,
+    ssr: false,
+  }
+);
 
 const page = () => {
   return (
@@ -16,7 +26,7 @@ const page = () => {
             <div className="bg-red-900 h-screen w-full">Loading...</div>
           }
         >
-          <Translator />
+          <DynamicTranslator />
         </Suspense>
       </div>
     </div>

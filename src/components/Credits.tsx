@@ -7,7 +7,6 @@ function CreditChart({ totalCredit = 1000 }) {
   if (!session) {
     return null;
   }
-  console.log(session.data?.user);
   const remainingCredit = session.data?.user.credits!;
 
   const percentage = (remainingCredit / totalCredit) * 100;

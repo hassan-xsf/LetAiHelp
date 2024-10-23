@@ -14,7 +14,6 @@ import {
 
 import { languageCodes } from "@/constants/allLanguages";
 import { Textarea } from "@/components/ui/textarea";
-import ToolsHeader from "@/components/ToolsHeader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { translateFormType, translateSchema } from "@/schemas/translateSchema";
 import { useForm } from "react-hook-form";
@@ -26,7 +25,6 @@ import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 
 const Translator = () => {
-  console.log("LOADEDDDDDDD");
   const [translatedText, setTranslatedText] = useState<string>("");
 
   const {
