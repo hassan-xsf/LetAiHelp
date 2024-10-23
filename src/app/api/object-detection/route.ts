@@ -20,7 +20,6 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const file = formData.get("image");
 
-    console.log(file);
     if (!file || !(file instanceof Blob)) {
       return NextResponse.json(
         {
@@ -35,15 +34,15 @@ export async function POST(request: Request) {
 
     const eightBit = Array.from(uint8Array);
 
-    // if (eightBit.length > 200000) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: "The image size was too big to be processed..",
-    //     },
-    //     { status: 400 }
-    //   );
-    // }
+    if (eightBit.length > 500_000) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "The image size was too big to be processed..",
+        },
+        { status: 400 }
+      );
+    }
     const response = await axios.post<ObjectDetectionResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/facebook/detr-resnet-50`,
       { image: eightBit },

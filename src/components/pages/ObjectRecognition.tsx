@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
-import { Upload, Copy, FileSearch } from "lucide-react";
+import { Upload, Copy, FileSearch, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { objectDetectionService } from "@/services/object-detection";
@@ -21,13 +21,7 @@ export default function ObjectDetection() {
     mutationFn: objectDetectionService,
     onSuccess: (res) => {
       toast.success("Your object detection report is ready");
-
-      const filteredResults = res.data.data.result
-        .map((r) => ({ ...r, score: r.score * 100 }))
-        .filter((r) => r.score > 1);
       setResults(res.data.data);
-
-      console.log(res.data.data);
     },
     onError: (error) => {
       console.log(error);
@@ -50,12 +44,22 @@ export default function ObjectDetection() {
       reader.readAsDataURL(file);
     }
   };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      setFinalFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => setImage(event.target?.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleUpload = () => {
     if (image && finalFile) {
       if (session.data.user.credits < Credits.ObjectDetection)
-        toast.error("You don't have enough credits to perform this action");
-
+        return toast.error(
+          "You don't have enough credits to perform this action"
+        );
       if (objectDetection.isPending) return;
 
       const formData = new FormData();
@@ -74,16 +78,6 @@ export default function ObjectDetection() {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file && file.type.startsWith("image/")) {
-      setFinalFile(file);
-      const reader = new FileReader();
-      reader.onload = (event) => setImage(event.target?.result as string);
-      reader.readAsDataURL(file);
-    }
-  };
-
   const copyResults = () => {
     const text = results?.result
       .filter((r) => r.score * 100 > 1)
@@ -94,17 +88,17 @@ export default function ObjectDetection() {
 
   return (
     <div className="bg-white rounded-md dark:bg-zinc-950/90 text-white p-8 mt-10 h-[65vh]">
-      <div className="flex items-center gap-3 justify-center">
+      <div className="flex items-center gap-3 justify-center ">
         <FileSearch size="20" className="text-black dark:text-white" />
         <h1 className="text-black dark:text-white font-semibold text-lg tracking-tight underline-offset-2 underline decoration-green-400 decoration-2">
           UPLOAD AN IMAGE THEN CLICK ON DETECT OBJECTS, OUR TOOL WILL SHOW YOU
-          THE 15 OBJECTS FOUND IN THE PICTURE.
+          THE MOST OBVIOUS OBJECTS FOUND IN THE PICTURE.
         </h1>
       </div>
-      <div className="max-w-6xl mx-auto pt-24">
+      <div className="max-w-6xl mx-auto pt-24 ">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[50vh] h-full">
           <div
-            className="col-span-2 border-2 border-dashed rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer border-green-400 transition-colors"
+            className="col-span-2 border-2 border-dashed rounded-lg p-4 dark:bg-zinc-800 flex flex-col items-center justify-center cursor-pointer border-green-400 transition-colors"
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
             onClick={handleUpload}
@@ -137,11 +131,18 @@ export default function ObjectDetection() {
               }}
               className="mt-3 bg-green-500 hover:bg-green-600 text-white"
             >
-              {image
-                ? objectDetection.isPending
-                  ? "Detecting Objects..."
-                  : "Detect Objects"
-                : "Upload Image"}
+              {image ? (
+                objectDetection.isPending ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <Loader2 size={10} className="animate-spin" />
+                    Detecting Objects...
+                  </div>
+                ) : (
+                  "Detect Objects"
+                )
+              ) : (
+                "Upload Image"
+              )}
             </Button>
             {image && (
               <Button
@@ -157,7 +158,7 @@ export default function ObjectDetection() {
             )}
           </div>
 
-          <div className="bg-gray-100 dark:bg-zinc-800 border-green-400 border-2 rounded-lg p-4 h-[50vh] overflow-auto text-black dark:text-white">
+          <div className="dark:bg-zinc-800 border-green-400 border-2 rounded-lg p-4 h-[50vh] overflow-auto text-black dark:text-white">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">DETECTION RESULTS</h2>
               <Button
@@ -180,7 +181,10 @@ export default function ObjectDetection() {
                   {results.result.map(
                     (result, index) =>
                       result.score * 100 > 1 && (
-                        <tr key={index} className="border-t border-zinc-700">
+                        <tr
+                          key={index}
+                          className="border-t font-light border-zinc-700"
+                        >
                           <td className="py-2">{result.label}</td>
                           <td className="text-right py-2">
                             {(result.score * 100).toFixed(2)}%
