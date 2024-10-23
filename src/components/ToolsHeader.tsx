@@ -13,7 +13,7 @@ const ToolsHeader = ({ name, credits }: { name: string; credits: string }) => {
           </span>
         </div>
         <span className="text-black font-bold text-xl dark:text-white ml-8">
-          NOTE: {credits} CREDITS PER TRANSLATION
+          NOTE: {credits} CREDITS PER USE
         </span>
       </div>
       <CreditChart />

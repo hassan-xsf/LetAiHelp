@@ -115,7 +115,7 @@ const data = {
         },
         {
           title: "AI Summarizer",
-          url: "/dashboard/summarize",
+          url: "/dashboard/summarizer",
         },
         {
           title: "Object Recognition",

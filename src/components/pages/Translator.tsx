@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
+import { Clipboard, Copy, Loader2, Sparkles } from "lucide-react";
 import React, { useState } from "react";
 import {
   Select,
@@ -23,7 +23,7 @@ import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
-
+import { textLimits } from "@/constants/textLimits";
 const Translator = () => {
   const [translatedText, setTranslatedText] = useState<string>("");
 
@@ -31,16 +31,22 @@ const Translator = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<translateFormType>({
+    defaultValues: {
+      text: "",
+    },
     resolver: zodResolver(translateSchema),
   });
+  const currentText = watch("text");
 
   const translation = useMutation({
     mutationFn: translatorService,
     onSuccess: (res) => {
       toast.success("Your translation is ready");
       setTranslatedText(res.data.data.result.translated_text);
+      console.log(res.data.data.result.translated_text);
     },
     onError: (error) => {
       console.log(error);
@@ -53,6 +59,11 @@ const Translator = () => {
   const session = useSession();
   if (!session.data) return null;
 
+  const copyOutput = () => {
+    if (translatedText === "") return;
+    navigator.clipboard.writeText(translatedText);
+    toast.info("Translation copied to clipboard");
+  };
   const onSubmit = async (data: translateFormType) => {
     if (session.data.user.credits < Credits.Translator)
       return toast.error(
@@ -109,23 +120,44 @@ const Translator = () => {
       </div>
       <div className="grid grid-cols-2 gap-4 my-10">
         <div>
+          <div className="w-[99.9%] mx-auto h-10 bg-white dark:bg-zinc-800 ring-green-400 ring-1 rounded-md -mb-2 flex items-center justify-between pl-2">
+            <p className="text-zinc-400 text-sm -mt-2">
+              words: {currentText.length}/{textLimits.Translator}
+            </p>
+          </div>
           <Textarea
             placeholder="Enter text to translate"
             className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
+            maxLength={textLimits.Translator}
             {...register("text")}
           />
           {errors.text && <p className="text-red-500">{errors.text.message}</p>}
         </div>
-        <Textarea
-          placeholder="Translation will appear here"
-          value={translatedText}
-          readOnly
-          className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
-        />
+        <div>
+          <div className="w-[99.9%] mx-auto h-10 bg-white dark:bg-zinc-800 ring-green-400 ring-1 rounded-md -mb-2 flex items-center justify-end pr-1">
+            <div
+              onClick={copyOutput}
+              className="text-zinc-400 rounded-md p-1 text-sm -mt-2 flex items-center justify-center gap-1 cursor-pointer"
+            >
+              <Copy size={15} />
+              copy
+            </div>
+          </div>
+          <Textarea
+            placeholder="Translation will appear here"
+            value={translatedText}
+            readOnly
+            className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
+          />
+        </div>
       </div>
       <div className="w-1/6 mx-auto">
         <button className="w-full px-6 py-3 flex items-center justify-center gap-3 bg-green-500 text-white rounded-lg font-semibold text-lg transition-all hover:bg-green-600 shadow-[6px_6px_0_0_#166534] hover:shadow-[2px_2px_0_0_#166534] hover:translate-x-1 hover:translate-y-1">
-          <Sparkles className="size-6 ml-2 text-white fill-green-400" />
+          {translation.isPending ? (
+            <Loader2 className="size-7 ml-2 text-white animate-spin" />
+          ) : (
+            <Sparkles className="size-6 ml-2 text-white fill-green-400" />
+          )}
           {translation.isPending ? "TRANSLATING..." : "AI TRANSLATE"}
         </button>
       </div>

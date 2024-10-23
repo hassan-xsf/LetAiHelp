@@ -3,6 +3,8 @@ import axios from "axios";
 import { summarizeSchema } from "@/schemas/summarizeSchema";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { Credits } from "@/constants/credits";
 
 export async function POST(request: Request) {
   try {
@@ -34,7 +36,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-
+    console.log(input_text, max_length);
     const response = await axios.post<SummarizeResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/facebook/bart-large-cnn`,
       {
@@ -47,7 +49,16 @@ export async function POST(request: Request) {
         },
       }
     );
-
+    await db.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        credits: {
+          decrement: Credits.Summarizer,
+        },
+      },
+    });
     return NextResponse.json(
       {
         data: response.data,
