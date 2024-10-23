@@ -49,7 +49,7 @@ export async function POST(request: Request) {
         },
       }
     );
-    await db.user.update({
+    const updatedUser = await db.user.update({
       where: {
         id: session.user.id,
       },
@@ -59,6 +59,19 @@ export async function POST(request: Request) {
         },
       },
     });
+    /// a hotfix because apparently NextAuth doesn't update the session when we set the value to 0, so we need to manually update it
+    /// IssueX#0
+
+    if (updatedUser.credits === 0) {
+      await db.user.update({
+        where: {
+          id: session.user.id,
+        },
+        data: {
+          credits: 1,
+        },
+      });
+    }
     return NextResponse.json(
       {
         data: response.data,

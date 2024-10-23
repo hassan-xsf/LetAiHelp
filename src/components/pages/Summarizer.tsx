@@ -68,17 +68,11 @@ const Summarizer = () => {
     if (translation.isPending) return;
     translation.mutate(data);
     toast.info("Summarizing, Please wait...");
-    console.log(session.data.user.credits);
 
-    session.data.user.credits -= Credits.Summarizer;
-
-    if (session.data.user.credits < Credits.Summarizer)
-      session.data.user.credits = 0;
-    console.log(session.data.user.credits);
+    const newCredits = session.data.user.credits - Credits.Summarizer;
     session.update({
-      credits: session.data.user.credits < 0 ? 0 : session.data.user.credits,
+      credits: newCredits === 0 ? 1 : newCredits,
     });
-    console.log(session.data.user.credits);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

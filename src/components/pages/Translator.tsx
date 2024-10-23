@@ -73,9 +73,9 @@ const Translator = () => {
     if (translation.isPending) return;
     translation.mutate(data);
     toast.info("Translating, Please wait...");
-    session.data.user.credits -= Credits.Translator;
+    const newCredits = session.data.user.credits - Credits.Translator;
     session.update({
-      credits: session.data.user.credits,
+      credits: newCredits === 0 ? 1 : newCredits,
     });
   };
   return (
