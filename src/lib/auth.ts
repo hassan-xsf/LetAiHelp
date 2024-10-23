@@ -38,6 +38,7 @@ export const authOptions: NextAuthOptions = {
           );
           if (!matchPass) return null;
         }
+
         return {
           id: String(findUser.id),
           name: findUser.name,

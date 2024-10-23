@@ -21,7 +21,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import GithubSignIn from "@/components/GithubSignIn";
+import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
 
 const page = () => {

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import LogoutBtn from "./LogoutBtn";
+import LogoutBtn from "./buttons/LogoutButton";
 
 import {
   DropdownMenu,
@@ -14,8 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Logo from "./Logo";
-import ThemeBtn from "./ThemeBtn";
-import LinkButton from "./LinkButton";
+import ThemeBtn from "./buttons/ThemeButton";
 
 const Navbar = async () => {
   const data = await getServerSession(authOptions);

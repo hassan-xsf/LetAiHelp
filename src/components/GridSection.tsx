@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
-import LinkButton from "./LinkButton";
+import LinkButton from "./buttons/LinkButton";
 
 const GridSection = () => {
   const { theme } = useTheme();

@@ -1,9 +1,8 @@
-import Link from "next/link"
-import LinkButton from "@/components/LinkButton"
-import Navbar from "@/components/Navbar"
-import GridSection from "@/components/GridSection"
-import ToolsList from "@/components/ToolsList"
-
+import Link from "next/link";
+import LinkButton from "@/components/buttons/LinkButton";
+import Navbar from "@/components/Navbar";
+import GridSection from "@/components/GridSection";
+import ToolsList from "@/components/ToolsList";
 
 export default function page() {
   return (
@@ -11,11 +10,13 @@ export default function page() {
       <Navbar />
       <div className="max-w-screen-2xl mx-auto flex flex-col min-h-screen bg-gray-50 dark:bg-zinc-950">
         <main className="flex-1">
-          <GridSection/>
+          <GridSection />
           <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-zinc-950">
             <div className="container px-4 md:px-6">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-gray-900 dark:text-white">Our AI Tools</h2>
-              <ToolsList/>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-gray-900 dark:text-white">
+                Our AI Tools
+              </h2>
+              <ToolsList />
             </div>
           </section>
           <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-zinc-950">
@@ -26,7 +27,8 @@ export default function page() {
                     Ready to Let AI Help?
                   </h2>
                   <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                    Join thousands of users who are already benefiting from our AI-powered tools.
+                    Join thousands of users who are already benefiting from our
+                    AI-powered tools.
                   </p>
                 </div>
                 <LinkButton name="Get Started" />
@@ -49,6 +51,5 @@ export default function page() {
         </footer>
       </div>
     </>
-  )
+  );
 }
-
