@@ -1,6 +1,6 @@
 "use client";
 
-import { Clipboard, Copy, Loader2, Sparkles } from "lucide-react";
+import { Copy, Loader2, Sparkles } from "lucide-react";
 import React, { useState } from "react";
 import {
   Select,
