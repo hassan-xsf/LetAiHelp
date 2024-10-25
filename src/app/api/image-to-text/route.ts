@@ -7,15 +7,15 @@ export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
-    // if (!session?.user) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: "You must be logged in inorder to perform this.",
-    //     },
-    //     { status: 401 }
-    //   );
-    // }
+    if (!session?.user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "You must be logged in inorder to perform this.",
+        },
+        { status: 401 }
+      );
+    }
 
     const formData = await request.formData();
     const file = formData.get("image");

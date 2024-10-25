@@ -34,8 +34,6 @@ export const textModels = [
   "@cf/qwen/qwen1.5-7b-chat-awq",
   "@hf/nexusflow/starling-lm-7b-beta",
   "@cf/tinyllama/tinyllama-1.1b-chat-v1.0",
-  "deepseek-coder-6.7b-base-awq",
-  "deepseek-coder-6.7b-instruct-awq",
 ] as const;
 
 export const textSchema = z.object({

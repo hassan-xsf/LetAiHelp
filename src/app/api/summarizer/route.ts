@@ -36,7 +36,6 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    console.log(input_text, max_length);
     const response = await axios.post<SummarizeResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/facebook/bart-large-cnn`,
       {

@@ -71,16 +71,8 @@ const data = {
       icon: GraduationCap,
       items: [
         {
-          title: "AI Writing Assistants",
+          title: "AI Writing Assistant",
           url: "/dashboard/ai-writing-assistant",
-        },
-        {
-          title: "AI Presentation Maker",
-          url: "#",
-        },
-        {
-          title: "AI Career Guidance",
-          url: "#",
         },
         {
           title: "AI Study Buddy",

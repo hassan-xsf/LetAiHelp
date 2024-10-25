@@ -1,6 +1,5 @@
-import { Bot, Copy, User } from "lucide-react";
+import { Bot, User } from "lucide-react";
 import React from "react";
-import { toast } from "sonner";
 
 const ChatMessage = ({
   type,
@@ -9,12 +8,6 @@ const ChatMessage = ({
   type: "bot" | "user";
   message: string;
 }) => {
-  const copyOutput = (text: string) => {
-    if (text === "") return;
-    navigator.clipboard.writeText(text);
-    toast.info("Text copied to clipboard!");
-  };
-
   return (
     <>
       <div
@@ -37,12 +30,6 @@ const ChatMessage = ({
             >
               {type === "bot" ? "LetAIHelp" : "You"}
             </span>
-            {type === "bot" && (
-              <Copy
-                onClick={() => copyOutput(message)}
-                className="size-4 ml-2 text-black dark:text-zinc-500 fill-green-400 cursor-pointer absolute top-2 right-2"
-              />
-            )}
           </div>
           <div className="text-black dark:text-white">
             <MarkdownParser text={message} />
@@ -55,8 +42,16 @@ const ChatMessage = ({
 
 const MarkdownParser = ({ text }: { text: string }) => {
   const parseText = (input: string) => {
-    const lines = input.split("\n");
-    // Join the lines with <br> for line breaks
+    // Replace "**text**" with "<b>text</b>"
+    let formattedText = input.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+
+    // Replace ``` with <code> (open and close tags)
+    formattedText = formattedText.replace(
+      /```([\s\S]*?)```/g,
+      "<div class = 'testBG'><code class = 'test'>$1</code></div>"
+    );
+
+    const lines = formattedText.split("\n");
     return lines.join("<br/>");
   };
 

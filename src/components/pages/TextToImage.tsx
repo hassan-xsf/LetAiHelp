@@ -76,7 +76,9 @@ export default function TextToImage() {
 
   const onSubmit = async (data: imageFormType) => {
     if (session.data.user.credits < Credits.TextToImage)
-      toast.error("You don't have enough credits to perform this action");
+      return toast.error(
+        "You don't have enough credits to perform this action"
+      );
 
     if (imageGeneration.isPending) return;
     imageGeneration.mutate(data);
@@ -126,7 +128,7 @@ export default function TextToImage() {
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
               maxLength={textLimits.TextToImage}
-              className="w-full h-40 bg-white dark:bg-zinc-900 border-green-400 text-white placeholder-zinc-400 mb-6"
+              className="w-full h-40 bg-white text-black dark:bg-zinc-900 border-green-400 dark:text-white placeholder-zinc-400 mb-6"
             />
             {errors.text && (
               <p className="text-red-500">{errors.text.message}</p>
@@ -137,9 +139,9 @@ export default function TextToImage() {
                 Styles
               </h2>
               <div className="grid grid-cols-3 gap-4">
-                {imageTypes.map((image, indx) => (
+                {imageTypes.map((image) => (
                   <div
-                    key={indx}
+                    key={crypto.randomUUID()}
                     onClick={() => setValue("type", image)}
                     className={`cursor-pointer rounded-lg overflow-hidden border ${
                       styleType.toLowerCase() === image.toLowerCase()

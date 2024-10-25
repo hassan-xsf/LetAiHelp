@@ -151,7 +151,9 @@ export default function TextToImage() {
 
   const onSubmit = async (data: textFormType) => {
     if (session.data.user.credits < Credits.Chat)
-      toast.error("You don't have enough credits to perform this action");
+      return toast.error(
+        "You don't have enough credits to perform this action"
+      );
 
     if (isLoading) return;
     setMessage((prev) => [...prev, { type: "user", message: data.prompt }]);

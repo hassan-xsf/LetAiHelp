@@ -108,7 +108,6 @@
   position: relative;
 }
 
-
 .bg-grid-pattern::before {
   content: "";
   position: absolute;
@@ -116,7 +115,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 150%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 150%
+  );
 }
 @layer base {
   * {
@@ -128,11 +131,25 @@
 }
 @keyframes glowing-border {
   0% {
-    box-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80, 0 0 15px #4ade80, 0 0 20px #4ade80;
+    box-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80, 0 0 15px #4ade80,
+      0 0 20px #4ade80;
   }
   100% {
-    box-shadow: 0 0 20px #4ade80, 0 0 25px #4ade80, 0 0 30px #4ade80, 0 0 35px #4ade80;
+    box-shadow: 0 0 20px #4ade80, 0 0 25px #4ade80, 0 0 30px #4ade80,
+      0 0 35px #4ade80;
   }
+}
+.testBG {
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+}
+.test {
+  border-radius: 10px;
+  padding-right: 10px;
+  color: white;
+  text-align: center;
+  width: 200px;
 }
 
 .animate-glow {

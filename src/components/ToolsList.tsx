@@ -8,6 +8,7 @@ import {
   Code2Icon,
   Frown,
 } from "lucide-react";
+import Link from "next/link";
 
 const ToolsList = () => {
   return (
@@ -15,26 +16,38 @@ const ToolsList = () => {
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-1 row-span-2 bg-white dark:bg-[#1E1E1E] rounded-lg p-6">
           <Bot className="w-8 h-8 text-green-400 mb-4" />
-          <h2 className="text-xl font-semibold mb-2 text-black dark:text-white">
+          <Link
+            href="/dashboard/chat"
+            className="text-xl font-semibold mb-2 text-black dark:text-white underline"
+          >
             Chat Tools
-          </h2>
+          </Link>
           <p className="text-gray-400 text-sm mb-4">
             One of the best Chat AI Tools for free, Trained according to your
             personal needs.
           </p>
           <div className="space-y-2">
-            <p className="text-gray-400 text-sm flex items-center">
+            <Link
+              href="/dashboard/chat?type=default"
+              className="text-gray-400 text-sm flex items-center underline"
+            >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
               AI Chatbot
-            </p>
-            <p className="text-gray-400 text-sm flex items-center">
+            </Link>
+            <Link
+              href="/dashboard/chat?type=pa"
+              className="text-gray-400 text-sm flex items-center underline"
+            >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
               AI Personal Assistant
-            </p>
-            <p className="text-gray-400 text-sm flex items-center">
+            </Link>
+            <Link
+              href="/dashboard/chat?type=explainer"
+              className="text-gray-400 text-sm flex items-center underline"
+            >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
               AI Explainer
-            </p>
+            </Link>
           </div>
         </div>
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4 row-span-2">
@@ -68,9 +81,12 @@ const ToolsList = () => {
 
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4">
           <RefreshCw className="w-6 h-6 text-green-400 mb-2" />
-          <h2 className="text-lg font-semibold mb-1 text-black dark:text-white">
+          <Link
+            href="/dashboard/summarizer"
+            className="text-lg font-semibold mb-1 text-black dark:text-white underline"
+          >
             Summarizer Tool
-          </h2>
+          </Link>
           <p className="text-gray-400 text-xs">
             Who got time to read all the boring stuff ey? Use our summarizer
             tool and learn in minutes!
@@ -79,9 +95,12 @@ const ToolsList = () => {
 
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4">
           <Code2Icon className="w-6 h-6 text-green-400 mb-2" />
-          <h2 className="text-lg font-semibold mb-1 text-black dark:text-white">
+          <Link
+            href="/dashboard/chat?type=coder"
+            className="text-lg font-semibold mb-1 text-black dark:text-white underline"
+          >
             AI Developer
-          </h2>
+          </Link>
           <p className="text-gray-400 text-xs">
             Looking for a coding buddy? Our AI Tool has got you!
           </p>
@@ -103,9 +122,12 @@ const ToolsList = () => {
 
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4">
           <Image className="w-6 h-6 text-green-400 mb-2" />
-          <h2 className="text-lg font-semibold mb-1 text-black dark:text-white">
+          <Link
+            href="/dashboard/text-to-image"
+            className="text-lg font-semibold mb-1 text-black dark:text-white underline"
+          >
             Image Tools
-          </h2>
+          </Link>
           <p className="text-gray-400 text-xs mb-4">
             Generate all sorts of images in just a few clicks.
           </p>
@@ -124,9 +146,12 @@ const ToolsList = () => {
         </div>
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4">
           <BookA className="w-6 h-6 text-green-400 mb-2" />
-          <h2 className="text-lg font-semibold mb-1 text-black dark:text-white">
+          <Link
+            href="/dashboard/translator"
+            className="text-lg font-semibold mb-1 text-black dark:text-white underline"
+          >
             AI Translation
-          </h2>
+          </Link>
           <p className="text-gray-400 text-xs">
             Experience the power of advanced AI translation. Simply input your
             text, choose your desired target language, and receive accurate

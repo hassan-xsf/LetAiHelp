@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { Credits } from "@/constants/credits";
 
 export async function POST(request: Request) {
   try {
@@ -53,7 +55,29 @@ export async function POST(request: Request) {
         },
       }
     );
+    const updatedUser = await db.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        credits: {
+          decrement: Credits.TextToImage,
+        },
+      },
+    });
+    /// a hotfix because apparently NextAuth doesn't update the session when we set the value to 0, so we need to manually update it
+    /// IssueX#0
 
+    if (updatedUser.credits === 0) {
+      await db.user.update({
+        where: {
+          id: session.user.id,
+        },
+        data: {
+          credits: 1,
+        },
+      });
+    }
     return NextResponse.json(
       {
         data: response.data,
