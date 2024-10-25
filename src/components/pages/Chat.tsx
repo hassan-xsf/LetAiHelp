@@ -1,32 +1,23 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { dataTagSymbol, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 import { Textarea } from "../ui/textarea";
 import { Bot, Send, User } from "lucide-react";
-import { Blend, Copy, Download, ImageIcon, Link, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import {
-  imageFormType,
-  imageModels,
-  imageSchema,
-  imageTypes,
-} from "@/schemas/imageSchema";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { imageService } from "@/services/image";
 
 import {
   chatType,
@@ -112,22 +103,24 @@ export default function TextToImage() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-[68vh] bg-black px-8 pt-8 mt-10 text-white overflow-hidden flex flex-col rounded-lg"
+      className="h-[68vh] bg-white dark:bg-black border-green-400 border px-8 pt-8 mt-10 text-white overflow-hidden flex flex-col rounded-lg"
     >
       <div className="border-b border-zinc-800">
         <div className="flex items-center mb-2">
           <Bot className="w-6 h-6 mr-2 text-green-400" />
-          <h1 className="text-xl font-bold">{chatTypeNames[chatValue]}</h1>
+          <h1 className="text-xl text-black dark:text-white font-bold">
+            {chatTypeNames[chatValue]}
+          </h1>
         </div>
         <div className="flex items-center gap-4">
-          <p>AI Model: </p>
+          <p className="text-black dark:text-white">AI MODEL: </p>
           <Select
             value={getValues("model")}
             onValueChange={(value: (typeof textModels)[number]) =>
               setValue("model", value)
             }
           >
-            <SelectTrigger className="w-[300px] bg-white dark:bg-black border border-green-400 my-3">
+            <SelectTrigger className="w-[300px] text-black dark:text-white bg-white dark:bg-black border border-green-400 my-3">
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
             <SelectContent>
@@ -147,14 +140,14 @@ export default function TextToImage() {
           </>
         ))}
       </div>
-      <div className="p-4 border-t border-zinc-800">
-        <div className="flex items-center bg-zinc-900 rounded-lg p-2 gap-2">
+      <div className="pb-4 border-t border-zinc-800">
+        <div className="flex items-center bg-gray-100 dark:bg-zinc-900 rounded-lg p-2 gap-2">
           <Textarea
             {...register("prompt")}
             disabled={generateText.isPending}
             rows={3}
-            placeholder="Ask Jake about coding..."
-            className="flex-grow bg-transparent outline-none text-white placeholder-zinc-500 text-sm"
+            placeholder="Ask any questions..."
+            className="flex-grow bg-transparent outline-none border-none text-black dark:text-white placeholder-zinc-500 text-sm"
           />
           <button
             className="p-2 rounded-full bg-green-600 hover:bg-green-500 transition-colors duration-200"
@@ -181,26 +174,27 @@ const ChatMessage = ({
   return (
     <>
       <div
+        key={type + message}
         className={`flex items-center space-x-3 ${
           type === "bot" ? "justify-start" : "justify-end"
         }`}
       >
         {type === "bot" ? (
-          <Bot className="w-8 h-8 text-black p-1 bg-green-600 rounded-full mt-1" />
+          <Bot className="w-8 h-8 text-white dark:text-black p-1 bg-green-600 rounded-full mt-1" />
         ) : (
-          <User className="w-8 h-8 text-black p-1 bg-green-600 rounded-full mt-1" />
+          <User className="size-8 text-white dark:text-black p-1 bg-green-600 rounded-full mt-1" />
         )}
-        <div className="bg-zinc-900 rounded-lg p-3 max-w-[80%]">
+        <div className="bg-gray-100 dark:bg-zinc-900 rounded-lg p-3 max-w-[80%]">
           <div className="flex items-center mb-1">
             <span
               className={`text-xs font-semibold ${
-                type === "bot" ? "text-green-400" : "text-zinc-600"
+                type === "bot" ? "text-green-400" : "text-zinc-500"
               }`}
             >
               {type === "bot" ? "LetAIHelp" : "You"}
             </span>
           </div>
-          <p className="text-sm">{message}</p>
+          <p className="text-sm text-black dark:text-white">{message}</p>
         </div>
       </div>
     </>
