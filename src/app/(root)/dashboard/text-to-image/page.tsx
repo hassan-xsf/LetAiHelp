@@ -2,6 +2,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import ToolsHeader from "@/components/ToolsHeader";
 import { Credits } from "@/constants/credits";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const DynamicTextToImage = dynamic(
   () => import("@/components/pages/TextToImage"),
@@ -19,7 +20,9 @@ const page = () => {
           name="AI TEXT TO IMAGE"
           credits={Credits.TextToImage.toString()}
         />
-        <DynamicTextToImage />
+        <Suspense>
+          <DynamicTextToImage />
+        </Suspense>
       </div>
     </div>
   );

@@ -20,11 +20,7 @@ const page = () => {
           name="AI OBJECT RECOGNITION"
           credits={Credits.ObjectDetection.toString()}
         />
-        <Suspense
-          fallback={
-            <div className="bg-red-900 h-screen w-full">Loading...</div>
-          }
-        >
+        <Suspense>
           <DynamicObjectRecognition />
         </Suspense>
       </div>

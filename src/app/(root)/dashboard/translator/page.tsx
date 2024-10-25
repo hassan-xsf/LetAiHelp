@@ -2,6 +2,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import ToolsHeader from "@/components/ToolsHeader";
 import { Credits } from "@/constants/credits";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const DynamicTranslator = dynamic(
   () => import("@/components/pages/Translator"),
@@ -19,8 +20,9 @@ const page = () => {
           name="AI Language Translator"
           credits={Credits.Translator.toString()}
         />
-
-        <DynamicTranslator />
+        <Suspense>
+          <DynamicTranslator />
+        </Suspense>
       </div>
     </div>
   );

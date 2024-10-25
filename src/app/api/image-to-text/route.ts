@@ -7,15 +7,15 @@ export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "You must be logged in inorder to perform this.",
-        },
-        { status: 401 }
-      );
-    }
+    // if (!session?.user) {
+    //   return NextResponse.json(
+    //     {
+    //       success: false,
+    //       message: "You must be logged in inorder to perform this.",
+    //     },
+    //     { status: 401 }
+    //   );
+    // }
 
     const formData = await request.formData();
     const file = formData.get("image");
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     const eightBit = Array.from(uint8Array);
 
-    if (eightBit.length > 200000) {
+    if (eightBit.length > 1000000) {
       return NextResponse.json(
         {
           success: false,

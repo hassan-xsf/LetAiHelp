@@ -20,7 +20,9 @@ const page = () => {
           name="AI SUMMARIZATION"
           credits={Credits.Summarizer.toString()}
         />
-        <DynamicSummarizer />
+        <Suspense>
+          <DynamicSummarizer />
+        </Suspense>
       </div>
     </div>
   );

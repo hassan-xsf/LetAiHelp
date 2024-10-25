@@ -38,19 +38,19 @@ const data = {
       items: [
         {
           title: "AI Chatbot",
-          url: "/chatbot",
+          url: "/dashboard/chat?type=default",
         },
         {
           title: "AI Personal Assistant",
-          url: "#",
+          url: "/dashboard/chat?type=pa",
         },
         {
           title: "AI Explainer",
-          url: "#",
+          url: "/dashboard/chat?type=explainer",
         },
         {
           title: "AI Coder",
-          url: "#",
+          url: "/dashboard/chat?type=coder",
         },
       ],
     },

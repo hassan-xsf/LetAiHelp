@@ -184,7 +184,7 @@ export default function TextToImage() {
                 download={
                   generatedImage ? `letaihelp.me${Date.now()}.png` : undefined
                 }
-                className={`flex items-center bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors ${
+                className={`flex items-center bg-green-500 text-sm hover:bg-green-700 text-white px-3 py-1 rounded transition-colors ${
                   generatedImage ? "cursor-pointer" : "pointer-events-none"
                 }`}
               >
