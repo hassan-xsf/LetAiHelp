@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const validate = translateSchema.safeParse({ text, tr_lang, sr_lang });
     if (!validate.success) {
       const errorMessages = validate.error.issues
-        .map((issue) => issue.message)
+        .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
         .join(", ");
 
       return NextResponse.json(

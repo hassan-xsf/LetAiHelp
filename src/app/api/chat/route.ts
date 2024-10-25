@@ -23,8 +23,9 @@ export async function POST(request: Request) {
     const validate = textSchema.safeParse({ prompt, model, type });
     if (!validate.success) {
       const errorMessages = validate.error.issues
-        .map((issue) => issue.message)
+        .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
         .join(", ");
+
       return NextResponse.json(
         {
           success: false,
@@ -34,9 +35,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const response = await axios.post<AITextResponse>(
+    const response = await axios.post(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/${model}`,
       {
+        max_tokens: 512,
+        stream: true,
         messages: [
           { role: "system", content: `${modelPrompts[type]}` },
           { role: "user", content: prompt },
@@ -47,17 +50,30 @@ export async function POST(request: Request) {
           Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
           "Content-Type": "application/json",
         },
+        responseType: "stream",
       }
     );
 
-    return NextResponse.json(
-      {
-        data: response.data.result,
-        success: true,
-        message: "Text generated successfully",
+    const stream = new ReadableStream({
+      async start(controller) {
+        response.data.on("data", (chunk: string) => {
+          controller.enqueue(new TextEncoder().encode(chunk.toString()));
+        });
+
+        response.data.on("end", () => {
+          controller.close();
+        });
+
+        response.data.on("error", (err: Error) => {
+          console.error("Stream error:", err);
+          controller.error(err);
+        });
       },
-      { status: 200 }
-    );
+    });
+
+    return new NextResponse(stream, {
+      headers: { "Content-Type": "text/event-stream" },
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json(

@@ -40,5 +40,5 @@ type CaptionResponse = {
 };
 
 type AITextResponse = {
-  result: string;
+  response: string;
 };

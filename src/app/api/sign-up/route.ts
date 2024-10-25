@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const validate = signUpSchema.safeParse({ name, email, password });
     if (!validate.success) {
       const errorMessages = validate.error.issues
-        .map((issue) => issue.message)
+        .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
         .join(", ");
 
       return NextResponse.json(

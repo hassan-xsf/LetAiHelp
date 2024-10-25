@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const validate = summarizeSchema.safeParse({ input_text, max_length });
     if (!validate.success) {
       const errorMessages = validate.error.issues
-        .map((issue) => "Field " + issue.message)
+        .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
         .join(", ");
 
       return NextResponse.json(

@@ -1,32 +1,76 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
+import { modelPrompts, textSchema } from "@/schemas/textSchema";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const { prompt } = await request.json();
+
     const response = await axios.post(
-      "https://api.cloudflare.com/client/v4/accounts/24a5b47e3e775b62720d1c455d33591b/ai/run/@cf/bytedance/stable-diffusion-xl-lightning",
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@hf/thebloke/zephyr-7b-beta-awq`,
       {
-        prompt: "A beautiful landscape with mountains and a lake",
+        stream: true,
+        messages: [
+          { role: "system", content: "You are a helpful assitant" },
+          { role: "user", content: "Who are you" },
+        ],
       },
       {
         headers: {
-          Authorization: "Bearer 498F8GFEFEAPZb8VqPHb3XZQR_RKtmIqBtkVsEIH",
+          Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
           "Content-Type": "application/json",
         },
-        responseType: "arraybuffer",
+        responseType: "stream", // Enables streaming response
       }
     );
 
-    return new NextResponse(response.data, {
-      status: 200,
-      headers: {
-        "Content-Type": "image/png",
-      },
+    const stream = response.data;
+    stream.on("data", (chunk) => {
+      const textChunk = chunk.toString();
+      console.log(textChunk); // Print each chunk as it arrives
     });
-  } catch (error) {
-    console.error("Error generating image:", error);
+
+    stream.on("end", () => {
+      console.log("Streaming completed.");
+    });
+
+    stream.on("error", (error) => {
+      console.error("Error in streaming response:", error);
+    });
+
+    // const reader = response.body.getReader();
+    // const decoder = new TextDecoder("utf-8");
+    // let done = false;
+
+    // while (!done) {
+    //   const { value, done: streamDone } = await reader.read();
+    //   done = streamDone;
+    //   if (value) {
+    //     const chunk = decoder.decode(value, { stream: true });
+    //     console.log(chunk); // Print each chunk as it arrives
+    //   }
+    // }
+
+    console.log("Streaming completed.");
+
     return NextResponse.json(
-      { error: "Failed to generate image" },
+      {
+        data: response,
+        success: true,
+        message: "Text generated successfully",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        data: error,
+        success: false,
+        message: "Internal Server Error",
+      },
       { status: 500 }
     );
   }

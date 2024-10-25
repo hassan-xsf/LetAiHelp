@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const validate = imageSchema.safeParse({ model, text, type });
     if (!validate.success) {
       const errorMessages = validate.error.issues
-        .map((issue) => "Field " + issue.message)
+        .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
         .join(", ");
 
       return NextResponse.json(

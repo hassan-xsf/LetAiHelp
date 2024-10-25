@@ -1,8 +1,6 @@
 "use client";
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 import { Textarea } from "../ui/textarea";
@@ -26,9 +24,17 @@ import {
   textSchema,
 } from "@/schemas/textSchema";
 import { useSearchParams } from "next/navigation";
-import { chatService } from "@/services/chat";
+import ChatMessage from "../ChatMessage";
 
 export default function TextToImage() {
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const searchParams = useSearchParams();
   const typeParam = searchParams.get("type");
 
@@ -43,44 +49,103 @@ export default function TextToImage() {
     "AI Explainer",
     "AI Coder",
   ];
+  const [isLoading, setIsLoading] = useState(false);
 
   const [message, setMessage] = useState<ChatType[]>([]);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    getValues,
-    reset,
-    formState: { errors },
-  } = useForm<textFormType>({
-    defaultValues: {
-      prompt: "",
-      model: textModels[0],
-      type: chatValue,
-    },
-    resolver: zodResolver(textSchema),
-  });
+  const { register, handleSubmit, setValue, getValues, reset } =
+    useForm<textFormType>({
+      defaultValues: {
+        prompt: "",
+        model: textModels[0],
+        type: chatValue,
+      },
+      resolver: zodResolver(textSchema),
+    });
+  useEffect(() => {
+    scrollToBottom();
+  }, [message]);
 
-  const generateText = useMutation({
-    mutationFn: chatService,
-    onSuccess: (res) => {
-      toast.success("Your text has been generated!");
-      console.log(res.data.data);
-      setMessage((prev) => [
-        ...prev,
-        { type: "bot", message: res.data.data.result },
-      ]);
-    },
-    onError: (error) => {
-      console.log(error);
-      if (error instanceof AxiosError) {
-        return toast.error(error.response?.data.message);
+  const handleStream = async (data: textFormType) => {
+    setIsLoading(true);
+
+    setMessage((prev) => [
+      ...prev,
+      {
+        type: "bot",
+        message: "",
+      },
+    ]);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        throw new Error("Failed to get reader from response");
       }
-      toast.error("There was a problem, Error code: 500");
-    },
-  });
+
+      let buffer = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        const lines = buffer.split("\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          if (line.trim() === "data: [DONE]") {
+            continue;
+          }
+          if (line.startsWith("data: ")) {
+            const jsonStr = line.slice(5).trim().replace(/\\n/g, "<br>");
+
+            try {
+              const parsed = JSON.parse(jsonStr);
+
+              // Append new data to the last bot message
+              setMessage((prev) => {
+                const updatedMessages = [...prev];
+                const lastBotMessageIndex = updatedMessages
+                  .slice()
+                  .reverse()
+                  .findIndex((msg) => msg.type === "bot");
+
+                if (lastBotMessageIndex !== -1) {
+                  const indexToUpdate =
+                    updatedMessages.length - 1 - lastBotMessageIndex;
+                  updatedMessages[indexToUpdate] = {
+                    ...updatedMessages[indexToUpdate],
+                    message:
+                      updatedMessages[indexToUpdate].message +
+                      (parsed.response || "").replace("</s>", ""),
+                  };
+                }
+                return updatedMessages;
+              });
+            } catch (error) {
+              console.error("Error parsing JSON:", error, jsonStr);
+            }
+          }
+        }
+      }
+    } catch (error) {
+      toast.error("There was a problem generating the text.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const session = useSession();
   if (!session.data) return null;
 
@@ -88,11 +153,9 @@ export default function TextToImage() {
     if (session.data.user.credits < Credits.Chat)
       toast.error("You don't have enough credits to perform this action");
 
-    if (generateText.isPending) return;
-    generateText.mutate(data);
+    if (isLoading) return;
     setMessage((prev) => [...prev, { type: "user", message: data.prompt }]);
-
-    toast.info("AI is thinking....");
+    handleStream(data);
     reset();
     const newCredits = session.data.user.credits - Credits.TextToImage;
     session.update({
@@ -134,26 +197,35 @@ export default function TextToImage() {
         </div>
       </div>
       <div className="flex-grow overflow-y-auto p-4 space-y-4">
-        {message.map((msg) => (
+        {message.map((msg, indx) => (
           <>
-            <ChatMessage type={msg.type} message={msg.message} />
+            <ChatMessage
+              type={msg.type}
+              message={msg.message}
+              key={crypto.randomUUID()}
+            />
           </>
         ))}
+        <div ref={messagesEndRef}></div>
       </div>
       <div className="pb-4 border-t border-zinc-800">
         <div className="flex items-center bg-gray-100 dark:bg-zinc-900 rounded-lg p-2 gap-2">
           <Textarea
             {...register("prompt")}
-            disabled={generateText.isPending}
+            onKeyDown={(e) =>
+              e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()
+            }
+            disabled={isLoading}
             rows={3}
             placeholder="Ask any questions..."
             className="flex-grow bg-transparent outline-none border-none text-black dark:text-white placeholder-zinc-500 text-sm"
           />
           <button
+            type="submit"
             className="p-2 rounded-full bg-green-600 hover:bg-green-500 transition-colors duration-200"
-            disabled={generateText.isPending}
+            disabled={isLoading}
           >
-            {generateText.isPending ? (
+            {isLoading ? (
               <Loader2 className="size-5 animate-spin" />
             ) : (
               <Send className="size-5" />
@@ -164,39 +236,3 @@ export default function TextToImage() {
     </form>
   );
 }
-const ChatMessage = ({
-  type,
-  message,
-}: {
-  type: "bot" | "user";
-  message: string;
-}) => {
-  return (
-    <>
-      <div
-        key={type + message}
-        className={`flex items-center space-x-3 ${
-          type === "bot" ? "justify-start" : "justify-end"
-        }`}
-      >
-        {type === "bot" ? (
-          <Bot className="w-8 h-8 text-white dark:text-black p-1 bg-green-600 rounded-full mt-1" />
-        ) : (
-          <User className="size-8 text-white dark:text-black p-1 bg-green-600 rounded-full mt-1" />
-        )}
-        <div className="bg-gray-100 dark:bg-zinc-900 rounded-lg p-3 max-w-[80%]">
-          <div className="flex items-center mb-1">
-            <span
-              className={`text-xs font-semibold ${
-                type === "bot" ? "text-green-400" : "text-zinc-500"
-              }`}
-            >
-              {type === "bot" ? "LetAIHelp" : "You"}
-            </span>
-          </div>
-          <p className="text-sm text-black dark:text-white">{message}</p>
-        </div>
-      </div>
-    </>
-  );
-};
