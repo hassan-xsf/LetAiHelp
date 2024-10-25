@@ -63,10 +63,6 @@ const data = {
           title: "Text to Image",
           url: "/dashboard/text-to-image",
         },
-        {
-          title: "Image to Text",
-          url: "#",
-        },
       ],
     },
     {
@@ -76,7 +72,7 @@ const data = {
       items: [
         {
           title: "AI Writing Assistants",
-          url: "#",
+          url: "/dashboard/ai-writing-assistant",
         },
         {
           title: "AI Presentation Maker",

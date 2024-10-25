@@ -1,75 +1,66 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { modelPrompts, textSchema } from "@/schemas/textSchema";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
-    const { prompt } = await request.json();
+    const session = await getServerSession(authOptions);
 
+    const formData = await request.formData();
+    const file = formData.get("image");
+
+    if (!file || !(file instanceof Blob)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "No image file uploaded",
+        },
+        { status: 400 }
+      );
+    }
+    const arrayBuffer = await file.arrayBuffer();
+    const uint8Array = new Uint8Array(arrayBuffer);
+
+    const eightBit = Array.from(uint8Array);
+
+    if (eightBit.length > 500_000) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "The image size was too big to be processed..",
+        },
+        { status: 400 }
+      );
+    }
     const response = await axios.post(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@hf/thebloke/zephyr-7b-beta-awq`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/runwayml/stable-diffusion-v1-5-img2img`,
       {
-        stream: true,
-        messages: [
-          { role: "system", content: "You are a helpful assitant" },
-          { role: "user", content: "Who are you" },
-        ],
+        image: eightBit,
+        prompt: "Add 'GO AWAY' text to the image",
       },
       {
         headers: {
           Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
           "Content-Type": "application/json",
         },
-        responseType: "stream", // Enables streaming response
+        responseType: "arraybuffer",
       }
     );
-
-    const stream = response.data;
-    stream.on("data", (chunk) => {
-      const textChunk = chunk.toString();
-      console.log(textChunk); // Print each chunk as it arrives
-    });
-
-    stream.on("end", () => {
-      console.log("Streaming completed.");
-    });
-
-    stream.on("error", (error) => {
-      console.error("Error in streaming response:", error);
-    });
-
-    // const reader = response.body.getReader();
-    // const decoder = new TextDecoder("utf-8");
-    // let done = false;
-
-    // while (!done) {
-    //   const { value, done: streamDone } = await reader.read();
-    //   done = streamDone;
-    //   if (value) {
-    //     const chunk = decoder.decode(value, { stream: true });
-    //     console.log(chunk); // Print each chunk as it arrives
-    //   }
-    // }
-
-    console.log("Streaming completed.");
-
-    return NextResponse.json(
-      {
-        data: response,
-        success: true,
-        message: "Text generated successfully",
+    return new NextResponse(response.data, {
+      status: 200,
+      headers: {
+        "Content-Type": "image/png",
       },
-      { status: 200 }
-    );
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
         data: error,
         success: false,
-        message: "Internal Server Error",
+        message:
+          "Internal Server Error, Please try again later, If issue persists please change the image.",
       },
       { status: 500 }
     );
