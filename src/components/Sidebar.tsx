@@ -8,6 +8,7 @@ import {
   Settings2,
   GraduationCap,
   Home,
+  DollarSign,
 } from "lucide-react";
 
 import { NavMain } from "@/components/ui/nav-main";
@@ -30,6 +31,25 @@ const data = {
       title: "Home",
       url: "/dashboard/",
       icon: Home,
+    },
+    {
+      title: "Paid Tools",
+      url: "#",
+      icon: DollarSign,
+      items: [
+        {
+          title: "Chat GPT 4.0",
+          url: "/dashboard/paid?type=gpt-4o",
+        },
+        {
+          title: "Claude Sonnet 3.5",
+          url: "/dashboard/paid?type=claude-sonnet-3.5",
+        },
+        {
+          title: "Gemini PRO",
+          url: "/dashboard/paid?type=gemini-pro",
+        },
+      ],
     },
     {
       title: "Chat Tools",

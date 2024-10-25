@@ -139,17 +139,18 @@
       0 0 35px #4ade80;
   }
 }
-.testBG {
+.codeBG {
   background-color: black;
-  padding: 10px;
-  border-radius: 10px;
-}
-.test {
-  border-radius: 10px;
-  padding-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  font-size: 14px;
   color: white;
-  text-align: center;
-  width: 200px;
+  border-radius: 5px;
+}
+.simpleCodeBG {
+  font-weight: 900;
+  display: inline;
 }
 
 .animate-glow {

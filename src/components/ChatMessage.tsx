@@ -1,6 +1,25 @@
 import { Bot, User } from "lucide-react";
 import React from "react";
 
+import markdownit from "markdown-it";
+
+// Actual default values
+const md = markdownit();
+
+md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
+  const token = tokens[idx];
+  return `<div class = "simpleCodeBG"><code>${md.utils.escapeHtml(
+    token.content
+  )}</code></div>`;
+};
+
+md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+  const token = tokens[idx];
+  return `<div class = "codeBG"><pre><code>${md.utils.escapeHtml(
+    token.content
+  )}</code></pre></div>`;
+};
+
 const ChatMessage = ({
   type,
   message,
@@ -41,21 +60,8 @@ const ChatMessage = ({
 };
 
 const MarkdownParser = ({ text }: { text: string }) => {
-  const parseText = (input: string) => {
-    // Replace "**text**" with "<b>text</b>"
-    let formattedText = input.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
-
-    // Replace ``` with <code> (open and close tags)
-    formattedText = formattedText.replace(
-      /```([\s\S]*?)```/g,
-      "<div class = 'testBG'><code class = 'test'>$1</code></div>"
-    );
-
-    const lines = formattedText.split("\n");
-    return lines.join("<br/>");
-  };
-
-  return <div dangerouslySetInnerHTML={{ __html: parseText(text) }} />;
+  const parsedText = md.render(text);
+  return <div dangerouslySetInnerHTML={{ __html: parsedText }} />;
 };
 
 export default ChatMessage;

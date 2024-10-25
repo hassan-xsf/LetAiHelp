@@ -108,7 +108,7 @@ export default function TextToImage() {
             continue;
           }
           if (line.startsWith("data: ")) {
-            const jsonStr = line.slice(5).trim().replace(/\\n/g, "<br>");
+            const jsonStr = line.slice(5).trim();
 
             try {
               const parsed = JSON.parse(jsonStr);
