@@ -139,17 +139,13 @@
       0 0 35px #4ade80;
   }
 }
-.codeBG {
-  background-color: black;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
-  font-size: 14px;
-  color: white;
-  border-radius: 5px;
-}
 .simpleCodeBG {
+  color: white;
   font-weight: 900;
+  background-color: black;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 2px;
   display: inline;
 }
 

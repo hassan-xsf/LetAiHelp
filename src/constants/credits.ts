@@ -4,4 +4,5 @@ export enum Credits {
   "ObjectDetection" = 5,
   "TextToImage" = 5,
   "Chat" = 1,
+  "AIDetector" = 5,
 }

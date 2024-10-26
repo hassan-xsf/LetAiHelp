@@ -86,13 +86,13 @@ const data = {
       ],
     },
     {
-      title: "Student Tools",
+      title: "Leaner Tools",
       url: "#",
       icon: GraduationCap,
       items: [
         {
-          title: "AI Writing Assistant",
-          url: "/dashboard/ai-writing-assistant",
+          title: "AI/GPT Detector",
+          url: "/dashboard/ai-detector",
         },
         {
           title: "AI Study Buddy",

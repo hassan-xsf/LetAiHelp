@@ -2,22 +2,20 @@ import { Bot, User } from "lucide-react";
 import React from "react";
 
 import markdownit from "markdown-it";
+import "markdown-it-prism";
+import "../app/prism-vsc-dark-plus.css";
 
-// Actual default values
-const md = markdownit();
+const md = new markdownit({
+  html: true,
+  linkify: true,
+  typographer: true,
+}).use(require("markdown-it-prism"));
 
 md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
   const token = tokens[idx];
   return `<div class = "simpleCodeBG"><code>${md.utils.escapeHtml(
     token.content
   )}</code></div>`;
-};
-
-md.renderer.rules.fence = (tokens, idx, options, env, self) => {
-  const token = tokens[idx];
-  return `<div class = "codeBG"><pre><code>${md.utils.escapeHtml(
-    token.content
-  )}</code></pre></div>`;
 };
 
 const ChatMessage = ({
@@ -61,7 +59,12 @@ const ChatMessage = ({
 
 const MarkdownParser = ({ text }: { text: string }) => {
   const parsedText = md.render(text);
-  return <div dangerouslySetInnerHTML={{ __html: parsedText }} />;
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: parsedText }}
+      className="markdown-body leading-7"
+    />
+  );
 };
 
 export default ChatMessage;
