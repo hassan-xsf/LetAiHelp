@@ -95,8 +95,8 @@ const data = {
           url: "/dashboard/ai-detector",
         },
         {
-          title: "AI Study Buddy",
-          url: "#",
+          title: "Paraphraser",
+          url: "/dashboard/paraphraser",
         },
         {
           title: "AI MCQ Quiz",

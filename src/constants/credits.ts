@@ -5,4 +5,5 @@ export enum Credits {
   "TextToImage" = 5,
   "Chat" = 1,
   "AIDetector" = 5,
+  "Paraphraser" = 2,
 }

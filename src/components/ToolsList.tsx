@@ -53,21 +53,27 @@ const ToolsList = () => {
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4 row-span-2">
           <GraduationCap className="size-6 text-green-400 mb-2" />
           <h2 className="text-lg font-semibold mb-1 text-black dark:text-white">
-            Tools for Students
+            Tools for Learners
           </h2>
           <p className="text-gray-400 text-xs">
-            Are you a student? So am I, Use these AI tools and focus on what's
-            needed.
+            Are you a learner or a student? So am I, Use these AI tools and
+            focus on what's needed.
           </p>
           <div className="space-y-2 pt-4">
-            <p className="text-gray-400 text-sm flex items-center">
+            <Link
+              href="/dashboard/ai-detector"
+              className="text-gray-400 text-sm flex items-center"
+            >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-              AI Writing Assistant
-            </p>
-            <p className="text-gray-400 text-sm flex items-center">
+              AI Detection Tool
+            </Link>
+            <Link
+              href="/dashboard/paraphraser"
+              className="text-gray-400 text-sm flex items-center"
+            >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-              AI Presentation Maker
-            </p>
+              AI Paraphraser
+            </Link>
             <p className="text-gray-400 text-sm flex items-center">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
               AI Study Helper

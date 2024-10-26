@@ -42,3 +42,22 @@ type CaptionResponse = {
 type AITextResponse = {
   response: string;
 };
+
+type AIDetectionResponse = {
+  data: {
+    isHuman: number;
+    additional_feedback: string;
+    textWords: number;
+    aiWords: number;
+    fakePercentage: number;
+    feedback: string;
+    h: string[];
+    originalParagraph: string;
+  };
+};
+
+type ParaphraseResponse = {
+  data: {
+    message: string;
+  };
+};

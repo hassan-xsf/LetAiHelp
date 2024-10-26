@@ -104,12 +104,12 @@ export function NavUser() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
               <Palette />
-              <div
-                className="cursor-pointer"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
+              <div>
                 {theme === "dark"
                   ? "Switch to Light Mode"
                   : "Switch to Dark Mode"}
