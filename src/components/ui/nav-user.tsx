@@ -21,6 +21,7 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import ThemeBtn from "../buttons/ThemeButton";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
@@ -82,10 +83,12 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles />
-                Upgrade
-              </DropdownMenuItem>
+              <Link href="/dashboard/upgrade">
+                <DropdownMenuItem>
+                  <Sparkles />
+                  <span className="cursor-pointer">Upgrade</span>
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>

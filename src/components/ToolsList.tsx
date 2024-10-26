@@ -52,7 +52,7 @@ const ToolsList = () => {
         </div>
         <div className="bg-white dark:bg-[#1E1E1E] rounded-lg p-4 row-span-2">
           <GraduationCap className="size-6 text-green-400 mb-2" />
-          <h2 className="text-lg font-semibold mb-1 text-black dark:text-white">
+          <h2 className="text-lg font-semibold mb-1 text-black dark:text-white underline">
             Tools for Learners
           </h2>
           <p className="text-gray-400 text-xs">
@@ -62,14 +62,14 @@ const ToolsList = () => {
           <div className="space-y-2 pt-4">
             <Link
               href="/dashboard/ai-detector"
-              className="text-gray-400 text-sm flex items-center"
+              className="text-gray-400 text-sm flex items-cente underline"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
               AI Detection Tool
             </Link>
             <Link
               href="/dashboard/paraphraser"
-              className="text-gray-400 text-sm flex items-center"
+              className="text-gray-400 text-sm flex items-center underline"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
               AI Paraphraser

@@ -40,7 +40,7 @@ const Navbar = async () => {
             <DropdownMenuItem>AI Code Assistant</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link className="text-sm font-medium" href="#">
+        <Link className="text-sm font-medium" href="/dashboard/upgrade">
           Pricing
         </Link>
         {data?.user && (

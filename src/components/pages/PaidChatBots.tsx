@@ -122,7 +122,8 @@ export default function TextToImage() {
           />
         </div>
         <p className="text-red-500 py-1">
-          More tokens takes more time for the AI Model to process..
+          More tokens increase the reply length but takes more time for the AI
+          Model to process..
         </p>
       </div>
       <div className="flex-grow overflow-y-auto p-4 space-y-4">

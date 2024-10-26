@@ -14,15 +14,36 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
   password      String?
-  email         String?   @unique
+  email         String?        @unique
   image         String?
   accounts      Account[]
   sessions      Session[]
   emailVerified DateTime?
-  credits       Int       @default(100)
+  credits       Int            @default(100)
+  RedeemedCode  RedeemedCode[]
+}
+
+model RedeemCode {
+  id           Int            @id @default(autoincrement())
+  code         String         @unique
+  createdAt    DateTime       @default(now())
+  value        Int
+  RedeemedCode RedeemedCode[]
+}
+
+model RedeemedCode {
+  id         String   @id @default(cuid())
+  userId     String
+  redeemedAt DateTime @default(now())
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  RedeemCode RedeemCode? @relation(fields: [codeId], references: [id])
+  codeId     Int
+
+  @@unique([userId, codeId])
 }
 
 model Account {
@@ -35,7 +56,7 @@ model Account {
   accessToken       String?
   access_token      String?
   expiresAt         Int?
-  token_type         String?
+  token_type        String?
   scope             String?
   idToken           String?
   sessionState      String?

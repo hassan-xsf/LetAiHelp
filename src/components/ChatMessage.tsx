@@ -4,6 +4,9 @@ import React from "react";
 import markdownit from "markdown-it";
 import "markdown-it-prism";
 import "../app/prism-vsc-dark-plus.css";
+import Prism from "prismjs";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-bash";
 
 const md = new markdownit({
   html: true,
