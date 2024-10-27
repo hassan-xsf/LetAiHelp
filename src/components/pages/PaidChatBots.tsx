@@ -69,7 +69,8 @@ export default function TextToImage() {
     mutationFn: paidBotService,
     onSuccess: (res) => {
       toast.success("Your message has been responded!");
-      setMessage((prev) => [...prev, { type: "bot", message: res.data }]);
+      setMessage((prev) => [...prev, { role: "assistant", content: res.data }]);
+      console.log([...message, { role: "assistant", content: res.data }]);
     },
     onError: (error) => {
       console.log(error);
@@ -89,7 +90,8 @@ export default function TextToImage() {
       );
 
     if (paidBot.isPending) return;
-    setMessage((prev) => [...prev, { type: "user", message: data.prompt }]);
+    setMessage((prev) => [...prev, { role: "user", content: data.prompt }]);
+    console.log([...message, { role: "user", content: data.prompt }]);
     paidBot.mutate(data);
     reset();
     const newCredits = session.data.user.credits - Credits.TextToImage;
@@ -130,8 +132,8 @@ export default function TextToImage() {
         {message.map((msg, indx) => (
           <>
             <ChatMessage
-              type={msg.type}
-              message={msg.message}
+              role={msg.role}
+              content={msg.content}
               key={crypto.randomUUID()}
             />
           </>

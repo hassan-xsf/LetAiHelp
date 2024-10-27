@@ -72,8 +72,8 @@ export default function TextToImage() {
     setMessage((prev) => [
       ...prev,
       {
-        type: "bot",
-        message: "",
+        role: "assistant",
+        content: "",
       },
     ]);
 
@@ -119,15 +119,15 @@ export default function TextToImage() {
                 const lastBotMessageIndex = updatedMessages
                   .slice()
                   .reverse()
-                  .findIndex((msg) => msg.type === "bot");
+                  .findIndex((msg) => msg.role === "assistant");
 
                 if (lastBotMessageIndex !== -1) {
                   const indexToUpdate =
                     updatedMessages.length - 1 - lastBotMessageIndex;
                   updatedMessages[indexToUpdate] = {
                     ...updatedMessages[indexToUpdate],
-                    message:
-                      updatedMessages[indexToUpdate].message +
+                    content:
+                      updatedMessages[indexToUpdate].content +
                       (parsed.response || "").replace("</s>", ""),
                   };
                 }
@@ -156,7 +156,8 @@ export default function TextToImage() {
       );
 
     if (isLoading) return;
-    setMessage((prev) => [...prev, { type: "user", message: data.prompt }]);
+    setMessage((prev) => [...prev, { role: "user", content: data.prompt }]);
+
     handleStream(data);
     reset();
     const newCredits = session.data.user.credits - Credits.TextToImage;
@@ -202,8 +203,8 @@ export default function TextToImage() {
         {message.map((msg, indx) => (
           <>
             <ChatMessage
-              type={msg.type}
-              message={msg.message}
+              role={msg.role}
+              content={msg.content}
               key={crypto.randomUUID()}
             />
           </>

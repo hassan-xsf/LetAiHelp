@@ -1,18 +1,19 @@
 import { Bot, User } from "lucide-react";
 import React from "react";
 
-import markdownit from "markdown-it";
 import "markdown-it-prism";
 import "../app/prism-vsc-dark-plus.css";
-import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-bash";
 
-const md = new markdownit({
+import MarkdownIt from "markdown-it";
+import markdownItPrism from "markdown-it-prism";
+
+const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-}).use(require("markdown-it-prism"));
+}).use(markdownItPrism);
 
 md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
   const token = tokens[idx];
@@ -21,22 +22,16 @@ md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
   )}</code></div>`;
 };
 
-const ChatMessage = ({
-  type,
-  message,
-}: {
-  type: "bot" | "user";
-  message: string;
-}) => {
+const ChatMessage = ({ role, content }: ChatType) => {
   return (
     <>
       <div
         key={crypto.randomUUID()}
         className={`flex items-center space-x-3 ${
-          type === "bot" ? "justify-start" : "justify-end"
+          role === "assistant" ? "justify-start" : "justify-end"
         }`}
       >
-        {type === "bot" ? (
+        {role === "assistant" ? (
           <Bot className="size-6 self-start text-white dark:text-black p-1 bg-green-600 rounded-full mt-1" />
         ) : (
           <User className="size-6 self-start text-white dark:text-black p-1 bg-green-600 rounded-full mt-1" />
@@ -45,14 +40,14 @@ const ChatMessage = ({
           <div className="flex items-center mb-1">
             <span
               className={`text-xs font-semibold ${
-                type === "bot" ? "text-green-400" : "text-zinc-500"
+                role === "assistant" ? "text-green-400" : "text-zinc-500"
               }`}
             >
-              {type === "bot" ? "LetAIHelp" : "You"}
+              {role === "assistant" ? "LetAIHelp" : "You"}
             </span>
           </div>
           <div className="text-black dark:text-white">
-            <MarkdownParser text={message} />
+            <MarkdownParser text={content} />
           </div>
         </div>
       </div>
