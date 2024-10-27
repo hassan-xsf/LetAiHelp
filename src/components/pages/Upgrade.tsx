@@ -103,6 +103,7 @@ const page = () => {
                     className="flex-grow bg-gray-100 dark:bg-zinc-800"
                   />
                   <Button
+                    aria-label="Redeem Code"
                     onClick={handleRedeem}
                     disabled={redeemUpgradeCode.isPending}
                     className="bg-green-500 hover:bg-green-600 text-white"

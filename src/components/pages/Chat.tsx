@@ -228,6 +228,7 @@ export default function TextToImage() {
             className="flex-grow bg-transparent outline-none border-none text-black dark:text-white placeholder-zinc-500 text-sm"
           />
           <button
+            aria-label="Send"
             type="submit"
             className="p-2 rounded-full bg-green-600 hover:bg-green-500 transition-colors duration-200"
             disabled={isLoading}

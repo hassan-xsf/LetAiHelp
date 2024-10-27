@@ -125,6 +125,7 @@ export default function ObjectDetection() {
               className="hidden"
             />
             <Button
+              area-label={image ? "Detect Objects" : "Upload Image"}
               onClick={(e) => {
                 e.stopPropagation();
                 handleUpload();

@@ -144,7 +144,10 @@ const Paraphraser = () => {
         </div>
       </div>
       <div className="w-1/6 mx-auto">
-        <button className="w-full px-6 py-3 flex items-center justify-center gap-3 bg-green-500 text-white rounded-lg font-semibold text-lg transition-all hover:bg-green-600 shadow-[6px_6px_0_0_#166534] hover:shadow-[2px_2px_0_0_#166534] hover:translate-x-1 hover:translate-y-1">
+        <button
+          aria-label="Paraphrase"
+          className="w-full px-6 py-3 flex items-center justify-center gap-3 bg-green-500 text-white rounded-lg font-semibold text-lg transition-all hover:bg-green-600 shadow-[6px_6px_0_0_#166534] hover:shadow-[2px_2px_0_0_#166534] hover:translate-x-1 hover:translate-y-1"
+        >
           <Sparkles className="size-6 ml-2 text-white fill-green-400" />
           {paraphrase.isPending ? "PARAPHRASING..." : "PARAPHRASE"}
         </button>

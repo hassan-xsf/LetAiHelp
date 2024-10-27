@@ -158,6 +158,7 @@ export default function TextToImage() {
             </div>
 
             <Button
+              aria-label="Generate Image"
               type="submit"
               className="w-full bg-green-500 hover:bg-green-700 text-white mt-auto"
             >
