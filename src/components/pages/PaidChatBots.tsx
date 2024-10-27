@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 import { Textarea } from "../ui/textarea";
-import { Bot, Send, User } from "lucide-react";
+import { Bot, Send } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
 import { useForm } from "react-hook-form";
@@ -16,9 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { paidBotService } from "@/services/paidBot";
 import { AxiosError } from "axios";
 import {
-  paidTextFormType,
   paidTextModels,
-  paidTextSchema,
   UpdatedPaidTextFormType,
   updatedPaidTextSchema,
 } from "@/schemas/paidModelsSchema";
@@ -58,7 +56,7 @@ export default function TextToImage() {
       defaultValues: {
         prompt: "",
         model: paidTextModels[type],
-        max_tokens: 512,
+        max_tokens: 1012,
       },
       resolver: zodResolver(updatedPaidTextSchema),
     });
@@ -70,6 +68,11 @@ export default function TextToImage() {
   const paidBot = useMutation({
     mutationFn: paidBotService,
     onSuccess: (res) => {
+      if (!session.data) return;
+      const newCredits = session.data.user.credits - Credits.Chat;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
       toast.success("Your message has been responded!");
       setMessage((prev) => [...prev, { role: "assistant", content: res.data }]);
     },
@@ -99,10 +102,6 @@ export default function TextToImage() {
       max_tokens: data.max_tokens,
     });
     reset();
-    const newCredits = session.data.user.credits - Credits.TextToImage;
-    session.update({
-      credits: newCredits === 0 ? 1 : newCredits,
-    });
   };
 
   return (

@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import {
-  imageFormType,
-  imagePrompts,
-  imageSchema,
-} from "@/schemas/imageSchema";
+import { imageFormType, imageSchema } from "@/schemas/imageSchema";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { db } from "@/lib/db";
 import { Credits } from "@/constants/credits";
+import { imagePrompts } from "@/constants/image";
 
 export async function POST(request: Request) {
   try {

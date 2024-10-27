@@ -88,7 +88,11 @@ export default function TextToImage() {
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
-
+      if (!session.data) return;
+      const newCredits = session.data.user.credits - Credits.Chat;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
       if (!reader) {
         throw new Error("Failed to get reader from response");
       }

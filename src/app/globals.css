@@ -159,14 +159,39 @@
       0 0 35px #4ade80;
   }
 }
+pre,
+code {
+  background-color: #1e1e1e; /* Dark background */
+  color: #d4d4d4; /* Default text color */
+  font-size: 13px;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  padding: 1em;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+/* Specific SQL Syntax Highlighting */
+.token.keyword {
+  color: #569cd6;
+} /* Keywords like CREATE, TABLE */
+.token.constant {
+  color: #4ec9b0;
+} /* Constants like PRIMARY KEY */
+.token.type {
+  color: #b5cea8;
+} /* Data types like INT, VARCHAR */
+.token.number {
+  color: #b5cea8;
+} /* Numbers */
+.token.punctuation {
+  color: #d4d4d4;
+} /* Parentheses and commas */
+
 .simpleCodeBG {
-  color: white;
-  font-weight: 900;
-  background-color: black;
-  border-radius: 5px;
-  font-size: 12px;
-  padding: 2px;
-  display: inline;
+  background: #333;
+  color: #ce9178;
+  border-radius: 4px;
+  padding: 2px 4px;
 }
 
 .animate-glow {

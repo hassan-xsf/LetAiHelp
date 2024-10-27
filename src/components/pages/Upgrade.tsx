@@ -26,11 +26,12 @@ import { upgradeService } from "@/services/upgrade";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const page = () => {
   const [redeemCode, setRedeemCode] = useState("");
   const [showConfetti, setshowConfetti] = useState(false);
-
+  const { width, height } = useWindowSize();
   const redeemUpgradeCode = useMutation({
     mutationFn: upgradeService,
     onSuccess: (res) => {
@@ -63,10 +64,8 @@ const page = () => {
   };
   return (
     <>
+      {showConfetti && <Confetti width={width - 150} height={height - 150} />}
       <div className="flex flex-col py-32 bg-gray-50 dark:bg-zinc-900 rounded-md">
-        {showConfetti && (
-          <Confetti width={window.innerWidth} height={window.innerHeight} />
-        )}
         <main className="flex-1">
           <div className="max-w-6xl mx-auto">
             <div className="flex justify-between items-center mb-12">

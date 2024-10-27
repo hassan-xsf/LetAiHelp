@@ -10,6 +10,7 @@ import { aiDetectorService } from "@/services/aidetector";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
+import { Credits } from "@/constants/credits";
 
 export default function Component() {
   const [text, setText] = useState("");
@@ -18,9 +19,13 @@ export default function Component() {
   const aiDetection = useMutation({
     mutationFn: aiDetectorService,
     onSuccess: (res) => {
+      if (!session.data) return;
       toast.success("Your AI detection report is ready");
       setResult(res.data);
-      console.log(res.data);
+      const newCredits = session.data.user.credits - Credits.TextToImage;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
     },
     onError: (error) => {
       console.log(error);
@@ -34,6 +39,11 @@ export default function Component() {
   if (!session.data) return null;
 
   const handleDetect = () => {
+    if (session.data.user.credits < Credits.AIDetector)
+      return toast.error(
+        "You don't have enough credits to perform this action"
+      );
+
     if (aiDetection.isPending) return;
     if (text.length < 100)
       return toast.error("Text must be at least 100 characters");

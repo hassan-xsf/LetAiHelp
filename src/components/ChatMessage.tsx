@@ -1,26 +1,15 @@
 import { Bot, User } from "lucide-react";
 import React from "react";
 
-import "markdown-it-prism";
-import "../app/prism-vsc-dark-plus.css";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-bash";
-
 import MarkdownIt from "markdown-it";
-import markdownItPrism from "markdown-it-prism";
+import markdownItHighlightJs from "markdown-it-highlightjs";
+import "highlight.js/styles/vs2015.css";
 
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-}).use(markdownItPrism);
-
-md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
-  const token = tokens[idx];
-  return `<div class = "simpleCodeBG"><code>${md.utils.escapeHtml(
-    token.content
-  )}</code></div>`;
-};
+}).use(markdownItHighlightJs);
 
 const ChatMessage = ({ role, content }: ChatType) => {
   return (

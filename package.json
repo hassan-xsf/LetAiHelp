@@ -30,6 +30,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.437.0",
     "markdown-it": "^14.1.0",
+    "markdown-it-highlightjs": "^4.2.0",
     "markdown-it-prism": "^2.3.0",
     "markdown-it-shikiji": "^0.10.2",
     "next": "^14.2.15",

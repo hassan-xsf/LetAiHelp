@@ -7,7 +7,7 @@ import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
 import { Textarea } from "../ui/textarea";
-import { Blend, Copy, Download, ImageIcon, Link, Loader2 } from "lucide-react";
+import { Blend, Download, ImageIcon, Loader2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -17,16 +17,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import {
-  imageFormType,
-  imageModels,
-  imageSchema,
-  imageTypes,
-} from "@/schemas/imageSchema";
+import { imageFormType, imageSchema } from "@/schemas/imageSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { imageService } from "@/services/image";
 import { textLimits } from "@/constants/textLimits";
+import { imageModels, imageTypes } from "@/constants/image";
 
 export default function TextToImage() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);

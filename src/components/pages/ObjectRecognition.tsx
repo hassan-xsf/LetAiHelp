@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { Upload, Copy, FileSearch, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { objectDetectionService } from "@/services/object-detection";
+import { objectDetectionService } from "@/services/objectDetection";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
@@ -20,6 +20,11 @@ export default function ObjectDetection() {
   const objectDetection = useMutation({
     mutationFn: objectDetectionService,
     onSuccess: (res) => {
+      if (!session.data) return;
+      const newCredits = session.data.user.credits - Credits.ObjectDetection;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
       toast.success("Your object detection report is ready");
       setResults(res.data.data);
     },
@@ -68,11 +73,6 @@ export default function ObjectDetection() {
       objectDetection.mutate(formData);
 
       toast.info("Detecting Object, Please wait...");
-
-      const newCredits = session.data.user.credits - Credits.ObjectDetection;
-      session.update({
-        credits: newCredits === 0 ? 1 : newCredits,
-      });
     } else {
       fileInputRef.current?.click();
     }
