@@ -16,6 +16,7 @@ const ThemeBtn = () => {
   if (!mounted)
     return (
       <Button
+        aria-label="Theme Button"
         variant="ghost"
         className="bg-gray-200 dark:bg-zinc-900 animate-pulse"
         size="icon"
@@ -23,6 +24,7 @@ const ThemeBtn = () => {
     );
   return (
     <Button
+      aria-label="Theme Button"
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

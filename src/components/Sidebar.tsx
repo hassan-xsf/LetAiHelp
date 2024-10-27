@@ -98,14 +98,6 @@ const data = {
           title: "Paraphraser",
           url: "/dashboard/paraphraser",
         },
-        {
-          title: "AI MCQ Quiz",
-          url: "#",
-        },
-        {
-          title: "AI Quiz",
-          url: "#",
-        },
       ],
     },
     {

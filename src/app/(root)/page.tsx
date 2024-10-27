@@ -2,13 +2,8 @@ import Link from "next/link";
 import LinkButton from "@/components/buttons/LinkButton";
 import Navbar from "@/components/Navbar";
 import ToolsList from "@/components/ToolsList";
-import dynamic from "next/dynamic";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import GridSection from "@/components/GridSection";
 
-const GridSection = dynamic(() => import("@/components/GridSection"), {
-  loading: () => <LoadingSpinner />,
-  ssr: false,
-});
 export default function page() {
   return (
     <>
@@ -16,13 +11,11 @@ export default function page() {
       <div className="max-w-screen-2xl mx-auto flex flex-col min-h-screen bg-gray-50 dark:bg-zinc-950">
         <main className="flex-1">
           <GridSection />
-          <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-zinc-950">
-            <div className="container px-4 md:px-6">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-gray-900 dark:text-white">
-                Our AI Tools
-              </h2>
-              <ToolsList />
-            </div>
+          <section className="py-12 md:py-24 lg:py-32">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center">
+              Our AI Tools
+            </h2>
+            <ToolsList />
           </section>
           <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-zinc-950">
             <div className="container px-4 md:px-6">

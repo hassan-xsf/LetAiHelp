@@ -93,34 +93,54 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
-.bg-grid-pattern {
-  background-color: #ffffff;
-  background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
-    linear-gradient(to right, #e5e7eb 1px, #ffffff 1px);
-  background-size: 20px 20px;
-  position: relative;
-}
-.bg-grid-pattern-dark {
-  background-color: #090909;
-  background-image: linear-gradient(#000000 1px, transparent 1px),
-    linear-gradient(to right, #000206 1px, #192f1e 1px);
-  background-size: 20px 20px;
-  position: relative;
+/* In your Tailwind CSS file, such as styles.css */
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-color: #ffffff;
+    background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
+      linear-gradient(to right, #e5e7eb 1px, #ffffff 1px);
+    background-size: 20px 20px;
+    position: relative;
+  }
+  .bg-grid-pattern::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 100%
+    );
+    pointer-events: none;
+  }
+
+  .bg-grid-pattern-dark {
+    background-color: #090909;
+    background-image: linear-gradient(#000000 1px, transparent 1px),
+      linear-gradient(to right, #000206 1px, rgb(25, 47, 30) 1px);
+    background-size: 20px 20px;
+    position: relative;
+  }
+  .bg-grid-pattern-dark::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 47, 30, 0.8) 0%,
+      rgba(0, 0, 0, 0.3) 160%
+    );
+    pointer-events: none;
+  }
 }
 
-.bg-grid-pattern::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 150%
-  );
-}
 @layer base {
   * {
     @apply border-border;
