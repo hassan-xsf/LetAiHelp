@@ -50,9 +50,13 @@ const Paraphraser = () => {
   const paraphrase = useMutation({
     mutationFn: paraphraserService,
     onSuccess: (res) => {
+      if (!session.data) return;
       toast.success("Your text has been paraphrased!");
       setParaphrasedText(res.data.data.message);
-      console.log(res.data.data);
+      const newCredits = session.data.user.credits - Credits.Paraphraser;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
     },
     onError: (error) => {
       console.log(error);
@@ -79,11 +83,6 @@ const Paraphraser = () => {
     if (paraphrase.isPending) return;
     paraphrase.mutate(data);
     toast.info("Paraphrasing, Please wait...");
-
-    const newCredits = session.data.user.credits - Credits.Paraphraser;
-    session.update({
-      credits: newCredits === 0 ? 1 : newCredits,
-    });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

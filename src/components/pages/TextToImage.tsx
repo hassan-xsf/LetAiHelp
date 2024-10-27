@@ -46,10 +46,10 @@ export default function TextToImage() {
   const imageGeneration = useMutation({
     mutationFn: imageService,
     onSuccess: (res) => {
-      toast.success("Your image is ready");
+      if (!session.data) return null;
 
+      toast.success("Your image is ready");
       console.log(getValues("model"));
-      console.log(res.data);
       if (getValues("model") === "@cf/black-forest-labs/flux-1-schnell") {
         setGeneratedImage(
           "data:image/png;base64," + res.data.data.result.image
@@ -58,6 +58,10 @@ export default function TextToImage() {
         const url = URL.createObjectURL(res.data);
         setGeneratedImage(url);
       }
+      const newCredits = session.data.user.credits - Credits.TextToImage;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
     },
     onError: (error) => {
       console.log(error);
@@ -79,11 +83,6 @@ export default function TextToImage() {
     if (imageGeneration.isPending) return;
     imageGeneration.mutate(data);
     toast.info("Generating image, Please wait...");
-
-    const newCredits = session.data.user.credits - Credits.TextToImage;
-    session.update({
-      credits: newCredits === 0 ? 1 : newCredits,
-    });
   };
 
   return (

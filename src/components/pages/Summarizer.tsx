@@ -40,6 +40,11 @@ const Summarizer = () => {
   const translation = useMutation({
     mutationFn: summarizerService,
     onSuccess: (res) => {
+      if (!session.data) return null;
+      const newCredits = session.data.user.credits - Credits.Summarizer;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
       toast.success("Your text has been summarized!");
       setSummarizedText(res.data.data.result.summary);
     },
@@ -68,11 +73,6 @@ const Summarizer = () => {
     if (translation.isPending) return;
     translation.mutate(data);
     toast.info("Summarizing, Please wait...");
-
-    const newCredits = session.data.user.credits - Credits.Summarizer;
-    session.update({
-      credits: newCredits === 0 ? 1 : newCredits,
-    });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

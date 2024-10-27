@@ -44,9 +44,13 @@ const Translator = () => {
   const translation = useMutation({
     mutationFn: translatorService,
     onSuccess: (res) => {
+      if (!session.data) return null;
       toast.success("Your translation is ready");
       setTranslatedText(res.data.data.result.translated_text);
-      console.log(res.data.data.result.translated_text);
+      const newCredits = session.data.user.credits - Credits.Translator;
+      session.update({
+        credits: newCredits === 0 ? 1 : newCredits,
+      });
     },
     onError: (error) => {
       console.log(error);
@@ -73,10 +77,6 @@ const Translator = () => {
     if (translation.isPending) return;
     translation.mutate(data);
     toast.info("Translating, Please wait...");
-    const newCredits = session.data.user.credits - Credits.Translator;
-    session.update({
-      credits: newCredits === 0 ? 1 : newCredits,
-    });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
