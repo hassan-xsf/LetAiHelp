@@ -1,9 +1,14 @@
 import Link from "next/link";
 import LinkButton from "@/components/buttons/LinkButton";
 import Navbar from "@/components/Navbar";
-import GridSection from "@/components/GridSection";
 import ToolsList from "@/components/ToolsList";
+import dynamic from "next/dynamic";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
+const GridSection = dynamic(() => import("@/components/GridSection"), {
+  loading: () => <LoadingSpinner />,
+  ssr: false,
+});
 export default function page() {
   return (
     <>

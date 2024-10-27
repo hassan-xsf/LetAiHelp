@@ -22,13 +22,6 @@ md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
   )}</code></div>`;
 };
 
-md.renderer.rules.code_inline = (tokens, idx, options, env, self) => {
-  const token = tokens[idx];
-  return `<div class = "simpleCodeBG"><code>${md.utils.escapeHtml(
-    token.content
-  )}</code></div>`;
-};
-
 const ChatMessage = ({ role, content }: ChatType) => {
   return (
     <>
