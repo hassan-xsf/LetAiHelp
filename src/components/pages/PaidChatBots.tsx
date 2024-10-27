@@ -19,6 +19,8 @@ import {
   paidTextFormType,
   paidTextModels,
   paidTextSchema,
+  UpdatedPaidTextFormType,
+  updatedPaidTextSchema,
 } from "@/schemas/paidModelsSchema";
 import { Slider } from "../ui/slider";
 
@@ -52,13 +54,13 @@ export default function TextToImage() {
   const [message, setMessage] = useState<ChatType[]>([]);
 
   const { register, handleSubmit, setValue, watch, reset } =
-    useForm<paidTextFormType>({
+    useForm<UpdatedPaidTextFormType>({
       defaultValues: {
         prompt: "",
         model: paidTextModels[type],
         max_tokens: 512,
       },
-      resolver: zodResolver(paidTextSchema),
+      resolver: zodResolver(updatedPaidTextSchema),
     });
   const tokens = watch("max_tokens");
   useEffect(() => {
@@ -70,7 +72,6 @@ export default function TextToImage() {
     onSuccess: (res) => {
       toast.success("Your message has been responded!");
       setMessage((prev) => [...prev, { role: "assistant", content: res.data }]);
-      console.log([...message, { role: "assistant", content: res.data }]);
     },
     onError: (error) => {
       console.log(error);
@@ -83,7 +84,7 @@ export default function TextToImage() {
   const session = useSession();
   if (!session.data) return null;
 
-  const onSubmit = async (data: paidTextFormType) => {
+  const onSubmit = async (data: UpdatedPaidTextFormType) => {
     if (session.data.user.credits < Credits.Chat)
       return toast.error(
         "You don't have enough credits to perform this action"
@@ -91,8 +92,12 @@ export default function TextToImage() {
 
     if (paidBot.isPending) return;
     setMessage((prev) => [...prev, { role: "user", content: data.prompt }]);
-    console.log([...message, { role: "user", content: data.prompt }]);
-    paidBot.mutate(data);
+
+    paidBot.mutate({
+      messages: [...message, { role: "user", content: data.prompt }],
+      model: data.model,
+      max_tokens: data.max_tokens,
+    });
     reset();
     const newCredits = session.data.user.credits - Credits.TextToImage;
     session.update({

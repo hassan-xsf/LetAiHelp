@@ -7,9 +7,9 @@ import { paidTextSchema } from "@/schemas/paidModelsSchema";
 
 export async function POST(request: Request) {
   try {
-    const { prompt, model, max_tokens } = await request.json();
+    const { messages, model, max_tokens } = await request.json();
 
-    const validate = paidTextSchema.safeParse({ prompt, model, max_tokens });
+    const validate = paidTextSchema.safeParse({ messages, model, max_tokens });
     if (!validate.success) {
       const errorMessages = validate.error.issues
         .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
@@ -27,13 +27,7 @@ export async function POST(request: Request) {
     const response = await axios.post(
       `https://www.blackbox.ai/api/chat`,
       {
-        messages: [
-          {
-            id: "WKH2j2x",
-            role: "user",
-            content: prompt,
-          },
-        ],
+        messages,
         id: "7DyvtMT",
         previewToken: null,
         userId: null,
