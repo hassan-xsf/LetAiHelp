@@ -3,7 +3,7 @@ import React from "react";
 
 import MarkdownIt from "markdown-it";
 import markdownItHighlightJs from "markdown-it-highlightjs";
-import "highlight.js/styles/vs2015.css";
+import "@/app/vs2015.css";
 
 const md = new MarkdownIt({
   html: true,
