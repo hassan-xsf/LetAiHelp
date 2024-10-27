@@ -63,7 +63,7 @@ export default function ObjectDetection() {
     if (image && finalFile) {
       if (session.data.user.credits < Credits.ObjectDetection)
         return toast.error(
-          "You don't have enough credits to perform this action"
+          "You don't have enough credits to perform this action",
         );
       if (objectDetection.isPending) return;
 
@@ -87,18 +87,18 @@ export default function ObjectDetection() {
   };
 
   return (
-    <div className="bg-white rounded-md dark:bg-zinc-950/90 text-white p-8 mt-10 h-[65vh]">
-      <div className="flex items-center gap-3 justify-center ">
+    <div className="mt-10 h-[65vh] rounded-md bg-white p-8 text-white dark:bg-zinc-950/90">
+      <div className="flex items-center justify-center gap-3">
         <FileSearch size="20" className="text-black dark:text-white" />
-        <h1 className="text-black dark:text-white font-semibold text-lg tracking-tight underline-offset-2 underline decoration-green-400 decoration-2">
+        <h1 className="text-lg font-semibold tracking-tight text-black underline decoration-green-400 decoration-2 underline-offset-2 dark:text-white">
           UPLOAD AN IMAGE THEN CLICK ON DETECT OBJECTS, OUR TOOL WILL SHOW YOU
           THE MOST OBVIOUS OBJECTS FOUND IN THE PICTURE.
         </h1>
       </div>
-      <div className="max-w-6xl mx-auto pt-24 ">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[50vh] h-full">
+      <div className="mx-auto max-w-6xl pt-24">
+        <div className="grid h-full min-h-[50vh] grid-cols-1 gap-8 md:grid-cols-3">
           <div
-            className="col-span-2 border-2 border-dashed rounded-lg p-4 dark:bg-zinc-800 flex flex-col items-center justify-center cursor-pointer border-green-400 transition-colors"
+            className="col-span-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-green-400 p-4 transition-colors dark:bg-zinc-800"
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
             onClick={handleUpload}
@@ -111,7 +111,7 @@ export default function ObjectDetection() {
               />
             ) : (
               <>
-                <Upload className="w-16 h-16 text-zinc-500 mb-4" />
+                <Upload className="mb-4 h-16 w-16 text-zinc-500" />
                 <p className="text-zinc-500">
                   Drop an image or click to upload
                 </p>
@@ -130,7 +130,7 @@ export default function ObjectDetection() {
                 e.stopPropagation();
                 handleUpload();
               }}
-              className="mt-3 bg-green-500 hover:bg-green-600 text-white"
+              className="mt-3 bg-green-500 text-white hover:bg-green-600"
             >
               {image ? (
                 objectDetection.isPending ? (
@@ -152,21 +152,21 @@ export default function ObjectDetection() {
                   setImage(null);
                   setResults(null);
                 }}
-                className="mt-2 bg-zinc-700 hover:bg-zinc-600 text-white"
+                className="mt-2 bg-zinc-700 text-white hover:bg-zinc-600"
               >
                 Upload a new image
               </Button>
             )}
           </div>
 
-          <div className="dark:bg-zinc-800 border-green-400 border-2 rounded-lg p-4 h-[50vh] overflow-auto text-black dark:text-white">
-            <div className="flex justify-between items-center mb-4">
+          <div className="h-[50vh] overflow-auto rounded-lg border-2 border-green-400 p-4 text-black dark:bg-zinc-800 dark:text-white">
+            <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold">DETECTION RESULTS</h2>
               <Button
                 onClick={copyResults}
-                className="flex items-center bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded transition-colors"
+                className="flex items-center rounded bg-green-500 px-3 py-1 text-white transition-colors hover:bg-green-600"
               >
-                <Copy className="w-4 h-4 mr-2" />
+                <Copy className="mr-2 h-4 w-4" />
                 Copy
               </Button>
             </div>
@@ -174,8 +174,8 @@ export default function ObjectDetection() {
               <table className="w-full">
                 <thead>
                   <tr>
-                    <th className="text-left text-lg pb-2">OBJECT</th>
-                    <th className="text-right text-lg pb-2">CONFIDENCE</th>
+                    <th className="pb-2 text-left text-lg">OBJECT</th>
+                    <th className="pb-2 text-right text-lg">CONFIDENCE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,19 +184,19 @@ export default function ObjectDetection() {
                       result.score * 100 > 1 && (
                         <tr
                           key={index}
-                          className="border-t font-light border-zinc-700 text-sm"
+                          className="border-t border-zinc-700 text-sm font-light"
                         >
                           <td className="py-2">{result.label}</td>
-                          <td className="text-right py-2">
+                          <td className="py-2 text-right">
                             {(result.score * 100).toFixed(2)}%
                           </td>
                         </tr>
-                      )
+                      ),
                   )}
                 </tbody>
               </table>
             ) : (
-              <p className="text-zinc-500 text-center mt-8">
+              <p className="mt-8 text-center text-zinc-500">
                 Upload an image to see detection results
               </p>
             )}

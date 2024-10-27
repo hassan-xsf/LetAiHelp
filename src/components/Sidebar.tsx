@@ -149,7 +149,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="py-4">
         <React.Suspense
           fallback={
-            <div className="h-screen w-full bg-gray-200 dark:bg-zinc-900 animate-pulse"></div>
+            <div className="h-screen w-full animate-pulse bg-gray-200 dark:bg-zinc-900"></div>
           }
         >
           <>

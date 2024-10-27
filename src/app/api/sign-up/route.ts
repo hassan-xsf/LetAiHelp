@@ -18,7 +18,7 @@ export async function POST(request: Request) {
           success: false,
           message: errorMessages,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
               ? "Username is already taken"
               : "Email is already taken!",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         success: true,
         message: "User has been successfully registered",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error registering user:", error);
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Internal Server Error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

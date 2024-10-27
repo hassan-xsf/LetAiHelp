@@ -18,7 +18,7 @@ const ThemeBtn = () => {
       <Button
         aria-label="Theme Button"
         variant="ghost"
-        className="bg-gray-200 dark:bg-zinc-900 animate-pulse"
+        className="animate-pulse bg-gray-200 dark:bg-zinc-900"
         size="icon"
       />
     );

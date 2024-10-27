@@ -16,7 +16,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
           success: false,
           message: errorMessages,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const updatedUser = await db.user.update({
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
           "Content-Type": "application/json",
         },
         responseType: "stream",
-      }
+      },
     );
 
     const stream = new ReadableStream({
@@ -106,7 +106,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Internal Server Error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

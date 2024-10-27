@@ -68,7 +68,7 @@ const Summarizer = () => {
   const onSubmit = async (data: summarizeFormType) => {
     if (session.data.user.credits < Credits.Summarizer)
       return toast.error(
-        "You don't have enough credits to perform this action"
+        "You don't have enough credits to perform this action",
       );
     if (translation.isPending) return;
     translation.mutate(data);
@@ -76,7 +76,7 @@ const Summarizer = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="pt-10 flex flex-col gap-5 max-w-sm">
+      <div className="flex max-w-sm flex-col gap-5 pt-10">
         <Slider
           defaultValue={[10]}
           min={10}
@@ -86,17 +86,17 @@ const Summarizer = () => {
         />
         <span>Maximum Words: {selectedLength}</span>
       </div>
-      <div className="grid grid-cols-2 gap-4 my-10">
+      <div className="my-10 grid grid-cols-2 gap-4">
         <div>
-          <div className="w-[99.9%] mx-auto h-10 bg-white dark:bg-zinc-800 ring-green-400 ring-1 rounded-md -mb-2 flex items-center justify-between pl-2">
-            <p className="text-zinc-400 text-sm -mt-2">
+          <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-between rounded-md bg-white pl-2 ring-1 ring-green-400 dark:bg-zinc-800">
+            <p className="-mt-2 text-sm text-zinc-400">
               words: {currentText.length}/{textLimits.Summarizer}
             </p>
           </div>
           <Textarea
             placeholder="Enter text to summarize"
             maxLength={textLimits.Summarizer}
-            className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
+            className="text-md h-96 w-full border-green-400 bg-white p-2 text-black dark:bg-zinc-900 dark:text-white"
             {...register("input_text")}
           />
           {errors.input_text && (
@@ -104,10 +104,10 @@ const Summarizer = () => {
           )}
         </div>
         <div>
-          <div className="w-[99.9%] mx-auto h-10 bg-white dark:bg-zinc-800 ring-green-400 ring-1 rounded-md -mb-2 flex items-center justify-end pr-1">
+          <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-end rounded-md bg-white pr-1 ring-1 ring-green-400 dark:bg-zinc-800">
             <div
               onClick={copyOutput}
-              className="text-zinc-400 rounded-md p-1 text-sm -mt-2 flex items-center justify-center gap-1 cursor-pointer"
+              className="-mt-2 flex cursor-pointer items-center justify-center gap-1 rounded-md p-1 text-sm text-zinc-400"
             >
               <Copy size={15} />
               copy
@@ -117,16 +117,16 @@ const Summarizer = () => {
             placeholder="Summarized text will appear here..."
             value={summarizedText}
             readOnly
-            className="w-full h-96 p-2 text-md bg-white text-black dark:bg-zinc-900 dark:text-white border-green-400"
+            className="text-md h-96 w-full border-green-400 bg-white p-2 text-black dark:bg-zinc-900 dark:text-white"
           />
         </div>
       </div>
-      <div className="w-1/6 mx-auto">
+      <div className="mx-auto w-1/6">
         <button
           aria-label="Summarize"
-          className="w-full px-6 py-3 flex items-center justify-center gap-3 bg-green-500 text-white rounded-lg font-semibold text-lg transition-all hover:bg-green-600 shadow-[6px_6px_0_0_#166534] hover:shadow-[2px_2px_0_0_#166534] hover:translate-x-1 hover:translate-y-1"
+          className="flex w-full items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-3 text-lg font-semibold text-white shadow-[6px_6px_0_0_#166534] transition-all hover:translate-x-1 hover:translate-y-1 hover:bg-green-600 hover:shadow-[2px_2px_0_0_#166534]"
         >
-          <Sparkles className="size-6 ml-2 text-white fill-green-400" />
+          <Sparkles className="ml-2 size-6 fill-green-400 text-white" />
           {translation.isPending ? "SUMMARIZING..." : "SUMMARIZE"}
         </button>
       </div>

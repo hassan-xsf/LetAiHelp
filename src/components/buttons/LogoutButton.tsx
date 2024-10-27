@@ -6,8 +6,9 @@ import { signOut } from "next-auth/react";
 
 const LogoutBtn = () => {
   return (
-    <Button
-      className="bg-green-600 text-white font-semibold hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-sm p-2 rounded-md cursor-pointer z-10"
+    <button
+      aria-label="Sign Out"
+      className="z-10 cursor-pointer rounded-md bg-green-600 p-1 text-[10px] font-semibold text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 sm:p-2 sm:text-sm"
       onClick={() =>
         signOut({
           redirect: true,
@@ -16,7 +17,7 @@ const LogoutBtn = () => {
       }
     >
       Sign Out
-    </Button>
+    </button>
   );
 };
 

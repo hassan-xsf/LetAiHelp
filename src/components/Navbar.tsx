@@ -19,12 +19,14 @@ import ThemeBtn from "./buttons/ThemeButton";
 const Navbar = async () => {
   const data = await getServerSession(authOptions);
   return (
-    <header className="max-w-screen-2xl mx-auto px-4 lg:px-6 h-14 flex items-center bg-gray-50 dark:bg-zinc-950 text-gray-600 dark:text-white">
+    <header className="mx-auto flex h-14 max-w-screen-2xl items-center bg-gray-50 px-2 text-gray-600 dark:bg-zinc-950 dark:text-white sm:px-4 lg:px-6">
       <Logo />
-      <nav className="ml-auto flex items-center gap-4 sm:gap-6">
+      <nav className="ml-auto flex items-center gap-3 sm:gap-6">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost">Tools</Button>
+            <Button variant="ghost" className="text-xs sm:text-sm">
+              Tools
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>Chat Tools</DropdownMenuLabel>
@@ -40,11 +42,14 @@ const Navbar = async () => {
             <DropdownMenuItem>AI Code Assistant</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link className="text-sm font-medium" href="/dashboard/upgrade">
+        <Link
+          className="text-xs font-medium sm:text-sm"
+          href="/dashboard/upgrade"
+        >
           Pricing
         </Link>
         {data?.user && (
-          <Link className="text-sm font-medium" href="/dashboard">
+          <Link className="text-xs font-medium sm:text-sm" href="/dashboard">
             Dashboard
           </Link>
         )}
@@ -53,7 +58,7 @@ const Navbar = async () => {
         ) : (
           <Link
             href="/sign-in"
-            className="bg-green-600 text-sm text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 py-1 px-3 rounded-md font-bold"
+            className="rounded-md bg-green-600 px-3 py-1 text-xs font-bold text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 sm:text-sm"
           >
             Sign In
           </Link>

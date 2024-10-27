@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <main className="px-4 min-h-screen bg-gray-50 dark:bg-zinc-950">
+          <main className="min-h-screen bg-gray-50 px-4 dark:bg-zinc-950">
             {children}
           </main>
           <Toaster richColors position="top-right" />

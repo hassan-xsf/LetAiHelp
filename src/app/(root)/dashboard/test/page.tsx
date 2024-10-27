@@ -8,7 +8,7 @@ export default function SimpleAIStream() {
   const [streamData, setStreamData] = useState("");
 
   const handleImageUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (!event.target.files || event.target.files.length === 0) return;
 
@@ -32,7 +32,7 @@ export default function SimpleAIStream() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto mt-8">
+    <div className="mx-auto mt-8 w-full max-w-3xl">
       <div>
         <input
           type="file"

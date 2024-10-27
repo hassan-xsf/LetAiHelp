@@ -13,7 +13,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
     const { code } = await request.json();
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
           success: false,
           message: "Code is required",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const redeemCode = await db.redeemCode.findUnique({
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
           success: false,
           message: "Invalid Code",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const hasRedeemed = await db.redeemedCode.findFirst({
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You have already redeemed this code",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     await db.redeemedCode.create({
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         success: true,
         message: "Code Redeemed Succesfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -78,7 +78,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Internal Server Error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

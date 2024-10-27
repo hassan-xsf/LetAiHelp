@@ -17,7 +17,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
           success: false,
           message: errorMessages,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const updatedUser = await db.user.update({
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     return new NextResponse(response.data, { status: 200 });
   } catch (error) {
@@ -99,7 +99,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Internal Server Error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

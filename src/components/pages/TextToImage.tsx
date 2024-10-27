@@ -52,7 +52,7 @@ export default function TextToImage() {
       console.log(getValues("model"));
       if (getValues("model") === "@cf/black-forest-labs/flux-1-schnell") {
         setGeneratedImage(
-          "data:image/png;base64," + res.data.data.result.image
+          "data:image/png;base64," + res.data.data.result.image,
         );
       } else {
         const url = URL.createObjectURL(res.data);
@@ -77,7 +77,7 @@ export default function TextToImage() {
   const onSubmit = async (data: imageFormType) => {
     if (session.data.user.credits < Credits.TextToImage)
       return toast.error(
-        "You don't have enough credits to perform this action"
+        "You don't have enough credits to perform this action",
       );
 
     if (imageGeneration.isPending) return;
@@ -86,15 +86,15 @@ export default function TextToImage() {
   };
 
   return (
-    <div className="bg-white rounded-md dark:bg-zinc-950/50 text-white p-8 mt-10 h-[65vh]">
-      <div className="flex items-center gap-3 justify-center "></div>
+    <div className="mt-10 h-[65vh] rounded-md bg-white p-8 text-white dark:bg-zinc-950/50">
+      <div className="flex items-center justify-center gap-3"></div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-6xl mx-auto mt-10"
+        className="mx-auto mt-10 max-w-6xl"
       >
         <div className="flex flex-col">
           <h1 className="text-black dark:text-white">
-            <Blend className="size-6 rounded-full bg-green-400 p-1 mr-2 inline" />
+            <Blend className="mr-2 inline size-6 rounded-full bg-green-400 p-1" />
             SELECT MODEL
           </h1>
           <Select
@@ -103,7 +103,10 @@ export default function TextToImage() {
               setValue("model", value)
             }
           >
-            <SelectTrigger className="w-[360px] border-green-400 border-2 text-black dark:text-white my-2">
+            <SelectTrigger
+              aria-label="Select Model"
+              className="my-2 w-[360px] border-2 border-green-400 text-black dark:text-white"
+            >
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
             <SelectContent>
@@ -117,20 +120,20 @@ export default function TextToImage() {
             </SelectContent>
           </Select>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white border-2 border-zinc-800 dark:bg-zinc-800 rounded-lg p-6 flex flex-col">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="flex flex-col rounded-lg border-2 border-zinc-800 bg-white p-6 dark:bg-zinc-800">
             <Textarea
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
               maxLength={textLimits.TextToImage}
-              className="w-full h-40 bg-white text-black dark:bg-zinc-900 border-green-400 dark:text-white placeholder-zinc-400 mb-6"
+              className="mb-6 h-40 w-full border-green-400 bg-white text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white"
             />
             {errors.text && (
               <p className="text-red-500">{errors.text.message}</p>
             )}
 
             <div className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-black dark:text-white">
+              <h2 className="mb-3 text-xl font-semibold text-black dark:text-white">
                 Styles
               </h2>
               <div className="grid grid-cols-3 gap-4">
@@ -138,18 +141,18 @@ export default function TextToImage() {
                   <div
                     key={crypto.randomUUID()}
                     onClick={() => setValue("type", image)}
-                    className={`cursor-pointer rounded-lg overflow-hidden border ${
+                    className={`cursor-pointer overflow-hidden rounded-lg border ${
                       styleType.toLowerCase() === image.toLowerCase()
-                        ? "border-green-400 border-2"
+                        ? "border-2 border-green-400"
                         : "border-zinc-800 dark:border-white"
                     }`}
                   >
                     <img
                       src={`/${image.toLowerCase()}.png`}
                       alt={image}
-                      className="w-full h-28 object-cover"
+                      className="h-28 w-full object-cover"
                     />
-                    <div className="p-2 text-sm text-center text-black dark:bg-black dark:text-white">
+                    <div className="p-2 text-center text-sm text-black dark:bg-black dark:text-white">
                       {image}
                     </div>
                   </div>
@@ -160,11 +163,11 @@ export default function TextToImage() {
             <Button
               aria-label="Generate Image"
               type="submit"
-              className="w-full bg-green-500 hover:bg-green-700 text-white mt-auto"
+              className="mt-auto w-full bg-green-500 text-white hover:bg-green-700"
             >
               {imageGeneration.isPending ? (
                 <div className="flex items-center justify-center gap-2">
-                  <Loader2 className="size-7 ml-2 text-white animate-spin" />
+                  <Loader2 className="ml-2 size-7 animate-spin text-white" />
                   Generating Image
                 </div>
               ) : (
@@ -173,8 +176,8 @@ export default function TextToImage() {
             </Button>
           </div>
 
-          <div className="bg-white border-2 border-zinc-800 dark:bg-zinc-800 rounded-lg p-6 flex flex-col">
-            <div className="flex justify-between items-c enter mb-4">
+          <div className="flex flex-col rounded-lg border-2 border-zinc-800 bg-white p-6 dark:bg-zinc-800">
+            <div className="items-c enter mb-4 flex justify-between">
               <h2 className="text-xl font-semibold">Generated Image</h2>
               <a
                 target="_blank"
@@ -182,11 +185,11 @@ export default function TextToImage() {
                 download={
                   generatedImage ? `letaihelp.me${Date.now()}.png` : undefined
                 }
-                className={`flex items-center bg-green-500 text-sm hover:bg-green-700 text-white px-3 py-1 rounded transition-colors ${
+                className={`flex items-center rounded bg-green-500 px-3 py-1 text-sm text-white transition-colors hover:bg-green-700 ${
                   generatedImage ? "cursor-pointer" : "pointer-events-none"
                 }`}
               >
-                <Download className="w-4 h-4 mr-2" />
+                <Download className="mr-2 h-4 w-4" />
                 Download
               </a>
             </div>
@@ -194,12 +197,12 @@ export default function TextToImage() {
               <img
                 src={generatedImage}
                 alt="Generated"
-                className="w-full h-auto rounded-lg flex-grow object-cover"
+                className="h-auto w-full flex-grow rounded-lg object-cover"
               />
             ) : (
-              <div className="flex-grow border-2 border-dashed border-zinc-700 rounded-lg flex items-center justify-center">
+              <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-zinc-700">
                 <div className="text-center">
-                  <ImageIcon className="w-16 h-16 text-zinc-600 mx-auto mb-4" />
+                  <ImageIcon className="mx-auto mb-4 h-16 w-16 text-zinc-600" />
                   <p className="text-zinc-400">
                     Your generated image will appear here
                   </p>

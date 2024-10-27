@@ -25,7 +25,7 @@ A perfect kit for freelancing projects.
 - **PostgreSQL**: Powerful, open-source object-relational database system.
 - **Zod**: TypeScript-first schema declaration and validation library.
 - **TypeScript**: Strongly typed programming language that builds on JavaScript.
-  
+
 ## 🛠 Getting Started
 
 ### 📦 Installation
@@ -36,52 +36,59 @@ A perfect kit for freelancing projects.
    git clone https://github.com/yourusername/nextjs-nextauth-prisma-starter.git
    cd nextjs-nextauth-prisma-starter
 
+   ```
+
 2. **Install dependencies**
-    ```bash
-    npm install
+
+   ```bash
+   npm install
+
+   ```
 
 3. **Environment Variables**
-  
+
    Create a `.env` file in the root of your project and add the following environment variables:
-    
-    ```env
-    DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/YOUR_DATABASE_NAME
-    NEXTAUTH_SECRET=your-secret
-    NEXTAUTH_URL=http://localhost:3000
-    GITHUB_ID=your-github-client-id
-    GITHUB_SECRET=your-github-client-secret
+
+   ```env
+   DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/YOUR_DATABASE_NAME
+   NEXTAUTH_SECRET=your-secret
+   NEXTAUTH_URL=http://localhost:3000
+   GITHUB_ID=your-github-client-id
+   GITHUB_SECRET=your-github-client-secret
+   ```
 
 ### **🗄 Database Migration**
 
-  Run the following command to create the necessary tables in your PostgreSQL database:
-    
+Run the following command to create the necessary tables in your PostgreSQL database:
+
     ```bash
     npx prisma migrate dev --name init
-  This will generate your database schema and run the migration.
-    
+
+This will generate your database schema and run the migration.
+
 ### **🚀 Usage**
 
-  🔥 Running the Development Server
-  To start the development server, run:
-    
+🔥 Running the Development Server
+To start the development server, run:
+
     ```bash
     Copy code
     npm run dev
-  Open your browser and navigate to http://localhost:3000 to view the application.
-    
+
+Open your browser and navigate to http://localhost:3000 to view the application.
+
 ### **🔐 Authentication**
 
-  This starter kit comes pre-configured with NextAuth for both GitHub OAuth and credentials-based authentication. The following authentication methods are available:
-    
-  Sign in with GitHub: Click on the "Sign in with GitHub" button on the sign-in page.
-  Credentials-based Sign in: Use the form to sign in with an email and password.
-  And new OAuth can be easily added.
+This starter kit comes pre-configured with NextAuth for both GitHub OAuth and credentials-based authentication. The following authentication methods are available:
+
+Sign in with GitHub: Click on the "Sign in with GitHub" button on the sign-in page.
+Credentials-based Sign in: Use the form to sign in with an email and password.
+And new OAuth can be easily added.
 
 ### **✅ Schema Validation**
 
-  This project uses Zod for validating the incoming request data. You can find and modify the validation schemas in the relevant API routes.
-      
+This project uses Zod for validating the incoming request data. You can find and modify the validation schemas in the relevant API routes.
+
 ## **🤝 Contributing**
 
-  Contributions are always welcome :)
-
+Contributions are always welcome :)

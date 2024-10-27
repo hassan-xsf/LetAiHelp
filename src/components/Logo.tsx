@@ -11,11 +11,15 @@ const Logo = ({ type = 1 }: { type?: number }) => {
       href="/"
     >
       <SparklesIcon
-        className={`text-green-600 fill-green-500 dark:text-green-400 ${
+        className={`fill-green-500 text-green-600 dark:text-green-400 ${
           type === 1 ? "size-6" : "size-8"
         }`}
       />
-      <span className="ml-2 text-2xl font-bold text-gray-900 dark:text-white">
+      <span
+        className={`ml-2 text-2xl font-bold text-gray-900 dark:text-white ${
+          type === 1 && "hidden sm:block"
+        }`}
+      >
         LetAIHelp
         <span className="text-xs font-extrabold text-green-400">.me</span>
       </span>

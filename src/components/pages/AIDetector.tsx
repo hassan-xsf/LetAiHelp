@@ -41,7 +41,7 @@ export default function Component() {
   const handleDetect = () => {
     if (session.data.user.credits < Credits.AIDetector)
       return toast.error(
-        "You don't have enough credits to perform this action"
+        "You don't have enough credits to perform this action",
       );
 
     if (aiDetection.isPending) return;
@@ -52,8 +52,8 @@ export default function Component() {
     aiDetection.mutate({ input_text: text });
   };
   return (
-    <div className="min-h-[62vh] bg-white dark:bg-black text-white p-8 mt-5">
-      <Card className="max-w-7xl p-10 mx-auto bg-transparent border">
+    <div className="mt-5 min-h-[62vh] bg-white p-8 text-white dark:bg-black">
+      <Card className="mx-auto max-w-7xl border bg-transparent p-10">
         <CardContent className="space-y-6">
           <div className="space-y-4">
             <div className="relative">
@@ -61,7 +61,7 @@ export default function Component() {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Enter text to analyze (100-15000 words)"
-                className="w-full h-64 p-4 bg-white dark:bg-zinc-900 border-green-500 border rounded-lg resize-none"
+                className="h-64 w-full resize-none rounded-lg border border-green-500 bg-white p-4 dark:bg-zinc-900"
               />
               <div className="absolute bottom-2 right-2 text-sm text-green-500">
                 {text.length}/15000 characters
@@ -70,7 +70,7 @@ export default function Component() {
             <Button
               area-label="Detect AI"
               onClick={handleDetect}
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+              className="w-full rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600"
             >
               {aiDetection.isPending ? (
                 <Loader2 className="size-4 animate-spin" />
@@ -81,13 +81,13 @@ export default function Component() {
           </div>
           {result?.data && result.data.fakePercentage >= 0 && (
             <div className="space-y-6 text-center">
-              <span className="text-green-500 font-semibold text-xl">
+              <span className="text-xl font-semibold text-green-500">
                 {result.data.feedback.toUpperCase()}
               </span>
-              <div className="flex justify-center items-center">
-                <div className="relative w-48 h-48">
+              <div className="flex items-center justify-center">
+                <div className="relative h-48 w-48">
                   <svg
-                    className="w-full h-full transform -rotate-90"
+                    className="h-full w-full -rotate-90 transform"
                     viewBox="0 0 100 100"
                   >
                     <defs>
@@ -143,19 +143,19 @@ export default function Component() {
               </div>
               <div className="flex items-center justify-center space-x-4">
                 <div className="flex items-center">
-                  <Check className="w-5 h-5 text-green-500 mr-2" />
+                  <Check className="mr-2 h-5 w-5 text-green-500" />
                   <span>Human: {100 - result.data.fakePercentage}%</span>
                 </div>
                 <div className="flex items-center">
-                  <AlertCircle className="w-5 h-5 text-yellow-500 mr-2" />
+                  <AlertCircle className="mr-2 h-5 w-5 text-yellow-500" />
                   <span>AI: {result.data.fakePercentage}%</span>
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">
+                <h3 className="mb-2 text-lg font-semibold">
                   Detected AI Content:
                 </h3>
-                <div className="w-full min-h-32 p-4 bg-white dark:bg-zinc-900 border-green-500 border rounded-lg resize-none">
+                <div className="min-h-32 w-full resize-none rounded-lg border border-green-500 bg-white p-4 dark:bg-zinc-900">
                   {result.data.originalParagraph.split(" ").map((word, i) =>
                     result.data.h
                       .map((h) => h.split(" "))
@@ -166,7 +166,7 @@ export default function Component() {
                       </span>
                     ) : (
                       <span key={word + i}>{word + " "}</span>
-                    )
+                    ),
                   )}
                 </div>
               </div>

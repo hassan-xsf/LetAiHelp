@@ -151,11 +151,17 @@
 }
 @keyframes glowing-border {
   0% {
-    box-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80, 0 0 15px #4ade80,
+    box-shadow:
+      0 0 5px #4ade80,
+      0 0 10px #4ade80,
+      0 0 15px #4ade80,
       0 0 20px #4ade80;
   }
   100% {
-    box-shadow: 0 0 20px #4ade80, 0 0 25px #4ade80, 0 0 30px #4ade80,
+    box-shadow:
+      0 0 20px #4ade80,
+      0 0 25px #4ade80,
+      0 0 30px #4ade80,
       0 0 35px #4ade80;
   }
 }

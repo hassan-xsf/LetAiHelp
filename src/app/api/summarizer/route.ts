@@ -16,7 +16,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
           success: false,
           message: errorMessages,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const response = await axios.post<SummarizeResponse>(
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
         headers: {
           Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
         },
-      }
+      },
     );
     const updatedUser = await db.user.update({
       where: {
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
         success: true,
         message: "Text summarized successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Internal Server Error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

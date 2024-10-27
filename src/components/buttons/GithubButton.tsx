@@ -7,7 +7,7 @@ function GithubSignIn() {
     <>
       <button
         onClick={() => signIn("github", { callbackUrl: "/" })}
-        className="flex items-center justify-center gap-4 ring-1 ring-black rounded-md py-1.5 text-nowrap dark:bg-white dark:text-black"
+        className="flex items-center justify-center gap-4 text-nowrap rounded-md py-1.5 ring-1 ring-black dark:bg-white dark:text-black"
         type="button"
       >
         <svg

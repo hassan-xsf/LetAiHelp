@@ -16,7 +16,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
           success: false,
           message: errorMessages,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const response = await axios.post<AIDetectionResponse>(
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
           Origin: "https://zerogpt.com",
           Host: "api.zerogpt.com",
         },
-      }
+      },
     );
 
     const updatedUser = await db.user.update({
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
         success: true,
         message: "AI detection executed successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -91,7 +91,7 @@ export async function POST(request: Request) {
         message:
           "Internal Server Error, Please try again later, If issue persists please change the image.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

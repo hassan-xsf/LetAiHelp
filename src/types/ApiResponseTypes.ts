@@ -9,7 +9,7 @@ type ObjectDetectionResponse = {
     {
       score: number;
       label: string;
-    }
+    },
   ];
 };
 type TextToImageResponse = {
@@ -34,7 +34,7 @@ type CaptionResponse = {
         word: string;
         start: number;
         end: number;
-      }
+      },
     ];
   };
 };

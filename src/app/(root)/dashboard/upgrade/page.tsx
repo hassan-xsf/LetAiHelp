@@ -9,7 +9,7 @@ const DynamicUpgrade = dynamic(() => import("@/components/pages/Upgrade"), {
 
 const page = () => {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-8 min-h-[70vh]">
+    <div className="flex min-h-[70vh] flex-1 flex-col gap-4 p-8">
       <div className="flex flex-col">
         <Suspense>
           <DynamicUpgrade />

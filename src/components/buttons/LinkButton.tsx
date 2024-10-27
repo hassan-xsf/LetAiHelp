@@ -11,7 +11,7 @@ const LinkButton = ({
     <Link
       href={href}
       aria-label={name}
-      className="bg-green-600 text-white font-semibold hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-sm p-2 rounded-md z-10"
+      className="z-10 rounded-md bg-green-600 p-2 text-xs font-semibold text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 sm:text-sm"
     >
       {name}
     </Link>

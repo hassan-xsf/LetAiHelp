@@ -1,16 +1,20 @@
-import { AppSidebar } from "@/components/Sidebar"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import { AppSidebar } from "@/components/Sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-
+} from "@/components/ui/sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-
   return (
     <>
       <SidebarProvider>
@@ -30,13 +34,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Breadcrumb>
             </div>
           </header>
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 min-h-[70vh]">
-            <div className="flex-1 rounded-xl bg-muted/50 md:min-h-min p-5">
+          <div className="flex min-h-[70vh] flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="flex-1 rounded-xl bg-muted/50 p-5 md:min-h-min">
               {children}
             </div>
           </div>
         </SidebarInset>
       </SidebarProvider>
     </>
-  )
+  );
 }

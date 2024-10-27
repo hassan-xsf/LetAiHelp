@@ -51,19 +51,19 @@ const page = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(
-          error.response?.data.message || "There was an error logging you in!"
+          error.response?.data.message || "There was an error logging you in!",
         );
       }
     }
   }
   return (
-    <div className="max-w-screen-sm mx-auto pt-40">
+    <div className="mx-auto max-w-screen-sm pt-40">
       <Logo type={2} />
-      <div className="mb-10 text-sm font-bold text-center">Sign In</div>
+      <div className="mb-10 text-center text-sm font-bold">Sign In</div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 flex flex-col"
+          className="flex flex-col space-y-4"
         >
           <FormField
             control={form.control}

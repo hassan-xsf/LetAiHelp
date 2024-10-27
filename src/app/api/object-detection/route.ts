@@ -15,7 +15,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
           success: false,
           message: "No image file uploaded",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const arrayBuffer = await file.arrayBuffer();
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
           success: false,
           message: "The image size was too big to be processed..",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const response = await axios.post<ObjectDetectionResponse>(
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
           Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     const updatedUser = await db.user.update({
       where: {
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
         success: true,
         message: "Object detection executed successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
         message:
           "Internal Server Error, Please try again later, If issue persists please change the image.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

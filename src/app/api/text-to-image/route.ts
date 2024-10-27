@@ -17,7 +17,7 @@ export async function POST(request: Request) {
           success: false,
           message: "You must be logged in inorder to perform this.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
     const { model, text, type }: imageFormType = await request.json();
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
           success: false,
           message: errorMessages,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     if (model === "@cf/black-forest-labs/flux-1-schnell") {
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
           headers: {
             Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
           },
-        }
+        },
       );
       const updatedUser = await db.user.update({
         where: {
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
           success: true,
           message: "Image succesfully generated!",
         },
-        { status: 200 }
+        { status: 200 },
       );
     } else {
       const response = await axios.post(
@@ -91,7 +91,7 @@ export async function POST(request: Request) {
             "Content-Type": "application/json",
           },
           responseType: "arraybuffer",
-        }
+        },
       );
       const updatedUser = await db.user.update({
         where: {
@@ -131,7 +131,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Internal Server Error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

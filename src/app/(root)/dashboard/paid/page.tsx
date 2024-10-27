@@ -9,7 +9,7 @@ const DynamicPaidChatBots = dynamic(
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
-  }
+  },
 );
 
 const page = () => {

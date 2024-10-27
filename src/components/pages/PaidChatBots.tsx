@@ -90,7 +90,7 @@ export default function TextToImage() {
   const onSubmit = async (data: UpdatedPaidTextFormType) => {
     if (session.data.user.credits < Credits.Chat)
       return toast.error(
-        "You don't have enough credits to perform this action"
+        "You don't have enough credits to perform this action",
       );
 
     if (paidBot.isPending) return;
@@ -107,18 +107,19 @@ export default function TextToImage() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-[68vh] bg-white dark:bg-black border-green-400 border px-8 pt-8 mt-10 text-white overflow-hidden flex flex-col rounded-lg"
+      className="mt-10 flex h-[68vh] flex-col overflow-hidden rounded-lg border border-green-400 bg-white px-8 pt-8 text-white dark:bg-black"
     >
       <div className="border-b border-zinc-800">
-        <div className="flex items-center mb-2">
-          <Bot className="w-6 h-6 mr-2 text-green-400" />
-          <h1 className="text-xl text-black dark:text-white font-bold">
+        <div className="mb-2 flex items-center">
+          <Bot className="mr-2 h-6 w-6 text-green-400" />
+          <h1 className="text-xl font-bold text-black dark:text-white">
             {paidTextModels[type].toUpperCase()}
           </h1>
         </div>
         <div className="flex items-center gap-4">
           <p className="text-black dark:text-white">Tokens: {tokens}</p>
           <Slider
+            aria-label="Tokens"
             className="w-[230px]"
             defaultValue={[512]}
             min={100}
@@ -127,12 +128,12 @@ export default function TextToImage() {
             onValueChange={(value) => setValue("max_tokens", value[0])}
           />
         </div>
-        <p className="text-red-500 py-1">
+        <p className="py-1 text-red-500">
           More tokens increase the reply length but takes more time for the AI
           Model to process..
         </p>
       </div>
-      <div className="flex-grow overflow-y-auto p-4 space-y-4">
+      <div className="flex-grow space-y-4 overflow-y-auto p-4">
         {message.map((msg, indx) => (
           <>
             <ChatMessage
@@ -144,8 +145,8 @@ export default function TextToImage() {
         ))}
         <div ref={messagesEndRef}></div>
       </div>
-      <div className="pb-4 border-t border-zinc-800">
-        <div className="flex items-center bg-gray-100 dark:bg-zinc-900 rounded-lg p-2 gap-2">
+      <div className="border-t border-zinc-800 pb-4">
+        <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 dark:bg-zinc-900">
           <Textarea
             {...register("prompt")}
             onKeyDown={(e) =>
@@ -154,12 +155,12 @@ export default function TextToImage() {
             disabled={paidBot.isPending}
             rows={3}
             placeholder="Ask any questions..."
-            className="flex-grow bg-transparent outline-none border-none text-black dark:text-white placeholder-zinc-500 text-sm"
+            className="flex-grow border-none bg-transparent text-sm text-black placeholder-zinc-500 outline-none dark:text-white"
           />
           <button
             aria-label="Send"
             type="submit"
-            className="p-2 rounded-full bg-green-600 hover:bg-green-500 transition-colors duration-200"
+            className="rounded-full bg-green-600 p-2 transition-colors duration-200 hover:bg-green-500"
             disabled={paidBot.isPending}
           >
             {paidBot.isPending ? (

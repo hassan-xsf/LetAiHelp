@@ -65,17 +65,17 @@ const page = () => {
   return (
     <>
       {showConfetti && <Confetti width={width - 150} height={height - 150} />}
-      <div className="flex flex-col py-32 bg-gray-50 dark:bg-zinc-900 rounded-md">
+      <div className="flex flex-col rounded-md bg-gray-50 py-32 dark:bg-zinc-900">
         <main className="flex-1">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-12">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="rounded-full p-3 text-white bg-green-500 dark:text-white">
-                  <ShoppingCart className="w-6 h-6" />
+                <div className="rounded-full bg-green-500 p-3 text-white dark:text-white">
+                  <ShoppingCart className="h-6 w-6" />
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold">Purchase Credits</h1>
-                  <p className="text-sm text-gray-600  dark:text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
                     Select the number of credits you want to purchase
                   </p>
                 </div>
@@ -83,9 +83,9 @@ const page = () => {
             </div>
 
             {/* Redeem Code Section */}
-            <Card className="mb-12 bg-white dark:bg-zinc-900 border-green-400 border">
+            <Card className="mb-12 border border-green-400 bg-white dark:bg-zinc-900">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-green-500 flex items-center">
+                <CardTitle className="flex items-center text-2xl font-bold text-green-500">
                   <Gift className="mr-2" />
                   Redeem Credits
                 </CardTitle>
@@ -106,7 +106,7 @@ const page = () => {
                     aria-label="Redeem Code"
                     onClick={handleRedeem}
                     disabled={redeemUpgradeCode.isPending}
-                    className="bg-green-500 hover:bg-green-600 text-white"
+                    className="bg-green-500 text-white hover:bg-green-600"
                   >
                     Redeem
                   </Button>
@@ -114,11 +114,11 @@ const page = () => {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
               {/* Basic Plan */}
-              <Card className="bg-white dark:bg-zinc-900 border-green-500 hover:border-green-400 transition-all duration-300 transform hover:scale-105">
+              <Card className="transform border-green-500 bg-white transition-all duration-300 hover:scale-105 hover:border-green-400 dark:bg-zinc-900">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-green-500 flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-2xl font-bold text-green-500">
                     <Star /> Basic
                   </CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
@@ -126,15 +126,15 @@ const page = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-4xl font-bold mb-4">1000 Credits</p>
-                  <p className="text-xl mb-6">+100 extra credits</p>
-                  <div className="flex items-center justify-center text-green-500 mb-4">
+                  <p className="mb-4 text-4xl font-bold">1000 Credits</p>
+                  <p className="mb-6 text-xl">+100 extra credits</p>
+                  <div className="mb-4 flex items-center justify-center text-green-500">
                     <span className="text-xl font-light">$5</span>
                   </div>
                 </CardContent>
                 <CardFooter>
                   <Button
-                    className="w-full bg-green-500 hover:bg-green-600 text-white"
+                    className="w-full bg-green-500 text-white hover:bg-green-600"
                     disabled
                   >
                     Currently Unavailable
@@ -143,31 +143,31 @@ const page = () => {
               </Card>
 
               {/* Pro Plan (Larger) */}
-              <Card className="bg-white dark:bg-zinc-900 border-green-500 scale-110 hover:border-green-400 transition-all duration-300 transform md:col-span-1 lg:col-span-1 md:row-span-1 lg:row-span-1 flex flex-col">
+              <Card className="flex scale-110 transform flex-col border-green-500 bg-white transition-all duration-300 hover:border-green-400 dark:bg-zinc-900 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1">
                 <CardHeader>
-                  <CardTitle className="text-3xl font-bold text-green-500 flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-3xl font-bold text-green-500">
                     <BadgeDollarSignIcon className="size-8" /> Pro
                   </CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
                     Most popular choice
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="text-center flex-grow flex flex-col justify-center">
-                  <p className="text-6xl font-bold mb-6 text-green-500">
+                <CardContent className="flex flex-grow flex-col justify-center text-center">
+                  <p className="mb-6 text-6xl font-bold text-green-500">
                     2000 Credits
                   </p>
-                  <p className="text-2xl mb-8">+600 extra credits</p>
-                  <div className="flex items-center justify-center text-green-500 mb-6">
+                  <p className="mb-8 text-2xl">+600 extra credits</p>
+                  <div className="mb-6 flex items-center justify-center text-green-500">
                     <span className="text-2xl font-light">$10</span>
                   </div>
-                  <div className="bg-green-500 text-white rounded-full py-2 px-4 inline-block mx-auto">
-                    <Zap className="inline mr-2" />
+                  <div className="mx-auto inline-block rounded-full bg-green-500 px-4 py-2 text-white">
+                    <Zap className="mr-2 inline" />
                     <span className="font-bold">Most Value</span>
                   </div>
                 </CardContent>
                 <CardFooter>
                   <Button
-                    className="w-full bg-green-500 hover:bg-green-600 text-white text-lg py-6"
+                    className="w-full bg-green-500 py-6 text-lg text-white hover:bg-green-600"
                     disabled
                   >
                     Currently Unavailable
@@ -176,9 +176,9 @@ const page = () => {
               </Card>
 
               {/* Premium Plan */}
-              <Card className="bg-white dark:bg-zinc-900 border-green-500 hover:border-green-400 transition-all duration-300 transform hover:scale-105">
+              <Card className="transform border-green-500 bg-white transition-all duration-300 hover:scale-105 hover:border-green-400 dark:bg-zinc-900">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-green-500 flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-2xl font-bold text-green-500">
                     <BadgeIndianRupee /> Premium
                   </CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
@@ -186,15 +186,15 @@ const page = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-4xl font-bold mb-4">5000 Credits</p>
-                  <p className="text-xl mb-6">+1000 extra credits</p>
-                  <div className="flex items-center justify-center text-green-500 mb-4">
+                  <p className="mb-4 text-4xl font-bold">5000 Credits</p>
+                  <p className="mb-6 text-xl">+1000 extra credits</p>
+                  <div className="mb-4 flex items-center justify-center text-green-500">
                     <span className="text-xl font-light">$30</span>
                   </div>
                 </CardContent>
                 <CardFooter>
                   <Button
-                    className="w-full bg-green-500 hover:bg-green-600 text-white"
+                    className="w-full bg-green-500 text-white hover:bg-green-600"
                     disabled
                   >
                     Currently Unavailable
