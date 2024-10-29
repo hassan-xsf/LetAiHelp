@@ -25,10 +25,10 @@ const ChatMessage = ({ role, content }: ChatType) => {
         ) : (
           <User className="mt-1 size-6 self-start rounded-full bg-green-600 p-1 text-white dark:text-black" />
         )}
-        <div className="relative max-w-[40%] rounded-lg bg-gray-100 p-3 dark:bg-zinc-900">
+        <div className="relative max-w-[80%] rounded-lg bg-gray-100 p-3 dark:bg-zinc-900 md:max-w-[40%]">
           <div className="mb-1 flex items-center">
             <span
-              className={`text-xs font-semibold ${
+              className={`text-xs font-semibold md:text-xs ${
                 role === "assistant" ? "text-green-400" : "text-zinc-500"
               }`}
             >

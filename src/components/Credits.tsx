@@ -36,9 +36,11 @@ function CreditChart({ totalCredit = 1000 }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="text-2xl font-bold">{remainingCredit}</span>
-        <span className="text-sm font-extrabold text-black dark:text-white">
-          CREDITS LEFT
+        <span className="text-md font-bold md:text-xl xl:text-2xl">
+          {remainingCredit}
+        </span>
+        <span className="text-xs font-extrabold text-black dark:text-white md:text-sm">
+          CREDITS
         </span>
       </div>
     </div>

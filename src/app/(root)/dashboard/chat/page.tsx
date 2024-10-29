@@ -11,7 +11,7 @@ const DynamicText = dynamic(() => import("@/components/pages/Chat"), {
 
 const page = () => {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-8">
+    <div className="flex flex-1 flex-col gap-4 p-4">
       <div className="flex flex-col">
         <ToolsHeader name="AI CHAT" credits={Credits.Chat.toString()} />
         <Suspense fallback={<LoadingSpinner />}>

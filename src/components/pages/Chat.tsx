@@ -173,7 +173,7 @@ export default function TextToImage() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-10 flex h-[68vh] flex-col overflow-hidden rounded-lg border border-green-400 bg-white px-8 pt-8 text-white dark:bg-black"
+      className="mt-5 flex h-[68vh] flex-col overflow-hidden rounded-lg border border-green-400 bg-white px-8 pt-8 text-white dark:bg-black"
     >
       <div className="border-b border-zinc-800">
         <div className="mb-2 flex items-center">
@@ -183,14 +183,16 @@ export default function TextToImage() {
           </h1>
         </div>
         <div className="flex items-center gap-4">
-          <p className="text-black dark:text-white">AI MODEL: </p>
+          <p className="text-nowrap text-xs text-black dark:text-white sm:text-base">
+            AI MODEL:{" "}
+          </p>
           <Select
             value={getValues("model")}
             onValueChange={(value: (typeof textModels)[number]) =>
               setValue("model", value)
             }
           >
-            <SelectTrigger className="my-3 w-[300px] border border-green-400 bg-white text-black dark:bg-black dark:text-white">
+            <SelectTrigger className="my-3 w-[200px] border border-green-400 bg-white text-black dark:bg-black dark:text-white md:w-[300px]">
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
             <SelectContent>

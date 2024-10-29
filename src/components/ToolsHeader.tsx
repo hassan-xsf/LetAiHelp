@@ -7,12 +7,12 @@ const ToolsHeader = ({ name, credits }: { name: string; credits: string }) => {
     <div className="flex items-center justify-between gap-2">
       <div className="items-between flex flex-col gap-2">
         <div className="flex items-center gap-2">
-          <Circle className="mb-2 mt-1 size-7 fill-green-400 text-green-400" />
-          <span className="text-3xl font-bold text-green-500 dark:text-green-400">
+          <Circle className="mb-2 mt-1 size-5 fill-green-400 text-green-400 sm:size-7" />
+          <span className="text-xl font-bold text-green-500 dark:text-green-400 sm:text-3xl">
             {name}
           </span>
         </div>
-        <span className="ml-8 text-xl font-bold text-black dark:text-white">
+        <span className="text-md ml-8 font-bold text-black dark:text-white sm:text-xl">
           NOTE: {credits} CREDITS PER USE
         </span>
       </div>

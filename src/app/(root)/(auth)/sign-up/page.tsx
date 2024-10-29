@@ -51,7 +51,7 @@ const page = () => {
     }
   }
   return (
-    <div className="mx-auto max-w-screen-sm pt-40">
+    <div className="mx-auto max-w-screen-sm pt-20 md:pt-40">
       <Logo type={2} />
       <div className="mb-10 text-center text-sm font-bold">Sign Up</div>
       <Form {...form}>

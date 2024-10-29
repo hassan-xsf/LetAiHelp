@@ -117,7 +117,9 @@ export default function TextToImage() {
           </h1>
         </div>
         <div className="flex items-center gap-4">
-          <p className="text-black dark:text-white">Tokens: {tokens}</p>
+          <p className="text-nowrap text-xs text-black dark:text-white sm:text-base">
+            Tokens: {tokens}
+          </p>
           <Slider
             aria-label="Tokens"
             className="w-[230px]"
@@ -128,7 +130,7 @@ export default function TextToImage() {
             onValueChange={(value) => setValue("max_tokens", value[0])}
           />
         </div>
-        <p className="py-1 text-red-500">
+        <p className="py-1 text-sm text-red-500 md:text-base">
           More tokens increase the reply length but takes more time for the AI
           Model to process..
         </p>

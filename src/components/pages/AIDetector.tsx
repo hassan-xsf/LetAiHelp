@@ -52,18 +52,18 @@ export default function Component() {
     aiDetection.mutate({ input_text: text });
   };
   return (
-    <div className="mt-5 min-h-[62vh] bg-white p-8 text-white dark:bg-black">
-      <Card className="mx-auto max-w-7xl border bg-transparent p-10">
-        <CardContent className="space-y-6">
+    <div className="mt-5 min-h-[62vh] rounded-md bg-white p-2 text-white dark:bg-black xl:p-8">
+      <Card className="mx-auto border-none bg-transparent p-2 lg:max-w-7xl xl:p-10">
+        <CardContent className="space-y-6 p-2 xl:p-6">
           <div className="space-y-4">
             <div className="relative">
               <Textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Enter text to analyze (100-15000 words)"
-                className="h-64 w-full resize-none rounded-lg border border-green-500 bg-white p-4 dark:bg-zinc-900"
+                className="h-64 w-full resize-none rounded-lg border border-green-500 bg-white p-4 text-xs dark:bg-zinc-900 md:text-base"
               />
-              <div className="absolute bottom-2 right-2 text-sm text-green-500">
+              <div className="absolute bottom-2 right-2 text-[10px] text-green-500 md:text-sm">
                 {text.length}/15000 characters
               </div>
             </div>
@@ -155,7 +155,7 @@ export default function Component() {
                 <h3 className="mb-2 text-lg font-semibold">
                   Detected AI Content:
                 </h3>
-                <div className="min-h-32 w-full resize-none rounded-lg border border-green-500 bg-white p-4 dark:bg-zinc-900">
+                <div className="min-h-32 w-full resize-none rounded-lg border border-green-500 bg-white p-4 text-start text-xs dark:bg-zinc-900 md:text-base">
                   {result.data.originalParagraph.split(" ").map((word, i) =>
                     result.data.h
                       .map((h) => h.split(" "))

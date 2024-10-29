@@ -65,16 +65,18 @@ const page = () => {
   return (
     <>
       {showConfetti && <Confetti width={width - 150} height={height - 150} />}
-      <div className="flex flex-col rounded-md bg-gray-50 py-32 dark:bg-zinc-900">
+      <div className="flex flex-col rounded-md bg-gray-50 py-6 dark:bg-zinc-900">
         <main className="flex-1">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-12 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <div className="rounded-full bg-green-500 p-3 text-white dark:text-white">
                   <ShoppingCart className="h-6 w-6" />
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold">Purchase Credits</h1>
+                  <h1 className="text-xl font-bold md:text-3xl">
+                    Purchase Credits
+                  </h1>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Select the number of credits you want to purchase
                   </p>
@@ -83,9 +85,9 @@ const page = () => {
             </div>
 
             {/* Redeem Code Section */}
-            <Card className="mb-12 border border-green-400 bg-white dark:bg-zinc-900">
+            <Card className="mb-8 border border-green-400 bg-white dark:bg-zinc-900">
               <CardHeader>
-                <CardTitle className="flex items-center text-2xl font-bold text-green-500">
+                <CardTitle className="flex items-center text-xl font-bold text-green-500 sm:text-2xl">
                   <Gift className="mr-2" />
                   Redeem Credits
                 </CardTitle>
@@ -94,7 +96,7 @@ const page = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex space-x-4">
+                <div className="flex flex-col gap-4 sm:flex-row">
                   <Input
                     type="text"
                     placeholder="Enter your code (eg: XXXX-9999)"
@@ -114,20 +116,22 @@ const page = () => {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
               {/* Basic Plan */}
               <Card className="transform border-green-500 bg-white transition-all duration-300 hover:scale-105 hover:border-green-400 dark:bg-zinc-900">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-2xl font-bold text-green-500">
-                    <Star /> Basic
+                  <CardTitle className="flex items-center gap-2 text-xl font-bold text-green-500 xl:text-2xl">
+                    <Star className="size-6 xl:size-8" /> Basic
                   </CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
                     Perfect for getting started
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="mb-4 text-4xl font-bold">1000 Credits</p>
-                  <p className="mb-6 text-xl">+100 extra credits</p>
+                  <p className="mb-4 text-2xl font-bold xl:text-4xl">
+                    1000 Credits
+                  </p>
+                  <p className="text-md mb-6 xl:text-xl">+100 extra credits</p>
                   <div className="mb-4 flex items-center justify-center text-green-500">
                     <span className="text-xl font-light">$5</span>
                   </div>
@@ -145,29 +149,31 @@ const page = () => {
               {/* Pro Plan (Larger) */}
               <Card className="flex scale-110 transform flex-col border-green-500 bg-white transition-all duration-300 hover:border-green-400 dark:bg-zinc-900 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-3xl font-bold text-green-500">
-                    <BadgeDollarSignIcon className="size-8" /> Pro
+                  <CardTitle className="flex items-center gap-2 text-2xl font-bold text-green-500 xl:text-3xl">
+                    <BadgeDollarSignIcon className="size-6 xl:size-8" /> Pro
                   </CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
                     Most popular choice
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-grow flex-col justify-center text-center">
-                  <p className="mb-6 text-6xl font-bold text-green-500">
+                  <p className="mb-6 text-4xl font-bold text-green-500 xl:text-6xl">
                     2000 Credits
                   </p>
-                  <p className="mb-8 text-2xl">+600 extra credits</p>
+                  <p className="mb-8 text-xl xl:text-2xl">+600 extra credits</p>
                   <div className="mb-6 flex items-center justify-center text-green-500">
                     <span className="text-2xl font-light">$10</span>
                   </div>
                   <div className="mx-auto inline-block rounded-full bg-green-500 px-4 py-2 text-white">
                     <Zap className="mr-2 inline" />
-                    <span className="font-bold">Most Value</span>
+                    <span className="text-sm font-bold xl:text-base">
+                      Most Value
+                    </span>
                   </div>
                 </CardContent>
                 <CardFooter>
                   <Button
-                    className="w-full bg-green-500 py-6 text-lg text-white hover:bg-green-600"
+                    className="text-md w-full bg-green-500 py-3 text-white hover:bg-green-600 xl:py-6 xl:text-lg"
                     disabled
                   >
                     Currently Unavailable
@@ -178,16 +184,18 @@ const page = () => {
               {/* Premium Plan */}
               <Card className="transform border-green-500 bg-white transition-all duration-300 hover:scale-105 hover:border-green-400 dark:bg-zinc-900">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-2xl font-bold text-green-500">
-                    <BadgeIndianRupee /> Premium
+                  <CardTitle className="flex items-center gap-2 text-xl font-bold text-green-500 xl:text-2xl">
+                    <BadgeIndianRupee className="size-6 xl:size-8" /> Premium
                   </CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
                     For power users
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="mb-4 text-4xl font-bold">5000 Credits</p>
-                  <p className="mb-6 text-xl">+1000 extra credits</p>
+                  <p className="mb-4 text-3xl font-bold xl:text-4xl">
+                    5000 Credits
+                  </p>
+                  <p className="text-md mb-6 xl:text-xl">+1000 extra credits</p>
                   <div className="mb-4 flex items-center justify-center text-green-500">
                     <span className="text-xl font-light">$30</span>
                   </div>

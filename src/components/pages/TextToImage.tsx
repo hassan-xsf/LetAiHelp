@@ -86,14 +86,11 @@ export default function TextToImage() {
   };
 
   return (
-    <div className="mt-10 h-[65vh] rounded-md bg-white p-8 text-white dark:bg-zinc-950/50">
+    <div className="mt-5 min-h-[65vh] rounded-md bg-white p-6 text-white dark:bg-zinc-950/50">
       <div className="flex items-center justify-center gap-3"></div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto mt-10 max-w-6xl"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-6xl">
         <div className="flex flex-col">
-          <h1 className="text-black dark:text-white">
+          <h1 className="text-sm text-black dark:text-white sm:text-base">
             <Blend className="mr-2 inline size-6 rounded-full bg-green-400 p-1" />
             SELECT MODEL
           </h1>
@@ -105,7 +102,7 @@ export default function TextToImage() {
           >
             <SelectTrigger
               aria-label="Select Model"
-              className="my-2 w-[360px] border-2 border-green-400 text-black dark:text-white"
+              className="my-2 w-[200px] border-2 border-green-400 text-black dark:text-white sm:w-[360px]"
             >
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
@@ -120,20 +117,20 @@ export default function TextToImage() {
             </SelectContent>
           </Select>
         </div>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
           <div className="flex flex-col rounded-lg border-2 border-zinc-800 bg-white p-6 dark:bg-zinc-800">
             <Textarea
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
               maxLength={textLimits.TextToImage}
-              className="mb-6 h-40 w-full border-green-400 bg-white text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white"
+              className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400 bg-white text-xs text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-base md:min-h-40"
             />
             {errors.text && (
               <p className="text-red-500">{errors.text.message}</p>
             )}
 
             <div className="mb-6">
-              <h2 className="mb-3 text-xl font-semibold text-black dark:text-white">
+              <h2 className="text-md mb-3 font-semibold text-black dark:text-white sm:text-xl">
                 Styles
               </h2>
               <div className="grid grid-cols-3 gap-4">
@@ -150,9 +147,9 @@ export default function TextToImage() {
                     <img
                       src={`/${image.toLowerCase()}.png`}
                       alt={image}
-                      className="h-28 w-full object-cover"
+                      className="min-h-14 w-full object-cover lg:min-h-24"
                     />
-                    <div className="p-2 text-center text-sm text-black dark:bg-black dark:text-white">
+                    <div className="p-2 text-center text-xs text-black dark:bg-black dark:text-white sm:text-sm">
                       {image}
                     </div>
                   </div>
@@ -178,7 +175,9 @@ export default function TextToImage() {
 
           <div className="flex flex-col rounded-lg border-2 border-zinc-800 bg-white p-6 dark:bg-zinc-800">
             <div className="items-c enter mb-4 flex justify-between">
-              <h2 className="text-xl font-semibold">Generated Image</h2>
+              <h2 className="text-xs font-semibold md:text-lg xl:text-xl">
+                Generated Image
+              </h2>
               <a
                 target="_blank"
                 href={generatedImage || "#"}
@@ -202,7 +201,7 @@ export default function TextToImage() {
             ) : (
               <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-zinc-700">
                 <div className="text-center">
-                  <ImageIcon className="mx-auto mb-4 h-16 w-16 text-zinc-600" />
+                  <ImageIcon className="mx-auto mb-4 min-h-48 w-16 text-zinc-600" />
                   <p className="text-zinc-400">
                     Your generated image will appear here
                   </p>

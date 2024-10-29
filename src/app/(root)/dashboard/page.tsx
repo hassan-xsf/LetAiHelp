@@ -7,10 +7,10 @@ const Home = () => {
     <>
       <div className="flex flex-row justify-between">
         <div className="flex flex-col">
-          <span className="text-4xl font-extrabold tracking-tight text-black dark:text-white">
+          <span className="text-2xl font-extrabold tracking-tight text-black dark:text-white sm:text-4xl">
             Hello
           </span>
-          <span className="text-500 text-3xl font-bold dark:text-green-400">
+          <span className="text-500 text-xl font-bold dark:text-green-400 md:text-3xl">
             WHICH AI TOOL WOULD YOU LIKE TO TRY TODAY?
           </span>
         </div>

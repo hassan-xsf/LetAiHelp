@@ -86,7 +86,7 @@ const Summarizer = () => {
         />
         <span>Maximum Words: {selectedLength}</span>
       </div>
-      <div className="my-10 grid grid-cols-2 gap-4">
+      <div className="my-10 grid gap-4 lg:grid-cols-2">
         <div>
           <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-between rounded-md bg-white pl-2 ring-1 ring-green-400 dark:bg-zinc-800">
             <p className="-mt-2 text-sm text-zinc-400">
@@ -121,7 +121,7 @@ const Summarizer = () => {
           />
         </div>
       </div>
-      <div className="mx-auto w-1/6">
+      <div className="mx-auto w-auto lg:w-1/6">
         <button
           aria-label="Summarize"
           className="flex w-full items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-3 text-lg font-semibold text-white shadow-[6px_6px_0_0_#166534] transition-all hover:translate-x-1 hover:translate-y-1 hover:bg-green-600 hover:shadow-[2px_2px_0_0_#166534]"
