@@ -35,7 +35,7 @@ const ChatMessage = ({ role, content }: ChatType) => {
               {role === "assistant" ? "LetAIHelp" : "You"}
             </span>
           </div>
-          <div className="text-black dark:text-white">
+          <div className="text-sm text-black dark:text-white">
             <MarkdownParser text={content} />
           </div>
         </div>
@@ -49,7 +49,7 @@ const MarkdownParser = ({ text }: { text: string }) => {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: parsedText }}
-      className="markdown-body leading-7"
+      className="markdown-body leading-7 tracking-tighter"
     />
   );
 };

@@ -25,6 +25,18 @@ import {
 } from "@/schemas/textSchema";
 import { useSearchParams } from "next/navigation";
 import ChatMessage from "../ChatMessage";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import { Label } from "../ui/label";
+import { Slider } from "../ui/slider";
+import { Button } from "../ui/button";
+import { ScrollArea } from "../ui/scroll-area";
+import { Input } from "../ui/input";
 
 export default function TextToImage() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -171,78 +183,70 @@ export default function TextToImage() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="mt-5 flex h-[68vh] flex-col overflow-hidden rounded-lg border border-green-400 bg-white px-8 pt-8 text-white dark:bg-black"
-    >
-      <div className="border-b border-zinc-800">
-        <div className="mb-2 flex items-center">
-          <Bot className="mr-2 h-6 w-6 text-green-400" />
-          <h1 className="text-xl font-bold text-black dark:text-white">
+    <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
+      <Card className="mx-auto flex h-[620px] w-full max-w-full flex-col">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 text-white">
+          <CardTitle className="flex items-center justify-center text-xl font-bold md:text-2xl">
+            <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
             {chatTypeNames[chatValue]}
-          </h1>
-        </div>
-        <div className="flex items-center gap-4">
-          <p className="text-nowrap text-xs text-black dark:text-white sm:text-base">
-            AI MODEL:{" "}
-          </p>
-          <Select
-            value={getValues("model")}
-            onValueChange={(value: (typeof textModels)[number]) =>
-              setValue("model", value)
-            }
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow overflow-hidden rounded-md p-4">
+          <div className="flex w-full flex-col">
+            <div className="flex items-center space-x-2">
+              <p className="text-nowrap text-xs text-black dark:text-white">
+                AI MODEL:
+              </p>
+              <Select
+                value={getValues("model")}
+                onValueChange={(value: (typeof textModels)[number]) =>
+                  setValue("model", value)
+                }
+              >
+                <SelectTrigger className="my-3 w-[120px] border border-green-400 bg-white text-xs text-black dark:bg-black dark:text-white md:w-[300px]">
+                  <SelectValue placeholder="Select model" />
+                </SelectTrigger>
+                <SelectContent>
+                  {textModels.map((model) => (
+                    <SelectItem key={model} value={model} className="text-xs">
+                      {model}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <ScrollArea
+            className="h-[calc(100%-3rem)] w-full rounded-md border p-4"
+            ref={messagesEndRef}
           >
-            <SelectTrigger className="my-3 w-[200px] border border-green-400 bg-white text-black dark:bg-black dark:text-white md:w-[300px]">
-              <SelectValue placeholder="Select model" />
-            </SelectTrigger>
-            <SelectContent>
-              {textModels.map((model) => (
-                <SelectItem key={model} value={model}>
-                  {model}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <div className="flex-grow space-y-4 overflow-y-auto p-4">
-        {message.map((msg, indx) => (
-          <>
-            <ChatMessage
-              role={msg.role}
-              content={msg.content}
-              key={crypto.randomUUID()}
-            />
-          </>
-        ))}
-        <div ref={messagesEndRef}></div>
-      </div>
-      <div className="border-t border-zinc-800 pb-4">
-        <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-2 dark:bg-zinc-900">
-          <Textarea
+            {message.map((msg, indx) => (
+              <>
+                <ChatMessage
+                  role={msg.role}
+                  content={msg.content}
+                  key={crypto.randomUUID()}
+                />
+              </>
+            ))}
+          </ScrollArea>
+        </CardContent>
+        <CardFooter className="">
+          <Input
             {...register("prompt")}
             onKeyDown={(e) =>
               e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()
             }
-            disabled={isLoading}
-            rows={3}
-            placeholder="Ask any questions..."
-            className="flex-grow border-none bg-transparent text-sm text-black placeholder-zinc-500 outline-none dark:text-white"
+            type="text"
+            placeholder="Type your message..."
+            className="flex-grow"
           />
-          <button
-            aria-label="Send"
-            type="submit"
-            className="rounded-full bg-green-600 p-2 transition-colors duration-200 hover:bg-green-500"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <Loader2 className="size-5 animate-spin" />
-            ) : (
-              <Send className="size-5" />
-            )}
-          </button>
-        </div>
-      </div>
+          <Button type="submit" size="icon" disabled={isLoading}>
+            <Send className="h-4 w-4" />
+            <span className="sr-only">Send message</span>
+          </Button>
+        </CardFooter>
+      </Card>
     </form>
   );
 }

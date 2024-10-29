@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const ToolsList = () => {
   return (
-    <div className="mx-auto grid w-4/5 grid-cols-1 gap-4 pt-10 text-white sm:w-auto md:grid-cols-2 lg:grid-cols-3">
+    <div className="mx-auto grid w-full grid-cols-1 gap-4 pt-10 text-white sm:w-auto md:grid-cols-2 lg:grid-cols-3">
       <div className="col-span-1 row-span-2 rounded-lg bg-white p-6 dark:bg-[#1E1E1E]">
         <Bot className="mb-4 h-8 w-8 text-green-400" />
         <DashboardLink href="chat" text="Chat Tools" />
