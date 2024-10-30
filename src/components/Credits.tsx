@@ -24,7 +24,7 @@ function CreditChart({ totalCredit = 1000 }) {
           cy="50"
         />
         <circle
-          className="stroke-current text-green-400"
+          className="stroke-current text-green-500"
           strokeWidth="10"
           strokeLinecap="round"
           stroke="currentColor"

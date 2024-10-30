@@ -144,7 +144,9 @@ export default function Component() {
               <div className="flex items-center justify-center space-x-4">
                 <div className="flex items-center">
                   <Check className="mr-2 h-5 w-5 text-green-500" />
-                  <span>Human: {100 - result.data.fakePercentage}%</span>
+                  <span>
+                    Human: {(100 - result.data.fakePercentage).toFixed(2)}%
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <AlertCircle className="mr-2 h-5 w-5 text-yellow-500" />

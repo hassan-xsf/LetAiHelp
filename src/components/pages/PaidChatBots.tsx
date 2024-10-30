@@ -117,7 +117,7 @@ export default function TextToImage() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
-      <Card className="mx-auto flex h-[620px] w-full max-w-full flex-col">
+      <Card className="mx-auto flex h-[68vh] w-full max-w-full flex-col">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 text-white">
           <CardTitle className="flex items-center justify-center text-xl font-bold md:text-2xl">
             <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
@@ -166,20 +166,22 @@ export default function TextToImage() {
             ))}
           </ScrollArea>
         </CardContent>
-        <CardFooter className="">
-          <Input
-            {...register("prompt")}
-            onKeyDown={(e) =>
-              e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()
-            }
-            type="text"
-            placeholder="Type your message..."
-            className="flex-grow"
-          />
-          <Button type="submit" size="icon" disabled={paidBot.isPending}>
-            <Send className="h-4 w-4" />
-            <span className="sr-only">Send message</span>
-          </Button>
+        <CardFooter className="p-0">
+          <div className="flex w-full items-center space-x-2 p-4 pt-0">
+            <Input
+              type="text"
+              placeholder="Type your message..."
+              {...register("prompt")}
+              onKeyDown={(e) =>
+                e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()
+              }
+              className="flex-grow text-xs"
+            />
+            <Button type="submit" size="icon" disabled={paidBot.isPending}>
+              <Send className="h-4 w-4" />
+              <span className="sr-only">Send message</span>
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </form>
