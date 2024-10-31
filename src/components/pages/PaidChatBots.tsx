@@ -130,7 +130,7 @@ export default function TextToImage() {
               <div className="flex items-center space-x-2">
                 <Label
                   htmlFor="tokens"
-                  className="flex-shrink-0 text-sm md:text-base"
+                  className="flex-shrink-0 text-xs sm:text-sm md:text-base"
                 >
                   Tokens: {tokens}
                 </Label>

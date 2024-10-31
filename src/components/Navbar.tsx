@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Logo from "./Logo";
 import ThemeBtn from "./buttons/ThemeButton";
+import { navbarItems } from "@/constants/navbarLimits";
 
 const Navbar = async () => {
   const data = await getServerSession(authOptions);
@@ -29,17 +30,20 @@ const Navbar = async () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Chat Tools</DropdownMenuLabel>
-            <DropdownMenuItem>AI Chat Assistant</DropdownMenuItem>
-            <DropdownMenuItem>Language Translation</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Image Tools</DropdownMenuLabel>
-            <DropdownMenuItem>Image to Text</DropdownMenuItem>
-            <DropdownMenuItem>AI Image Enhancement</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Other Tools</DropdownMenuLabel>
-            <DropdownMenuItem>AI Presentation Maker</DropdownMenuItem>
-            <DropdownMenuItem>AI Code Assistant</DropdownMenuItem>
+            {navbarItems.navMain.map((item) => (
+              <>
+                {item.items && (
+                  <DropdownMenuLabel>{item.title}</DropdownMenuLabel>
+                )}
+                {item.items &&
+                  item.items.map((subItem) => (
+                    <DropdownMenuItem key={subItem.title}>
+                      <Link href={subItem.url}>{subItem.title}</Link>
+                    </DropdownMenuItem>
+                  ))}
+                <DropdownMenuSeparator />
+              </>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
         <Link

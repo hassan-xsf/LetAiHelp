@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         topK: 50,
         temperature: 1,
         topP: 1,
-        wsId: "fc712310-b4e6-4a9a-8987-d78dc3586506",
+        wsId: "ceaea71c-e389-4072-81c7-ef3559f3f8a4",
         tone,
         style: "text",
       },

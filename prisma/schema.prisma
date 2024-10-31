@@ -22,7 +22,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   emailVerified DateTime?
-  credits       Int            @default(100)
+  credits       Int            @default(1000)
   RedeemedCode  RedeemedCode[]
 }
 

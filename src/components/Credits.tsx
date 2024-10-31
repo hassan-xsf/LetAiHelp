@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
-function CreditChart({ totalCredit = 1000 }) {
+function CreditChart({ totalCredit = 2500 }) {
   const session = useSession();
   if (!session) {
     return null;

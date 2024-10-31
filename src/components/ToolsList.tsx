@@ -68,14 +68,6 @@ const ToolsList = () => {
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Paraphraser
           </Link>
-          <p className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-            <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
-            AI Study Helper
-          </p>
-          <p className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-            <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
-            AI MCQ Quizzer
-          </p>
         </div>
       </div>
 
@@ -150,7 +142,10 @@ const ToolsList = () => {
         </h2>
         <p className="text-xs text-gray-500 dark:text-gray-400">
           No worries, LetAIHelp is still in early progress, Suggest me your
-          desired AI tool at <i>hassandev45@gmail.com</i>
+          desired AI tool at{" "}
+          <i>
+            <b>hassandev45@gmail.com</b>
+          </i>
         </p>
       </div>
     </div>

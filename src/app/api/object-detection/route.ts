@@ -35,16 +35,6 @@ export async function POST(request: Request) {
     const uint8Array = new Uint8Array(arrayBuffer);
 
     const eightBit = Array.from(uint8Array);
-
-    if (eightBit.length > 500_000) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "The image size was too big to be processed..",
-        },
-        { status: 400 },
-      );
-    }
     const response = await axios.post<ObjectDetectionResponse>(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/facebook/detr-resnet-50`,
       { image: eightBit },
