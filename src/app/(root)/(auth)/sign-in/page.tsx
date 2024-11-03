@@ -34,7 +34,7 @@ const SignInPage = () => {
       email: "",
     },
   });
-  if (session.data && session.data.user) return router.push("/tools");
+  if (session.data && session.data.user) return router.push("/xxxx");
   async function onSubmit(values: z.infer<typeof signInSchema>) {
     try {
       const data = await signIn("credentials", {
