@@ -12,11 +12,11 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL("/tools", req.nextUrl));
     }
   }
-  if (!token) {
+  if (!token && req.nextUrl.pathname.startsWith("/tools")) {
     return NextResponse.redirect(new URL("/sign-in", req.nextUrl));
   }
 }
 
 export const config = {
-  matcher: ["/tools", "/sign-in", "/sign-up"],
+  matcher: ["/tools/:path*", "/sign-in", "/sign-up"],
 };
