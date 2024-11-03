@@ -5,7 +5,7 @@ import React from "react";
 const Logo = ({ type = 1 }: { type?: number }) => {
   return (
     <Link
-      className={`flex items-center justify-center ${
+      className={`flex items-center justify-center tracking-tight ${
         type === 1 ? "flex-row" : "flex-col"
       }`}
       href="/"

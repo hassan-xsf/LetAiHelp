@@ -22,6 +22,20 @@ const ToolsList = () => {
         </p>
         <div className="space-y-2">
           <Link
+            href="/tools/paid?type=gpt-4o"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
+          >
+            <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
+            Chat GPT 4.0
+          </Link>
+          <Link
+            href="/tools/paid?type=claude-sonnet-3.5"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
+          >
+            <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
+            Claude Sonnet 3.5
+          </Link>
+          <Link
             href="/tools/chat?type=default"
             className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
@@ -48,7 +62,7 @@ const ToolsList = () => {
         <GraduationCap className="mb-2 size-6 text-green-400" />
         <DashboardLink href="ai-detector" text="Tools for Learners" />
         <p className="pt-4 text-xs text-gray-500 dark:text-gray-400">
-          Are you a learner or a student? So am I, Use these AI tools and focus
+          Are you a learner or a student? So am I,Use these AI tools and focus
           on what's needed.
         </p>
         <div className="space-y-2 pt-4">

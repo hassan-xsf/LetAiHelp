@@ -4,7 +4,7 @@ import CreditChart from "./Credits";
 
 const ToolsHeader = ({ name, credits }: { name: string; credits: string }) => {
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center justify-between tracking-tighter">
       <div className="items-between flex flex-col gap-2">
         <div className="flex items-center gap-2">
           <Circle className="mb-2 mt-1 size-5 fill-green-400 text-green-400 sm:size-7" />

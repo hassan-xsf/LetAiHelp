@@ -14,7 +14,7 @@ const DynamicPaidChatBots = dynamic(
 
 const page = () => {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4">
+    <div className="flex flex-1 flex-col gap-4 p-2">
       <div className="flex flex-col">
         <ToolsHeader
           name="PREMIUM CHAT BOTS"

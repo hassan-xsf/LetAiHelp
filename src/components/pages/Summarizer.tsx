@@ -17,6 +17,8 @@ import { Slider } from "../ui/slider";
 import { summarizeFormType, summarizeSchema } from "@/schemas/summarizeSchema";
 import { summarizerService } from "@/services/summarizer";
 import { textLimits } from "@/constants/textLimits";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 
 const Summarizer = () => {
   const [summarizedText, setSummarizedText] = useState<string>("");
@@ -84,51 +86,42 @@ const Summarizer = () => {
           step={10}
           onValueChange={(value) => setValue("max_length", value[0])}
         />
-        <span>Maximum Words: {selectedLength}</span>
+        <span className="text-sm text-green-400">
+          Maximum Words: {selectedLength}
+        </span>
       </div>
-      <div className="my-10 grid gap-4 lg:grid-cols-2">
-        <div>
-          <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-between rounded-md bg-white pl-2 ring-1 ring-green-400 dark:bg-zinc-800">
-            <p className="-mt-2 text-sm text-zinc-400">
-              words: {currentText.length}/{textLimits.Summarizer}
-            </p>
-          </div>
+      <div className="trac grid gap-4 pt-4 tracking-tighter md:grid-cols-2">
+        <Card className="group relative border-green-600/30 bg-white dark:bg-black">
           <Textarea
-            placeholder="Enter text to summarize"
-            maxLength={textLimits.Summarizer}
-            className="text-md h-96 w-full border-green-400 bg-white p-2 text-black dark:bg-zinc-900 dark:text-white"
             {...register("input_text")}
+            placeholder="Enter text to summarize"
+            className="min-h-[400px] resize-none border-0 bg-transparent p-4 text-black placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white"
+            maxLength={textLimits.Summarizer}
           />
           {errors.input_text && (
             <p className="text-red-500">{errors.input_text.message}</p>
           )}
-        </div>
-        <div>
-          <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-end rounded-md bg-white pr-1 ring-1 ring-green-400 dark:bg-zinc-800">
-            <div
-              onClick={copyOutput}
-              className="-mt-2 flex cursor-pointer items-center justify-center gap-1 rounded-md p-1 text-sm text-zinc-400"
-            >
-              <Copy size={15} />
-              copy
-            </div>
+          <div className="absolute bottom-2 left-4 text-xs text-muted-foreground">
+            words: {currentText.length}/{textLimits.Summarizer}
           </div>
+        </Card>
+        <Card className="group relative border-green-600/30 bg-white p-0 dark:bg-black">
           <Textarea
-            placeholder="Summarized text will appear here..."
             value={summarizedText}
             readOnly
-            className="text-md h-96 w-full border-green-400 bg-white p-2 text-black dark:bg-zinc-900 dark:text-white"
+            placeholder="Summarized text will appear here..."
+            className="min-h-[400px] resize-none border-0 bg-transparent p-4 text-black placeholder:text-muted-foreground/50 dark:text-white"
           />
-        </div>
-      </div>
-      <div className="mx-auto w-auto lg:w-1/6">
-        <button
-          aria-label="Summarize"
-          className="flex w-full items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-3 text-lg font-semibold text-white shadow-[6px_6px_0_0_#166534] transition-all hover:translate-x-1 hover:translate-y-1 hover:bg-green-600 hover:shadow-[2px_2px_0_0_#166534]"
-        >
-          <Sparkles className="ml-2 size-6 fill-green-400 text-white" />
-          {translation.isPending ? "SUMMARIZING..." : "SUMMARIZE"}
-        </button>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="absolute right-2 top-2 text-emerald-500 opacity-0 transition-opacity hover:bg-emerald-500/10 hover:text-emerald-400 group-hover:opacity-100"
+            onClick={copyOutput}
+          >
+            <Copy className="h-4 w-4" />
+            <span className="sr-only">Copy summary</span>
+          </Button>
+        </Card>
       </div>
     </form>
   );

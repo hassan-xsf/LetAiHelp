@@ -35,23 +35,23 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-black dark:text-white">
+      <SidebarGroupLabel className="tracking-tighter text-black dark:text-white">
         Tools
       </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
-            <SidebarMenuItem>
+            <SidebarMenuItem className="tracking-tighter">
               <SidebarMenuButton asChild tooltip={item.title}>
                 {item.title === "Home" ? (
                   <a href={item.url}>
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span className="text-xs">{item.title}</span>
                   </a>
                 ) : (
                   <div className="cursor-pointer">
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span className="text-xs">{item.title}</span>
                   </div>
                 )}
               </SidebarMenuButton>
@@ -69,7 +69,9 @@ export function NavMain({
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton asChild>
                             <a href={subItem.url}>
-                              <span>{subItem.title}</span>
+                              <span className="text-[11px]">
+                                {subItem.title}
+                              </span>
                             </a>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
