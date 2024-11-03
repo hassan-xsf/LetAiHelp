@@ -86,7 +86,7 @@ export default function TextToImage() {
   };
 
   return (
-    <div className="mt-5 min-h-[65vh] rounded-md bg-white p-6 text-white dark:bg-zinc-950/50">
+    <div className="mt-5 min-h-[65vh] rounded-md bg-white p-6 tracking-tighter text-white dark:bg-zinc-950/50">
       <div className="flex items-center justify-center gap-3"></div>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-6xl">
         <div className="flex flex-col">
@@ -143,7 +143,7 @@ export default function TextToImage() {
                   <div
                     key={image.toLowerCase()}
                     onClick={() => setValue("type", image)}
-                    className={`cursor-pointer overflow-hidden rounded-lg border ${
+                    className={`relative cursor-pointer overflow-hidden rounded-lg border ${
                       styleType.toLowerCase() === image.toLowerCase()
                         ? "border-2 border-green-400"
                         : "border-zinc-800 dark:border-white"
@@ -154,8 +154,10 @@ export default function TextToImage() {
                       alt={image}
                       className="min-h-14 w-full object-cover lg:min-h-24"
                     />
-                    <div className="p-2 text-center text-xs text-black dark:bg-black dark:text-white sm:text-sm">
-                      {image}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                      <div className="text-center text-sm font-medium text-white">
+                        {image}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -204,7 +206,7 @@ export default function TextToImage() {
                 className="h-auto w-full flex-grow rounded-lg object-cover"
               />
             ) : (
-              <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-zinc-700">
+              <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-green-400/30">
                 <div className="text-center">
                   <ImageIcon className="mx-auto mb-4 min-h-48 w-16 text-zinc-600" />
                   <p className="text-zinc-400">

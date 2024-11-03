@@ -70,7 +70,7 @@ export const navbarItems = {
       ],
     },
     {
-      title: "Leaner Tools",
+      title: "Learner Tools",
       url: "#",
       icon: GraduationCap,
       items: [

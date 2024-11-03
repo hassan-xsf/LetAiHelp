@@ -52,7 +52,7 @@ export default function Component() {
     aiDetection.mutate({ input_text: text });
   };
   return (
-    <div className="mt-5 min-h-[62vh] rounded-md bg-white text-white dark:bg-black">
+    <div className="mt-5 min-h-[62vh] rounded-md bg-white tracking-tighter text-white dark:bg-black">
       <div className="flex items-center justify-center rounded-md bg-green-600 p-3 text-xl font-bold md:text-2xl">
         <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
         AI DETECTOR

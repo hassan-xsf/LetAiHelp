@@ -8,7 +8,7 @@ export default function page() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto flex min-h-screen max-w-screen-xl flex-col bg-gray-50 dark:bg-zinc-950">
+      <div className="mx-auto flex min-h-screen max-w-screen-xl flex-col bg-gray-50 tracking-tighter dark:bg-zinc-950">
         <main className="flex-1">
           <GridSection />
           <section className="py-12 md:py-24 lg:py-32">
@@ -17,7 +17,7 @@ export default function page() {
             </h2>
             <ToolsList />
           </section>
-          <section className="w-full bg-white py-12 dark:bg-zinc-950 md:py-24 lg:py-32">
+          <section className="w-full bg-white py-12 tracking-tighter dark:bg-zinc-950 md:py-24 lg:py-32">
             <div className="container px-4 md:px-6">
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">

@@ -65,7 +65,7 @@ const page = () => {
   return (
     <>
       {showConfetti && <Confetti width={width - 150} height={height - 150} />}
-      <div className="flex flex-col rounded-md bg-gray-50 py-6 dark:bg-zinc-900">
+      <div className="flex flex-col rounded-md bg-gray-50 py-6 tracking-tighter dark:bg-zinc-900">
         <main className="flex-1">
           <div className="mx-auto max-w-6xl">
             <div className="mb-4 flex items-center justify-between">
@@ -85,7 +85,7 @@ const page = () => {
             </div>
 
             {/* Redeem Code Section */}
-            <Card className="mb-8 border border-green-400 bg-white dark:bg-zinc-900">
+            <Card className="mb-8 border border-green-400 bg-white tracking-tighter dark:bg-zinc-900">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl font-bold text-green-500 sm:text-2xl">
                   <Gift className="mr-2" />
