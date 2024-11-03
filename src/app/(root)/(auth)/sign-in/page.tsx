@@ -27,8 +27,6 @@ import Logo from "@/components/Logo";
 const SignInPage = () => {
   const session = useSession();
   const router = useRouter();
-  if (session.data) return router.push("/tools");
-
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -36,6 +34,7 @@ const SignInPage = () => {
       email: "",
     },
   });
+  if (session.data) return router.push("/tools");
   async function onSubmit(values: z.infer<typeof signInSchema>) {
     try {
       const data = await signIn("credentials", {

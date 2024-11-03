@@ -27,7 +27,6 @@ import { useSession } from "next-auth/react";
 const SignInPage = () => {
   const session = useSession();
   const router = useRouter();
-  if (session.data) return router.push("/tools");
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -37,6 +36,7 @@ const SignInPage = () => {
       email: "",
     },
   });
+  if (session.data) return router.push("/tools");
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     try {
       const data = await axios.post("/api/sign-up", values);
