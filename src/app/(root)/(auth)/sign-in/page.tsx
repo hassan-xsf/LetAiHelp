@@ -19,13 +19,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
 
 const SignInPage = () => {
+  const session = useSession();
   const router = useRouter();
+  if (session.data) return router.push("/tools");
+
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {

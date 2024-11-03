@@ -22,9 +22,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
+import { useSession } from "next-auth/react";
 
 const SignInPage = () => {
+  const session = useSession();
   const router = useRouter();
+  if (session.data) return router.push("/tools");
+
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
