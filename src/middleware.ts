@@ -4,6 +4,7 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req });
+  console.log(token);
   if (!token && req.nextUrl.pathname.startsWith("/tools")) {
     return NextResponse.redirect(new URL("/sign-in", req.nextUrl));
   }
