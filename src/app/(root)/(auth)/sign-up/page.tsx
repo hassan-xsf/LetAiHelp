@@ -36,7 +36,7 @@ const SignInPage = () => {
       email: "",
     },
   });
-  if (session.data) return router.push("/tools");
+  if (session.data && session.data.user) return router.push("/tools");
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     try {
       const data = await axios.post("/api/sign-up", values);
