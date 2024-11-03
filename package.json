@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -32,7 +33,6 @@
     "lucide-react": "^0.437.0",
     "markdown-it": "^14.1.0",
     "markdown-it-highlightjs": "^4.2.0",
-    "markdown-it-prism": "^2.3.0",
     "markdown-it-shikiji": "^0.10.2",
     "next": "^14.2.15",
     "next-auth": "^4.24.7",
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@prisma/client": "^5.21.1",
-    "@shikijs/markdown-it": "^1.22.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
@@ -62,7 +61,6 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "prisma": "^5.21.1",
-    "shikiji": "^0.10.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
