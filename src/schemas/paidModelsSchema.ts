@@ -13,11 +13,6 @@ export const paidTextSchema = z.object({
   //   .max(1000, "Maximum prompt words limit is 1000"),
   messages: z.array(z.object({ role: z.string(), content: z.string() })),
   model: z.enum(paidTextModels),
-  max_tokens: z
-    .number()
-    .int()
-    .min(100, { message: "Invalid minimum tokens" })
-    .max(5128, { message: "Invalid max tokens" }),
 });
 
 export type paidTextFormType = z.infer<typeof paidTextSchema>;

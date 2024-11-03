@@ -8,7 +8,7 @@ export default function page() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col bg-gray-50 dark:bg-zinc-950">
+      <div className="mx-auto flex min-h-screen max-w-screen-xl flex-col bg-gray-50 dark:bg-zinc-950">
         <main className="flex-1">
           <GridSection />
           <section className="py-12 md:py-24 lg:py-32">

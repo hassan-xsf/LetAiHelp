@@ -3,9 +3,9 @@ import axios from "axios";
 import { modelPrompts, textSchema } from "@/schemas/textSchema";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { paidTextSchema } from "@/schemas/paidModelsSchema";
 import { db } from "@/lib/db";
 import { Credits } from "@/constants/credits";
+import { paidTextSchema } from "@/schemas/paidModelsSchema";
 
 export async function POST(request: Request) {
   try {
@@ -21,9 +21,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const { messages, model, max_tokens } = await request.json();
+    const { messages, model } = await request.json();
 
-    const validate = paidTextSchema.safeParse({ messages, model, max_tokens });
+    const validate = paidTextSchema.safeParse({ messages, model });
     if (!validate.success) {
       const errorMessages = validate.error.issues
         .map((issue) => `${issue.path.join(".")} field is ${issue.message}`)
@@ -64,33 +64,46 @@ export async function POST(request: Request) {
       `https://www.blackbox.ai/api/chat`,
       {
         messages,
-        id: "7DyvtMT",
-        previewToken: null,
-        userId: null,
-        codeModelMode: true,
+        id: "DpkMByK",
         agentMode: {},
         trendingAgentMode: {},
-        isMicMode: false,
-        userSystemPrompt: null,
-        maxTokens: max_tokens,
-        playgroundTopP: 0.9,
-        playgroundTemperature: 0.5,
-        isChromeExt: false,
-        githubToken: null,
-        clickedAnswer2: false,
-        clickedAnswer3: false,
-        clickedForceWebSearch: false,
-        visitFromDelta: false,
-        mobileClient: false,
+        maxTokens: 4096,
         userSelectedModel: model,
+        validated: process.env.BLACKBOX_API_KEY,
       },
       {
         headers: {
+          Origin: "https://www.blackbox.ai",
           "Content-Type": "application/json",
         },
+        responseType: "stream",
       },
     );
-    return new NextResponse(response.data, { status: 200 });
+    const stream = new ReadableStream({
+      async start(controller) {
+        response.data.on("data", (chunk: string) => {
+          const text = Buffer.from(chunk).toString("utf-8");
+          controller.enqueue(new TextEncoder().encode(text));
+        });
+
+        response.data.on("end", () => {
+          controller.close();
+        });
+
+        response.data.on("error", (err: Error) => {
+          console.error("Stream error:", err);
+          controller.error(err);
+        });
+      },
+    });
+    return new NextResponse(stream, {
+      headers: {
+        "Content-Type": "text/event-stream", // Try this or keep it as text/plain
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+        "Transfer-Encoding": "chunked",
+      },
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json(

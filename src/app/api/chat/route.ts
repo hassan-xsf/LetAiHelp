@@ -94,7 +94,6 @@ export async function POST(request: Request) {
         });
       },
     });
-
     return new NextResponse(stream, {
       headers: { "Content-Type": "text/event-stream" },
     });

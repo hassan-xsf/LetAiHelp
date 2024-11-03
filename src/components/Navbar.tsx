@@ -20,7 +20,7 @@ import { navbarItems } from "@/constants/navbarLimits";
 const Navbar = async () => {
   const data = await getServerSession(authOptions);
   return (
-    <header className="mx-auto flex h-14 max-w-screen-2xl items-center bg-gray-50 px-2 text-gray-600 dark:bg-zinc-950 dark:text-white sm:px-4 lg:px-6">
+    <header className="mx-auto flex h-14 max-w-screen-xl items-center bg-gray-50 px-2 text-gray-600 dark:bg-zinc-950 dark:text-white sm:px-4 lg:px-6">
       <Logo />
       <nav className="ml-auto flex items-center gap-3 sm:gap-6">
         <DropdownMenu>
@@ -53,7 +53,7 @@ const Navbar = async () => {
           Pricing
         </Link>
         {data?.user && (
-          <Link className="text-xs font-medium sm:text-sm" href="/dashboard">
+          <Link className="b text-xs font-medium sm:text-sm" href="/dashboard">
             Dashboard
           </Link>
         )}

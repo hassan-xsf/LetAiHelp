@@ -165,11 +165,17 @@
       0 0 35px #4ade80;
   }
 }
-pre,
 code {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 12px;
+  background-color: #1e1e1e;
+  padding: 1px;
+  border-radius: 4px;
+}
+pre {
   background-color: #1e1e1e; /* Dark background */
   color: #d4d4d4; /* Default text color */
-  font-size: 13px;
+  font-size: 12px;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   padding: 1em;
   border-radius: 8px;

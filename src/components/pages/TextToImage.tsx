@@ -125,8 +125,13 @@ export default function TextToImage() {
               maxLength={textLimits.TextToImage}
               className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400 bg-white text-xs text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-base md:min-h-40"
             />
-            {errors.text && (
-              <p className="text-red-500">{errors.text.message}</p>
+
+            {errors.text ? (
+              <p className="text-xs text-red-500">{errors.text.message}</p>
+            ) : (
+              <p className="text-xs text-green-500">
+                Minimum input prompt is 5
+              </p>
             )}
 
             <div className="mb-6">

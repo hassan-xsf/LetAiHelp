@@ -43,7 +43,7 @@ export default function TextToImage() {
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: "instant" });
     }
   };
 
@@ -220,11 +220,8 @@ export default function TextToImage() {
               </Select>
             </div>
           </div>
-          <ScrollArea
-            className="h-[calc(100%-3rem)] w-full rounded-md border p-4"
-            ref={messagesEndRef}
-          >
-            {message.map((msg, indx) => (
+          <ScrollArea className="h-[calc(100%-3rem)] w-full rounded-md border p-4">
+            {message.map((msg) => (
               <>
                 <ChatMessage
                   role={msg.role}
@@ -233,6 +230,7 @@ export default function TextToImage() {
                 />
               </>
             ))}
+            <span ref={messagesEndRef}></span>
           </ScrollArea>
         </CardContent>
         <CardFooter className="p-0">

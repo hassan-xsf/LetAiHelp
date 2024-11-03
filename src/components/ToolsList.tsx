@@ -13,32 +13,31 @@ import Link from "next/link";
 const ToolsList = () => {
   return (
     <div className="mx-auto grid w-full grid-cols-1 gap-4 pt-10 text-white sm:w-auto md:grid-cols-2 lg:grid-cols-3">
-      <div className="col-span-1 row-span-2 rounded-lg bg-white p-6 dark:bg-[#1E1E1E]">
-        <Bot className="mb-4 h-8 w-8 text-green-400" />
+      <div className="row-span-2 rounded-lg bg-white p-4 dark:bg-[#1E1E1E]">
+        <Bot className="mb-2 size-6 text-green-400" />
         <DashboardLink href="chat" text="Chat Tools" />
-
-        <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mb-4 pt-4 text-xs text-gray-500 dark:text-gray-400">
           One of the best Chat AI Tools for free, Trained according to your
           personal needs.
         </p>
         <div className="space-y-2">
           <Link
             href="/dashboard/chat?type=default"
-            className="flex items-center text-sm text-gray-500 underline dark:text-gray-400"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Chatbot
           </Link>
           <Link
             href="/dashboard/chat?type=pa"
-            className="flex items-center text-sm text-gray-500 underline dark:text-gray-400"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Personal Assistant
           </Link>
           <Link
             href="/dashboard/chat?type=explainer"
-            className="flex items-center text-sm text-gray-500 underline dark:text-gray-400"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Explainer
@@ -48,22 +47,21 @@ const ToolsList = () => {
       <div className="row-span-2 rounded-lg bg-white p-4 dark:bg-[#1E1E1E]">
         <GraduationCap className="mb-2 size-6 text-green-400" />
         <DashboardLink href="ai-detector" text="Tools for Learners" />
-
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+        <p className="pt-4 text-xs text-gray-500 dark:text-gray-400">
           Are you a learner or a student? So am I, Use these AI tools and focus
           on what's needed.
         </p>
         <div className="space-y-2 pt-4">
           <Link
             href="/dashboard/ai-detector"
-            className="items-cente flex text-sm text-gray-500 underline dark:text-gray-400"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Detection Tool
           </Link>
           <Link
             href="/dashboard/paraphraser"
-            className="flex items-center text-sm text-gray-500 underline dark:text-gray-400"
+            className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Paraphraser
@@ -84,20 +82,19 @@ const ToolsList = () => {
       <div className="rounded-lg bg-white p-4 dark:bg-[#1E1E1E]">
         <Code2Icon className="mb-2 h-6 w-6 text-green-400" />
         <DashboardLink href="chat?type=coder" text="AI Developer" />
-
         <p className="text-xs text-gray-500 dark:text-gray-400">
           Looking for a coding buddy? Our AI Tool has got you!
         </p>
         <div className="space-y-2 pt-4">
-          <p className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="flex items-center text-xs text-gray-500 dark:text-gray-400">
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             Explaining complex topic in seconds
           </p>
-          <p className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="flex items-center text-xs text-gray-500 dark:text-gray-400">
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             Resolving your coding issues
           </p>
-          <p className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="flex items-center text-xs text-gray-500 dark:text-gray-400">
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             Giving feedback on your code.
           </p>
@@ -128,11 +125,10 @@ const ToolsList = () => {
         <BookA className="mb-2 h-6 w-6 text-green-400" />
         <DashboardLink href="translator" text="AI Translation" />
 
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+        <p className="pt-2 text-xs text-gray-500 dark:text-gray-400">
           Experience the power of advanced AI translation. Simply input your
           text, choose your desired target language, and receive accurate
-          translations in a matter of seconds. Perfect for breaking language
-          barriers effortlessly.
+          translations.
         </p>
       </div>
       <div className="rounded-lg bg-white p-4 dark:bg-[#1E1E1E]">

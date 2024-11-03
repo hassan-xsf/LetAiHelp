@@ -35,7 +35,7 @@ const ChatMessage = ({ role, content }: ChatType) => {
               {role === "assistant" ? "LetAIHelp" : "You"}
             </span>
           </div>
-          <div className="text-xs text-black dark:text-white sm:text-sm">
+          <div className="text-xs text-black dark:text-gray-300">
             <MarkdownParser text={content} />
           </div>
         </div>

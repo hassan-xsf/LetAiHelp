@@ -20,7 +20,7 @@ const Logo = ({ type = 1 }: { type?: number }) => {
           type === 1 && "hidden sm:block"
         }`}
       >
-        LetAIHelp
+        LetAiHelp
         <span className="text-xs font-extrabold text-green-400">.me</span>
       </span>
     </Link>
