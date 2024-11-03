@@ -168,6 +168,7 @@
 code {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   font-size: 12px;
+  color: #d4d4d4; /* Default text color */
   background-color: #1e1e1e;
   padding: 1px;
   border-radius: 4px;
