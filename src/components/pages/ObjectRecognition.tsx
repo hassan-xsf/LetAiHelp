@@ -98,7 +98,7 @@ export default function ObjectDetection() {
       <div className="mx-auto max-w-6xl pt-24">
         <div className="grid h-full min-h-[50vh] grid-cols-1 gap-8 md:grid-cols-3">
           <div
-            className="col-span-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-green-400 p-4 transition-colors dark:bg-zinc-800"
+            className="col-span-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-green-400/30 p-4 transition-colors dark:bg-zinc-800"
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
             onClick={handleUpload}
@@ -159,7 +159,7 @@ export default function ObjectDetection() {
             )}
           </div>
 
-          <div className="h-[50vh] overflow-auto rounded-lg border-2 border-green-400 p-4 text-black dark:bg-zinc-800 dark:text-white">
+          <div className="h-[50vh] overflow-auto rounded-lg border-2 border-green-400/30 p-4 text-black dark:bg-zinc-800 dark:text-white">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold">DETECTION RESULTS</h2>
               <Button

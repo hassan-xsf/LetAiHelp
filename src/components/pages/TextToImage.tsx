@@ -102,7 +102,7 @@ export default function TextToImage() {
           >
             <SelectTrigger
               aria-label="Select Model"
-              className="my-2 w-[200px] border-2 border-green-400 text-black dark:text-white sm:w-[360px]"
+              className="my-2 w-[200px] border-2 border-green-400/30 text-black dark:text-white sm:w-[360px]"
             >
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
@@ -123,7 +123,7 @@ export default function TextToImage() {
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
               maxLength={textLimits.TextToImage}
-              className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400 bg-white text-xs text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-base md:min-h-40"
+              className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400/30 bg-white text-xs text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-base md:min-h-40"
             />
 
             {errors.text ? (
@@ -145,7 +145,7 @@ export default function TextToImage() {
                     onClick={() => setValue("type", image)}
                     className={`relative cursor-pointer overflow-hidden rounded-lg border ${
                       styleType.toLowerCase() === image.toLowerCase()
-                        ? "border-2 border-green-400"
+                        ? "border-2 border-green-400/50"
                         : "border-zinc-800 dark:border-white"
                     }`}
                   >

@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Sparkles } from "lucide-react";
+import { Copy, Sparkles, Type } from "lucide-react";
 import React, { useState } from "react";
 
 import { Textarea } from "@/components/ui/textarea";
@@ -28,6 +28,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 
 const Paraphraser = () => {
   const [paraphrasedText, setParaphrasedText] = useState<string>("");
@@ -93,9 +95,12 @@ const Paraphraser = () => {
             setValue("tone", value)
           }
         >
-          <span className="text-black dark:text-white">Select Tone: </span>
-          <SelectTrigger className="mb-2 w-[360px] border-2 border-green-400 text-black dark:text-white">
-            <SelectValue placeholder="Select model" />
+          <span className="text-xs text-black dark:text-white">
+            SELECT TONE:{" "}
+          </span>
+          <SelectTrigger className="w-full border-green-500/20 bg-white text-xs dark:bg-black">
+            <Type className="mr-2 h-4 w-4 text-green-500" />
+            <SelectValue placeholder="Select target language" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -108,49 +113,49 @@ const Paraphraser = () => {
           </SelectContent>
         </Select>
       </div>
-      <div className="my-10 grid gap-4 lg:grid-cols-2">
-        <div>
-          <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-between rounded-md bg-white pl-2 ring-1 ring-green-400 dark:bg-zinc-800">
-            <p className="-mt-2 text-sm text-zinc-400">
-              words: {currentText.length}/{textLimits.Paraphraser}
-            </p>
-          </div>
+
+      <div className="grid grid-cols-1 gap-4 pt-1 tracking-tighter md:grid-cols-2">
+        <Card className="relative border-green-500/20 bg-white dark:bg-black">
           <Textarea
             placeholder="Enter text to paraphrase"
+            className="min-h-[30vh] resize-none border-0 bg-transparent p-4 text-green-50 placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0"
             maxLength={textLimits.Paraphraser}
-            className="text-md h-96 w-full border-green-400 bg-white p-2 text-black dark:bg-zinc-900 dark:text-white"
             {...register("string")}
           />
-          {errors.string && (
-            <p className="text-red-500">{errors.string.message}</p>
-          )}
-        </div>
-        <div>
-          <div className="mx-auto -mb-2 flex h-10 w-[99.9%] items-center justify-end rounded-md bg-white pr-1 ring-1 ring-green-400 dark:bg-zinc-800">
-            <div
-              onClick={copyOutput}
-              className="-mt-2 flex cursor-pointer items-center justify-center gap-1 rounded-md p-1 text-sm text-zinc-400"
-            >
-              <Copy size={15} />
-              copy
-            </div>
+          <div className="absolute bottom-2 left-4 text-xs text-green-500/70">
+            words: {currentText.length}/{textLimits.Translator}
           </div>
+        </Card>
+        <Card className="relative border-green-500/20 bg-white dark:bg-black">
           <Textarea
-            placeholder="Paraphrased text will appear here..."
             value={paraphrasedText}
             readOnly
-            className="text-md h-96 w-full border-green-400 bg-white p-2 text-black dark:bg-zinc-900 dark:text-white"
+            placeholder="Paraphrased text will appear here"
+            className="min-h-[30vh] resize-none border-0 bg-transparent p-4 text-green-50 placeholder:text-muted-foreground/50"
           />
-        </div>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="absolute right-2 top-2 text-green-500 hover:bg-green-500/10 hover:text-green-400"
+            onClick={copyOutput}
+          >
+            <Copy className="h-4 w-4" />
+            <span className="sr-only">Copy translation</span>
+          </Button>
+        </Card>
+        {errors.string && (
+          <p className="text-xs text-red-500">{errors.string.message}</p>
+        )}
       </div>
-      <div className="mx-auto w-auto lg:w-1/6">
-        <button
-          aria-label="Paraphrase"
-          className="flex w-full items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-3 text-lg font-semibold text-white shadow-[6px_6px_0_0_#166534] transition-all hover:translate-x-1 hover:translate-y-1 hover:bg-green-600 hover:shadow-[2px_2px_0_0_#166534]"
+
+      <div className="flex justify-center pt-4 tracking-tighter">
+        <Button
+          disabled={paraphrase.isPending}
+          className="text-md bg-green-500 px-6 py-4 font-bold text-white transition-colors hover:bg-green-400 dark:text-black"
         >
-          <Sparkles className="ml-2 size-2 fill-green-400 text-white lg:size-6" />
+          <Sparkles className="mr-2 size-6" />
           {paraphrase.isPending ? "PARAPHRASING..." : "PARAPHRASE"}
-        </button>
+        </Button>
       </div>
     </form>
   );

@@ -52,7 +52,7 @@ export default function Component() {
     aiDetection.mutate({ input_text: text });
   };
   return (
-    <div className="mt-5 min-h-[62vh] rounded-md bg-white tracking-tighter text-white dark:bg-black">
+    <div className="mt-5 min-h-[62vh] rounded-md bg-white tracking-tighter text-white dark:bg-zinc-950">
       <div className="flex items-center justify-center rounded-md bg-green-600 p-3 text-xl font-bold md:text-2xl">
         <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
         AI DETECTOR
@@ -63,9 +63,9 @@ export default function Component() {
             <div className="relative">
               <Textarea
                 value={text}
-                onChange={(e) => setText(e.target.value)}
                 placeholder="Enter text to analyze (100-15000 words)"
-                className="h-64 w-full resize-none rounded-lg border border-green-500 bg-white p-4 text-xs dark:bg-zinc-900 md:text-base"
+                className="min-h-[25vh] resize-none border-green-400/30 bg-black p-4 text-green-50 placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0"
+                onChange={(e) => setText(e.target.value)}
               />
               <div className="absolute bottom-2 right-2 text-[10px] text-green-500 md:text-sm">
                 {text.length}/15000 characters
@@ -161,7 +161,7 @@ export default function Component() {
                 <h3 className="mb-2 text-lg font-semibold">
                   Detected AI Content:
                 </h3>
-                <div className="min-h-32 w-full resize-none rounded-lg border border-green-500 bg-white p-4 text-start text-xs dark:bg-zinc-900 md:text-base">
+                <div className="min-h-[20vh] resize-none border border-green-400/30 bg-black p-4 text-start text-green-50">
                   {result.data.originalParagraph.split(" ").map((word, i) =>
                     result.data.h
                       .map((h) => h.split(" "))

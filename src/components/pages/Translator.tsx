@@ -122,7 +122,7 @@ const Translator = () => {
         <Card className="relative border-green-500/20 bg-white dark:bg-black">
           <Textarea
             placeholder="Enter text to translate"
-            className="min-h-[300px] resize-none border-0 bg-transparent p-4 text-green-50 placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="min-h-[30vh] resize-none border-0 bg-transparent p-4 text-green-50 placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0"
             maxLength={textLimits.Translator}
             {...register("text")}
           />
@@ -135,7 +135,7 @@ const Translator = () => {
             value={translatedText}
             readOnly
             placeholder="Translation will appear here"
-            className="min-h-[300px] resize-none border-0 bg-transparent p-4 text-green-50 placeholder:text-muted-foreground/50"
+            className="min-h-[30vh] resize-none border-0 bg-transparent p-4 text-green-50 placeholder:text-muted-foreground/50"
           />
           <Button
             size="icon"
@@ -152,7 +152,7 @@ const Translator = () => {
         )}
       </div>
 
-      <div className="flex justify-center pt-2 tracking-tighter">
+      <div className="flex justify-center pt-4 tracking-tighter">
         <Button
           disabled={translation.isPending}
           className="text-md bg-green-500 px-6 py-4 font-bold text-white transition-colors hover:bg-green-400 dark:text-black"
