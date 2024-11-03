@@ -23,6 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { imageService } from "@/services/image";
 import { textLimits } from "@/constants/textLimits";
 import { imageModels, imageTypes } from "@/constants/image";
+import Image from "next/image";
 
 export default function TextToImage() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -149,10 +150,12 @@ export default function TextToImage() {
                         : "border-zinc-800 dark:border-white"
                     }`}
                   >
-                    <img
+                    <Image
                       src={`/${image.toLowerCase()}.png`}
                       alt={image}
                       className="min-h-14 w-full object-cover lg:min-h-24"
+                      width={200}
+                      height={200}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
                       <div className="text-center text-sm font-medium text-white">
@@ -200,10 +203,12 @@ export default function TextToImage() {
               </a>
             </div>
             {generatedImage ? (
-              <img
+              <Image
                 src={generatedImage}
                 alt="Generated"
                 className="h-auto w-full flex-grow rounded-lg object-cover"
+                width={400}
+                height={400}
               />
             ) : (
               <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-green-400/30">

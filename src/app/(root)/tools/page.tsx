@@ -5,7 +5,7 @@ import React from "react";
 const Home = () => {
   return (
     <>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between p-3">
         <div className="flex flex-col">
           <span className="text-2xl font-extrabold tracking-tight text-black dark:text-white sm:text-4xl">
             Hello

@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { Credits } from "@/constants/credits";
+import Image from "next/image";
 
 export default function ObjectDetection() {
   const [image, setImage] = useState<string | null>(null);
@@ -104,10 +105,12 @@ export default function ObjectDetection() {
             onClick={handleUpload}
           >
             {image ? (
-              <img
+              <Image
                 src={image}
                 alt="Uploaded"
                 className="h-[40vh] w-full object-fill"
+                width={400}
+                height={400}
               />
             ) : (
               <>

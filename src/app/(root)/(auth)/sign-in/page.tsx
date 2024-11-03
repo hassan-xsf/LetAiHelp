@@ -24,7 +24,7 @@ import Link from "next/link";
 import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
 
-const page = () => {
+const SignInPage = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -96,7 +96,7 @@ const page = () => {
             )}
           />
           <Link className="block" href="/sign-up">
-            Don't have an account?
+            Don&apos;t have an account?
           </Link>
 
           <Button type="submit" className="bg-green-600">
@@ -109,4 +109,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignInPage;

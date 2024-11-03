@@ -7,7 +7,7 @@ const DynamicUpgrade = dynamic(() => import("@/components/pages/Upgrade"), {
   ssr: false,
 });
 
-const page = () => {
+const Upgrade = () => {
   return (
     <div className="flex min-h-[70vh] flex-1 flex-col gap-4 p-2">
       <div className="flex flex-col">
@@ -19,4 +19,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Upgrade;

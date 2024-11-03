@@ -9,7 +9,7 @@ const DynamicText = dynamic(() => import("@/components/pages/Chat"), {
   ssr: false,
 });
 
-const page = () => {
+const Chat = () => {
   return (
     <div className="flex flex-1 flex-col gap-4 p-2">
       <div className="flex flex-col">
@@ -22,4 +22,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Chat;

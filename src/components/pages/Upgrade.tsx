@@ -28,7 +28,7 @@ import { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import useWindowSize from "@/hooks/useWindowSize";
 
-const page = () => {
+const Upgrade = () => {
   const [redeemCode, setRedeemCode] = useState("");
   const [showConfetti, setshowConfetti] = useState(false);
   const { width, height } = useWindowSize();
@@ -216,4 +216,4 @@ const page = () => {
     </>
   );
 };
-export default page;
+export default Upgrade;

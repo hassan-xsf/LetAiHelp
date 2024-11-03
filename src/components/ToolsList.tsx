@@ -2,11 +2,11 @@ import React from "react";
 import {
   RefreshCw,
   Bot,
-  Image,
   GraduationCap,
   BookA,
   Code2Icon,
   Frown,
+  ImageIcon,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -63,7 +63,7 @@ const ToolsList = () => {
         <DashboardLink href="ai-detector" text="Tools for Learners" />
         <p className="pt-4 text-xs text-gray-500 dark:text-gray-400">
           Are you a learner or a student? So am I,Use these AI tools and focus
-          on what's needed.
+          on what&apos;s needed.
         </p>
         <div className="space-y-2 pt-4">
           <Link
@@ -116,7 +116,7 @@ const ToolsList = () => {
       </div>
 
       <div className="rounded-lg bg-white p-4 dark:bg-[#1E1E1E]">
-        <Image className="mb-2 h-6 w-6 text-green-400" />
+        <ImageIcon className="mb-2 h-6 w-6 text-green-400" />
         <DashboardLink href="text-to-image" text="Image Tools" />
 
         <p className="mb-4 text-xs text-gray-500 dark:text-gray-400">

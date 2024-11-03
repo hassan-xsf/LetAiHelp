@@ -23,7 +23,7 @@ import Link from "next/link";
 import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
 
-const page = () => {
+const SignInPage = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -115,4 +115,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignInPage;
