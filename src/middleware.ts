@@ -4,13 +4,12 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req });
-
   if (token) {
     if (
       req.nextUrl.pathname === "/sign-in" ||
       req.nextUrl.pathname === "/sign-up"
     ) {
-      return NextResponse.redirect(new URL("/", req.nextUrl));
+      return NextResponse.redirect(new URL("/tools", req.nextUrl));
     }
   }
   if (!token) {
@@ -19,5 +18,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard"],
+  matcher: ["/tools", "/sign-in", "/sign-up"],
 };

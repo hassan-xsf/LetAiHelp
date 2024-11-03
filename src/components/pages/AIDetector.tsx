@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle, Check, Loader2 } from "lucide-react";
+import { AlertCircle, Bot, Check, Loader2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { aiDetectorService } from "@/services/aidetector";
 import { toast } from "sonner";
@@ -52,7 +52,11 @@ export default function Component() {
     aiDetection.mutate({ input_text: text });
   };
   return (
-    <div className="mt-5 min-h-[62vh] rounded-md bg-white p-2 text-white dark:bg-black xl:p-8">
+    <div className="mt-5 min-h-[62vh] rounded-md bg-white text-white dark:bg-black">
+      <div className="flex items-center justify-center rounded-md bg-green-600 p-3 text-xl font-bold md:text-2xl">
+        <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
+        AI DETECTOR
+      </div>
       <Card className="mx-auto border-none bg-transparent p-2 lg:max-w-7xl xl:p-10">
         <CardContent className="space-y-6 p-2 xl:p-6">
           <div className="space-y-4">

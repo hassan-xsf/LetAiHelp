@@ -15,7 +15,6 @@ const ChatMessage = ({ role, content }: ChatType) => {
   return (
     <>
       <div
-        key={crypto.randomUUID()}
         className={`flex items-center space-x-3 space-y-2 ${
           role === "assistant" ? "justify-start" : "justify-end"
         }`}

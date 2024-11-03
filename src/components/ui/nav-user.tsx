@@ -83,7 +83,7 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/dashboard/upgrade">
+              <Link href="/tools/upgrade">
                 <DropdownMenuItem>
                   <Sparkles />
                   <span className="cursor-pointer">Upgrade</span>

@@ -47,7 +47,7 @@ const page = () => {
         return toast.error("There was a problem signing you up!");
       }
       toast.success("You have been logged in!");
-      router.push("/dashboard");
+      router.push("/tools");
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(

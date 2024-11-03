@@ -22,21 +22,21 @@ const ToolsList = () => {
         </p>
         <div className="space-y-2">
           <Link
-            href="/dashboard/chat?type=default"
+            href="/tools/chat?type=default"
             className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Chatbot
           </Link>
           <Link
-            href="/dashboard/chat?type=pa"
+            href="/tools/chat?type=pa"
             className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Personal Assistant
           </Link>
           <Link
-            href="/dashboard/chat?type=explainer"
+            href="/tools/chat?type=explainer"
             className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
@@ -53,14 +53,14 @@ const ToolsList = () => {
         </p>
         <div className="space-y-2 pt-4">
           <Link
-            href="/dashboard/ai-detector"
+            href="/tools/ai-detector"
             className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
             AI Detection Tool
           </Link>
           <Link
-            href="/dashboard/paraphraser"
+            href="/tools/paraphraser"
             className="flex items-center text-xs text-gray-500 underline dark:text-gray-400"
           >
             <span className="mr-2 h-2 w-2 rounded-full bg-green-400"></span>
@@ -153,7 +153,7 @@ export default ToolsList;
 const DashboardLink = ({ text, href }: { text: string; href: string }) => {
   return (
     <Link
-      href={`/dashboard/${href}`}
+      href={`/tools/${href}`}
       className="text-lg font-semibold text-black underline dark:text-white"
     >
       {text}

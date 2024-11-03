@@ -26,6 +26,7 @@ import {
   UpdatedPaidTextFormType,
   updatedPaidTextSchema,
 } from "@/schemas/paidModelsSchema";
+import { Textarea } from "../ui/textarea";
 
 export default function TextToImage() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -70,12 +71,11 @@ export default function TextToImage() {
 
   const handleStream = async (data: paidTextFormType) => {
     setIsLoading(true);
-    console.log(data);
     setMessage((prev) => [
       ...prev,
       {
         role: "assistant",
-        content: "",
+        content: "Thinking....",
       },
     ]);
 
@@ -102,7 +102,6 @@ export default function TextToImage() {
       let buffer = "";
       while (true) {
         const body = await reader.read();
-        console.log(body);
         const { done, value } = body;
         if (done) break;
 
@@ -169,20 +168,18 @@ export default function TextToImage() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
       <Card className="mx-auto flex h-[68vh] w-full max-w-full flex-col">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 text-white">
-          <CardTitle className="flex items-center justify-center text-xl font-bold md:text-2xl">
-            <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
-            {paidTextModels[type].toUpperCase()}
-          </CardTitle>
-        </CardHeader>
+        <CardTitle className="flex items-center justify-center rounded-md bg-green-600 p-3 text-xl font-bold md:text-2xl">
+          <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
+          {paidTextModels[type].toUpperCase()}
+        </CardTitle>
         <CardContent className="flex-grow overflow-hidden rounded-md p-4">
-          <ScrollArea className="h-[calc(100%-3rem)] w-full rounded-md border p-4">
+          <ScrollArea className="h-full w-full rounded-md border p-4">
             {message.map((msg) => (
               <>
                 <ChatMessage
                   role={msg.role}
                   content={msg.content}
-                  key={crypto.randomUUID()}
+                  key={msg.role + msg.content}
                 />
               </>
             ))}
@@ -191,8 +188,7 @@ export default function TextToImage() {
         </CardContent>
         <CardFooter className="p-0">
           <div className="flex w-full items-center space-x-2 p-4 pt-0">
-            <Input
-              type="text"
+            <Textarea
               placeholder={
                 !isLoading ? "Type your message..." : "AI is typing..."
               }

@@ -12,7 +12,7 @@ const ToolsHeader = ({ name, credits }: { name: string; credits: string }) => {
             {name}
           </span>
         </div>
-        <span className="text-md ml-8 font-bold text-black dark:text-white sm:text-xl">
+        <span className="text-md ml-8 font-bold text-black dark:text-white sm:text-lg">
           NOTE: {credits} CREDITS PER USE
         </span>
       </div>

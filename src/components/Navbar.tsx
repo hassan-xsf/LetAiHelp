@@ -46,14 +46,11 @@ const Navbar = async () => {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link
-          className="text-xs font-medium sm:text-sm"
-          href="/dashboard/upgrade"
-        >
+        <Link className="text-xs font-medium sm:text-sm" href="/tools/upgrade">
           Pricing
         </Link>
         {data?.user && (
-          <Link className="b text-xs font-medium sm:text-sm" href="/dashboard">
+          <Link className="b text-xs font-medium sm:text-sm" href="/tools">
             Dashboard
           </Link>
         )}

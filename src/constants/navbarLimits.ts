@@ -13,7 +13,7 @@ export const navbarItems = {
   navMain: [
     {
       title: "Home",
-      url: "/dashboard/",
+      url: "/tools/",
       icon: Home,
     },
     {
@@ -23,15 +23,15 @@ export const navbarItems = {
       items: [
         {
           title: "Chat GPT 4.0",
-          url: "/dashboard/paid?type=gpt-4o",
+          url: "/tools/paid?type=gpt-4o",
         },
         {
           title: "Claude Sonnet 3.5",
-          url: "/dashboard/paid?type=claude-sonnet-3.5",
+          url: "/tools/paid?type=claude-sonnet-3.5",
         },
         {
           title: "Gemini PRO",
-          url: "/dashboard/paid?type=gemini-pro",
+          url: "/tools/paid?type=gemini-pro",
         },
       ],
     },
@@ -42,19 +42,19 @@ export const navbarItems = {
       items: [
         {
           title: "AI Chatbot",
-          url: "/dashboard/chat?type=default",
+          url: "/tools/chat?type=default",
         },
         {
           title: "AI Personal Assistant",
-          url: "/dashboard/chat?type=pa",
+          url: "/tools/chat?type=pa",
         },
         {
           title: "AI Explainer",
-          url: "/dashboard/chat?type=explainer",
+          url: "/tools/chat?type=explainer",
         },
         {
           title: "AI Coder",
-          url: "/dashboard/chat?type=coder",
+          url: "/tools/chat?type=coder",
         },
       ],
     },
@@ -65,7 +65,7 @@ export const navbarItems = {
       items: [
         {
           title: "Text to Image",
-          url: "/dashboard/text-to-image",
+          url: "/tools/text-to-image",
         },
       ],
     },
@@ -76,11 +76,11 @@ export const navbarItems = {
       items: [
         {
           title: "AI/GPT Detector",
-          url: "/dashboard/ai-detector",
+          url: "/tools/ai-detector",
         },
         {
           title: "Paraphraser",
-          url: "/dashboard/paraphraser",
+          url: "/tools/paraphraser",
         },
       ],
     },
@@ -91,15 +91,15 @@ export const navbarItems = {
       items: [
         {
           title: "AI Translation",
-          url: "/dashboard/translator",
+          url: "/tools/translator",
         },
         {
           title: "AI Summarizer",
-          url: "/dashboard/summarizer",
+          url: "/tools/summarizer",
         },
         {
           title: "Object Recognition",
-          url: "/dashboard/object-recognition",
+          url: "/tools/object-recognition",
         },
       ],
     },

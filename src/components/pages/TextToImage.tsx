@@ -141,7 +141,7 @@ export default function TextToImage() {
               <div className="grid grid-cols-3 gap-4">
                 {imageTypes.map((image) => (
                   <div
-                    key={crypto.randomUUID()}
+                    key={image.toLowerCase()}
                     onClick={() => setValue("type", image)}
                     className={`cursor-pointer overflow-hidden rounded-lg border ${
                       styleType.toLowerCase() === image.toLowerCase()

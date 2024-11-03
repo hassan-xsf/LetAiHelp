@@ -194,8 +194,8 @@ export default function TextToImage() {
         <CardContent className="flex-grow overflow-hidden rounded-md p-4">
           <div className="flex w-full flex-col">
             <div className="flex items-center space-x-2">
-              <p className="text-nowrap text-[10px] text-black dark:text-white sm:text-xs">
-                AI MODEL:
+              <p className="text-nowrap text-[10px] text-black dark:text-white">
+                MODEL
               </p>
               <Select
                 value={getValues("model")}
@@ -226,7 +226,7 @@ export default function TextToImage() {
                 <ChatMessage
                   role={msg.role}
                   content={msg.content}
-                  key={crypto.randomUUID()}
+                  key={msg.role + msg.content}
                 />
               </>
             ))}

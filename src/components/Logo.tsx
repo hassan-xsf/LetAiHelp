@@ -11,7 +11,7 @@ const Logo = ({ type = 1 }: { type?: number }) => {
       href="/"
     >
       <SparklesIcon
-        className={`fill-green-500 text-green-600 dark:text-green-400 ${
+        className={`fill-green-400 text-green-400 dark:text-green-400 ${
           type === 1 ? "size-6" : "size-8"
         }`}
       />
