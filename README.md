@@ -1,94 +1,97 @@
-# 🚀 Next.js Starter Kit with NextAuth, Prisma, PostgreSQL + TypeScript
+<p align="center">
+  <img src = "https://github.com/user-attachments/assets/f6ebf98e-ad32-4183-bc25-03c1fa681433" alt = "LetAIHelp.me"/>
+</p>
 
-This repository is a starter kit for building a full-stack application using **Next.js** with **NextAuth** for authentication, **Prisma** as the ORM, **PostgreSQL** as the database, and **Zod** for schema validation. It also includes authentication with GitHub via NextAuth, And new OAuth providers can be very easily added.
-A perfect kit for freelancing projects.
 
-## 📚 Table of Contents
+## Version v0.5 🟢
+### Live Preview (Click below)
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-  - [Database Migration](#database-migration)
-- [Usage](#usage)
-  - [Running the Development Server](#running-the-development-server)
-  - [Authentication](#authentication)
-  - [Schema Validation](#schema-validation)
-- [Contributing](#contributing)
-- [License](#license)
+[![Live Preview](https://img.shields.io/badge/Live%20Preview-LetAIHelp-4ade80?style=for-the-badge)](https://letaihelp.me/)
 
-## ✨ Features
+### Video Preview:
 
-- **Next.js**: The React framework for production.
-- **NextAuth**: Authentication solution with built-in GitHub OAuth provider and credential-based login.
-- **Prisma**: ORM for database access, migrations, and management.
-- **PostgreSQL**: Powerful, open-source object-relational database system.
-- **Zod**: TypeScript-first schema declaration and validation library.
-- **TypeScript**: Strongly typed programming language that builds on JavaScript.
+### Things I learned in this project:
+1. Handling complex API routes.
+2. Streaming AI responses.
+3. Image Generation using AI.
+4. Prompt Engineering.
 
-## 🛠 Getting Started
 
-### 📦 Installation
+# INTRODUCTION 
+This project 
+
+
+
+
+## Installation 🚀
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/yourusername/nextjs-nextauth-prisma-starter.git
-   cd nextjs-nextauth-prisma-starter
-
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-
-   ```
-
-3. **Environment Variables**
-
-   Create a `.env` file in the root of your project and add the following environment variables:
-
-   ```env
-   DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/YOUR_DATABASE_NAME
-   NEXTAUTH_SECRET=your-secret
-   NEXTAUTH_URL=http://localhost:3000
-   GITHUB_ID=your-github-client-id
-   GITHUB_SECRET=your-github-client-secret
-   ```
-
-### **🗄 Database Migration**
-
-Run the following command to create the necessary tables in your PostgreSQL database:
+    ```bash
+    git clone https://github.com/hassan-xsf/ThreadIt.git
+    ```
+2. **Install dependencies:**
 
     ```bash
-    npx prisma migrate dev --name init
+    npm install
+    # or
+    yarn install
+    ```
 
-This will generate your database schema and run the migration.
+3. **Set up environment variables for backend:**
 
-### **🚀 Usage**
+    Create a `.env` file in the root of the server directory, Or edit .env.sample that is provided.
 
-🔥 Running the Development Server
-To start the development server, run:
+    ```env
+    GITHUB_ID= xxxxx
+    GITHUB_SECRET= xxxxx  
+    NEXTAUTH_URL= http://localhost:3000
+    NEXTAUTH_SECRET= your_nextauth_secret
+    DATABASE_URL= "xxxxxxxx"
+    CLOUDFLARE_ACCOUNT_ID= xxxxx
+    CLOUDFLARE_API_TOKEN= xxxxxx
+    BLACKBOX_API_KEY= xxxxxxx
+    ```
+4. **Database Migration**
+   Run the following command to create the necessary tables in your PostgreSQL database:
+   
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+    
+   This will generate your database schema and run the migration.
+
+5. **Run the application:**
+   Start your NextJS project using
 
     ```bash
-    Copy code
     npm run dev
+    # or
+    yarn run dev
+    ```
+    
+## How to Contribute 🤝
 
-Open your browser and navigate to http://localhost:3000 to view the application.
+1. **Fork the repository**: Click the "Fork" button at the top right of the repository page on GitHub.
 
-### **🔐 Authentication**
+2. **Create a feature branch**:
 
-This starter kit comes pre-configured with NextAuth for both GitHub OAuth and credentials-based authentication. The following authentication methods are available:
+    ```bash
+    git checkout -b feat/your-feature
+    ```
 
-Sign in with GitHub: Click on the "Sign in with GitHub" button on the sign-in page.
-Credentials-based Sign in: Use the form to sign in with an email and password.
-And new OAuth can be easily added.
+3. **Make your changes**: Edit or add files as needed.
 
-### **✅ Schema Validation**
+4. **Commit your changes**:
 
-This project uses Zod for validating the incoming request data. You can find and modify the validation schemas in the relevant API routes.
+    ```bash
+    git commit -m 'Add new feature'
+    ```
 
-## **🤝 Contributing**
+5. **Push to the branch**:
 
-Contributions are always welcome :)
+    ```bash
+    git push origin feat/your-feature
+    ```
+
+6. **Create a Pull Request**: Go to the GitHub repository and click "New Pull Request."
