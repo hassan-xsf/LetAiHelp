@@ -1,14 +1,39 @@
+
+<br>
 <p align="center">
-  <img src = "https://github.com/user-attachments/assets/f6ebf98e-ad32-4183-bc25-03c1fa681433" alt = "LetAIHelp.me"/>
+  <a href="https://www.letaihelp.me">
+    <img src="https://github.com/user-attachments/assets/6ba0ad80-4b28-4f2b-889d-125c03f9bce7" alt="LetAiHelp Logo" />
+  </a>
 </p>
 
+<h2 align="center" >One AI Website, 13 Different Tools </h3>
+<p align="center">AI Tools that boosts your productivity and enhances creativity, Made with ❤️</p>
+
+<br />
 
 ## Version v0.5 🟢
-### Live Preview (Click below)
 
+### Live Preview (Click below)
 [![Live Preview](https://img.shields.io/badge/Live%20Preview-LetAIHelp-4ade80?style=for-the-badge)](https://letaihelp.me/)
 
-### Video Preview:
+### Features
+* Use paid tools like ChatGPT 4.0, Claude Sonnet 3.5 and Gemini PRO for FREE.
+* 16 Different other chat models to select from, Trained according to your personal needs.
+* Image Generation using 3 different models and choose scene as well (Inspired by Canva)
+* AI Content Detector, That detects all your AI content and mark it.
+* Paraphraser Tool, That converts all your AI content into human language (99% success)
+* AI Translation , Summarizer and many more..
+
+
+### Tech Stack
+1. NextJS.
+2. Typescript.
+3. Prisma ORM with Postgre SQL.
+4. NextAuth as authentication system.
+5. Cloudfare AI
+6. ShadCN as primary component library.
+
+
 
 ### Things I learned in this project:
 1. Handling complex API routes.
@@ -18,10 +43,26 @@
 
 
 # INTRODUCTION 
-This project 
+This project was made as a Hobby Project, It contains 13 different AI tools that boosts your productivity and enhances creativity, I wanted to make something for personal use for creating images , non-ai text generation and later decided to make it as a full fledged fullstack project, That doesn't only help me but my fellow learners as well.
 
 
+## API Routes 🖥️
 
+- **api/**
+  - **ai-detection/**  
+  - **auth/**  
+  - **caption/**  
+  - **chat/**  
+  - **code/**  
+  - **object-detection/**  
+  - **paid/**  
+  - **paraphrase/**  
+  - **sign-up/**  
+  - **summarizer/**  
+  - **text-to-image/**  
+  - **translator/**  
+
+Each route serves an authenticated API endpoint and serves as their purpose.
 
 ## Installation 🚀
 
