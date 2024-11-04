@@ -7,7 +7,8 @@
 </p>
 
 <h2 align="center" >One AI Website, 13 Different Tools </h3>
-<p align="center">AI Tools that boosts your productivity and enhances creativity, Made with ❤️</p>
+<p align="center">Tools that boosts your productivity and enhances creativity</p>
+<p align = "center">Including Chatbots , AI Detector, Image Generation and many more, Made with ❤️</p>
 
 <br />
 
@@ -15,6 +16,22 @@
 
 ### Live Preview (Click below)
 [![Live Preview](https://img.shields.io/badge/Live%20Preview-LetAIHelp-4ade80?style=for-the-badge)](https://letaihelp.me/)
+
+### Image Previews: 
+<p align="center">
+
+  
+  <img src = "https://github.com/user-attachments/assets/f96ff01c-116e-45ef-9e85-2820363b6b91"/>
+
+  <img src = "https://github.com/user-attachments/assets/45a34b5e-6522-4ccb-ba4e-65597d5ea8e0"/>
+
+
+</p>
+
+
+
+
+
 
 ### Features
 * Credits System (Just like SAAS but FREE)
