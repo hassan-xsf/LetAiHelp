@@ -12,6 +12,7 @@
 
 <br />
 
+![](https://i.imgur.com/waxVImv.png)
 ## Version v0.5 🟢
 
 ### Live Preview (Click below)
