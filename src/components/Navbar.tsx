@@ -37,7 +37,7 @@ const Navbar = async () => {
                 )}
                 {item.items &&
                   item.items.map((subItem) => (
-                    <DropdownMenuItem key={subItem.title}>
+                    <DropdownMenuItem key={subItem.title + subItem.url}>
                       <Link href={subItem.url}>{subItem.title}</Link>
                     </DropdownMenuItem>
                   ))}

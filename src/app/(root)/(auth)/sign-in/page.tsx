@@ -2,7 +2,7 @@
 
 import { signInSchema } from "@/schemas/signInSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { AxiosError } from "axios";
@@ -19,14 +19,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
+import { Loader2 } from "lucide-react";
 
 const SignInPage = () => {
-  const session = useSession();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -34,9 +35,9 @@ const SignInPage = () => {
       email: "",
     },
   });
-  if (session.data && session.data.user) return router.push("/xxxx");
   async function onSubmit(values: z.infer<typeof signInSchema>) {
     try {
+      setLoading(true);
       const data = await signIn("credentials", {
         redirect: false,
         email: values.email,
@@ -51,6 +52,7 @@ const SignInPage = () => {
       toast.success("You have been logged in!");
       router.push("/tools");
     } catch (error) {
+      setLoading(false);
       if (error instanceof AxiosError) {
         toast.error(
           error.response?.data.message || "There was an error logging you in!",
@@ -101,8 +103,15 @@ const SignInPage = () => {
             Don&apos;t have an account?
           </Link>
 
-          <Button type="submit" className="bg-green-600">
-            Sign In
+          <Button type="submit" disabled={loading} className="bg-green-600">
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin" />
+                Signing In
+              </>
+            ) : (
+              "Sign In"
+            )}
           </Button>
           <GithubSignIn />
         </form>

@@ -88,26 +88,24 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <Link href="/tools/upgrade">
-                <DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer text-xs">
                   <Sparkles />
-                  <span className="cursor-pointer text-xs">Upgrade</span>
+                  Upgrade
                 </DropdownMenuItem>
               </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              <div
-                className="cursor-pointer text-xs"
-                onClick={() =>
-                  signOut({
-                    redirect: true,
-                    callbackUrl: `${window.location.origin}/sign-in`,
-                  })
-                }
-              >
-                Sign Out
-              </div>
+            <DropdownMenuItem
+              className="flex cursor-pointer items-center gap-2 text-xs"
+              onClick={() =>
+                signOut({
+                  redirect: true,
+                  callbackUrl: `${window.location.origin}/sign-in`,
+                })
+              }
+            >
+              <LogOut className="size-4" />
+              Sign Out
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 

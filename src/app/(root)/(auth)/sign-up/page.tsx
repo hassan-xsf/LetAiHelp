@@ -2,7 +2,7 @@
 
 import { signUpSchema } from "@/schemas/signUpSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import axios, { AxiosError } from "axios";
@@ -22,11 +22,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import GithubSignIn from "@/components/buttons/GithubButton";
 import Logo from "@/components/Logo";
-import { useSession } from "next-auth/react";
+import { Loader2 } from "lucide-react";
 
 const SignInPage = () => {
-  const session = useSession();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -36,17 +36,20 @@ const SignInPage = () => {
       email: "",
     },
   });
-  if (session.data && session.data.user) return router.push("/tools");
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     try {
+      setLoading(true);
       const data = await axios.post("/api/sign-up", values);
       if (!data.data.success) {
         toast.error(data.data.message);
       } else {
-        toast.success("Your account has been registered!");
+        toast.success(
+          "Your account has been registered, Please login to continue",
+        );
         router.push("/sign-in");
       }
     } catch (error) {
+      setLoading(false);
       if (error instanceof AxiosError) {
         toast.error(
           error.response?.data.message || "There was an error signing you up!",
@@ -110,7 +113,14 @@ const SignInPage = () => {
             Already have an account?
           </Link>
           <Button type="submit" className="bg-green-600">
-            Sign Up
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin" />
+                Signing Up
+              </>
+            ) : (
+              "Sign Up"
+            )}
           </Button>
           <GithubSignIn />
         </form>
