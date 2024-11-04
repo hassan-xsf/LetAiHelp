@@ -64,7 +64,7 @@ export default function Component() {
               <Textarea
                 value={text}
                 placeholder="Enter text to analyze (100-15000 words)"
-                className="min-h-[25vh] resize-none border-green-400/30 bg-black p-4 text-green-50 placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="min-h-[25vh] resize-none border-green-400/30 bg-white p-4 text-green-50 placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-black"
                 onChange={(e) => setText(e.target.value)}
               />
               <div className="absolute bottom-2 right-2 text-[10px] text-green-500 md:text-sm">
@@ -161,7 +161,7 @@ export default function Component() {
                 <h3 className="mb-2 text-lg font-semibold">
                   Detected AI Content:
                 </h3>
-                <div className="min-h-[20vh] resize-none border border-green-400/30 bg-black p-4 text-start text-green-50">
+                <div className="min-h-[20vh] resize-none border border-green-400/30 bg-white p-4 text-start text-green-50 dark:bg-black">
                   {result.data.originalParagraph.split(" ").map((word, i) =>
                     result.data.h
                       .map((h) => h.split(" "))
