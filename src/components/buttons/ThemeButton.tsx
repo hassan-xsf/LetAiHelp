@@ -1,6 +1,6 @@
 "use client";
 
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,9 @@ const ThemeBtn = () => {
         variant="ghost"
         className="animate-pulse bg-gray-200 dark:bg-zinc-900"
         size="icon"
-      />
+      >
+        <Loader2 className="size-2 animate-spin" />
+      </Button>
     );
   return (
     <Button

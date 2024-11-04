@@ -13,6 +13,12 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "LetAIHelp - Tools",
+  description: "LetAIHelp - All tools",
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
