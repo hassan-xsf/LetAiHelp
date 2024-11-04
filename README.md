@@ -17,6 +17,7 @@
 [![Live Preview](https://img.shields.io/badge/Live%20Preview-LetAIHelp-4ade80?style=for-the-badge)](https://letaihelp.me/)
 
 ### Features
+* Credits System (Just like SAAS but FREE)
 * Use paid tools like ChatGPT 4.0, Claude Sonnet 3.5 and Gemini PRO for FREE.
 * 16 Different other chat models to select from, Trained according to your personal needs.
 * Image Generation using 3 different models and choose scene as well (Inspired by Canva)
