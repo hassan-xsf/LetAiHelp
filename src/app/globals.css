@@ -27,7 +27,6 @@
   overflow-y: auto; /* Enable vertical scrolling */
   resize: none; /* Disable manual resizing */
   padding: 8px; /* Add padding */
-  border: 1px solid #e5e7eb; /* Add a light border */
   border-radius: 4px; /* Rounded corners */
   outline: none; /* Remove focus outline */
   font-size: 0.875rem; /* Adjust font size */

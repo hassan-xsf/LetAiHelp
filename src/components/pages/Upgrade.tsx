@@ -10,15 +10,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import {
-  ShoppingCart,
-  Zap,
-  Gift,
-  Star,
-  BadgeDollarSignIcon,
-  BadgeIndianRupee,
-} from "lucide-react";
+import { ShoppingCart, Zap, Gift, Star, Crown, DollarSign } from "lucide-react";
 import Confetti from "react-confetti";
 import React from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -65,10 +59,10 @@ const Upgrade = () => {
   return (
     <>
       {showConfetti && <Confetti width={width - 150} height={height - 150} />}
-      <div className="flex flex-col rounded-md bg-gray-50 py-6 tracking-tighter dark:bg-zinc-900">
+      <div className="flex flex-col rounded-md py-6 tracking-tighter transition-colors">
         <main className="flex-1">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-12 flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <div className="rounded-full bg-green-500 p-3 text-white dark:text-white">
                   <ShoppingCart className="h-6 w-6" />
@@ -85,10 +79,10 @@ const Upgrade = () => {
             </div>
 
             {/* Redeem Code Section */}
-            <Card className="mb-8 border border-green-400 bg-white tracking-tighter dark:bg-zinc-900">
+            <Card className="mb-12 border border-primary/20 bg-white dark:bg-zinc-950">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl font-bold text-green-500 sm:text-2xl">
-                  <Gift className="mr-2" />
+                <CardTitle className="flex items-center text-xl font-bold text-black dark:text-white sm:text-2xl">
+                  <Gift className="mr-2 text-green-400" />
                   Redeem Credits
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-400">
@@ -116,98 +110,106 @@ const Upgrade = () => {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
-              {/* Basic Plan */}
-              <Card className="transform border-green-500 bg-white transition-all duration-300 hover:scale-105 hover:border-green-400 dark:bg-zinc-900">
+            <div className="grid gap-6 md:grid-cols-3">
+              <Card className="tracking relative overflow-hidden hover:border-primary/50">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl font-bold text-green-500 xl:text-2xl">
-                    <Star className="size-6 xl:size-8" /> Basic
+                  <CardTitle className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-primary" />
+                    Basic
                   </CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-muted-foreground">
                     Perfect for getting started
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="mb-4 text-2xl font-bold xl:text-4xl">
-                    1000 Credits
                   </p>
-                  <p className="text-md mb-6 xl:text-xl">+100 extra credits</p>
-                  <div className="mb-4 flex items-center justify-center text-green-500">
-                    <span className="text-xl font-light">$5</span>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-4xl font-bold text-green-400">
+                      1000 Credits
+                    </h3>
+                    <p className="text-sm font-medium text-primary">
+                      +100 extra credits
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-2xl font-bold text-primary">$5</p>
+                    <Button className="w-full" variant="outline" disabled>
+                      Currently Unavailable
+                    </Button>
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Button
-                    className="w-full bg-green-500 text-white hover:bg-green-600"
-                    disabled
-                  >
-                    Currently Unavailable
-                  </Button>
-                </CardFooter>
               </Card>
 
-              {/* Pro Plan (Larger) */}
-              <Card className="flex scale-110 transform flex-col border-green-500 bg-white transition-all duration-300 hover:border-green-400 dark:bg-zinc-900 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1">
+              <Card className="relative overflow-hidden transition-colors hover:border-primary/50">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-2xl font-bold text-green-500 xl:text-3xl">
-                    <BadgeDollarSignIcon className="size-6 xl:size-8" /> Pro
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="flex items-center gap-2">
+                      <DollarSign className="h-5 w-5 text-primary" />
+                      Pro
+                    </CardTitle>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/10 text-primary"
+                    >
+                      Most popular choice
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
                     Most popular choice
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-grow flex-col justify-center text-center">
-                  <p className="mb-6 text-4xl font-bold text-green-500 xl:text-6xl">
-                    2000 Credits
                   </p>
-                  <p className="mb-8 text-xl xl:text-2xl">+600 extra credits</p>
-                  <div className="mb-6 flex items-center justify-center text-green-500">
-                    <span className="text-2xl font-light">$10</span>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-5xl font-bold text-green-400">
+                      2000 Credits
+                    </h3>
+                    <p className="text-sm font-medium text-primary">
+                      +600 extra credits
+                    </p>
                   </div>
-                  <div className="mx-auto inline-block rounded-full bg-green-500 px-4 py-2 text-white">
-                    <Zap className="mr-2 inline" />
-                    <span className="text-sm font-bold xl:text-base">
-                      Most Value
-                    </span>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <p className="text-2xl font-bold text-primary">$10</p>
+                      <Badge
+                        variant="secondary"
+                        className="bg-primary/10 text-primary"
+                      >
+                        <Zap className="mr-1 h-3 w-3" />
+                        Most Value
+                      </Badge>
+                    </div>
+                    <Button className="w-full" disabled>
+                      Currently Unavailable
+                    </Button>
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Button
-                    className="text-md w-full bg-green-500 py-3 text-white hover:bg-green-600 xl:py-6 xl:text-lg"
-                    disabled
-                  >
-                    Currently Unavailable
-                  </Button>
-                </CardFooter>
               </Card>
 
-              {/* Premium Plan */}
-              <Card className="transform border-green-500 bg-white transition-all duration-300 hover:scale-105 hover:border-green-400 dark:bg-zinc-900">
+              <Card className="relative overflow-hidden transition-colors hover:border-primary/50">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl font-bold text-green-500 xl:text-2xl">
-                    <BadgeIndianRupee className="size-6 xl:size-8" /> Premium
+                  <CardTitle className="flex items-center gap-2">
+                    <Crown className="h-5 w-5 text-primary" />
+                    Premium
                   </CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-muted-foreground">
                     For power users
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="mb-4 text-3xl font-bold xl:text-4xl">
-                    5000 Credits
                   </p>
-                  <p className="text-md mb-6 xl:text-xl">+1000 extra credits</p>
-                  <div className="mb-4 flex items-center justify-center text-green-500">
-                    <span className="text-xl font-light">$30</span>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-4xl font-bold text-green-400">
+                      5000 Credits
+                    </h3>
+                    <p className="text-sm font-medium text-primary">
+                      +1000 extra credits
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-2xl font-bold text-primary">$30</p>
+                    <Button className="w-full" variant="outline" disabled>
+                      Currently Unavailable
+                    </Button>
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Button
-                    className="w-full bg-green-500 text-white hover:bg-green-600"
-                    disabled
-                  >
-                    Currently Unavailable
-                  </Button>
-                </CardFooter>
               </Card>
             </div>
           </div>

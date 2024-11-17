@@ -65,11 +65,9 @@ export default function TextToImage() {
       });
     },
     onError: (error) => {
-      console.log(error);
-      if (error instanceof AxiosError) {
-        return toast.error(error.response?.data.message);
-      }
-      toast.error("There was a problem, Error code: 500");
+      toast.error(
+        "There was a problem, Error code: 500\nPlease try with another prompt/model.",
+      );
     },
   });
   const session = useSession();
@@ -87,7 +85,7 @@ export default function TextToImage() {
   };
 
   return (
-    <div className="mt-5 min-h-[65vh] rounded-md bg-white p-6 tracking-tighter text-white dark:bg-zinc-950/50">
+    <div className="mt-5 min-h-[60vh] rounded-md bg-white p-6 tracking-tighter text-white dark:bg-zinc-950/50">
       <div className="flex items-center justify-center gap-3"></div>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-6xl">
         <div className="flex flex-col">
@@ -103,7 +101,7 @@ export default function TextToImage() {
           >
             <SelectTrigger
               aria-label="Select Model"
-              className="my-2 w-[200px] border-2 border-green-400/30 text-black dark:text-white sm:w-[360px]"
+              className="my-2 w-[180px] border-2 border-green-400/30 text-black dark:text-white sm:w-[300px]"
             >
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
@@ -124,7 +122,7 @@ export default function TextToImage() {
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
               maxLength={textLimits.TextToImage}
-              className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400/30 bg-white text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-xs md:min-h-40"
+              className="mb-6 min-h-16 w-full border-green-400/30 bg-white text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:min-h-20 sm:text-xs md:min-h-32"
             />
 
             {errors.text ? (
@@ -153,7 +151,7 @@ export default function TextToImage() {
                     <Image
                       src={`/${image.toLowerCase()}.png`}
                       alt={image}
-                      className="min-h-14 w-full object-cover lg:min-h-24"
+                      className="min-h-36 w-full object-cover lg:h-16"
                       width={200}
                       height={200}
                     />
@@ -213,10 +211,21 @@ export default function TextToImage() {
             ) : (
               <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-green-400/30">
                 <div className="text-center">
-                  <ImageIcon className="mx-auto mb-4 min-h-24 w-16 text-zinc-600" />
-                  <p className="text-zinc-400">
-                    Your generated image will appear here
-                  </p>
+                  {!imageGeneration.isPending ? (
+                    <>
+                      <ImageIcon className="mx-auto mb-4 min-h-24 w-16 text-zinc-600" />
+                      <p className="text-zinc-400">
+                        Your generated image will appear here
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <Loader2 className="mx-auto mb-4 min-h-24 w-16 animate-spin text-zinc-600" />
+                      <p className="text-zinc-400">
+                        Your image is being generated...
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             )}

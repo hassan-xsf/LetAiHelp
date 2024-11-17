@@ -24,7 +24,7 @@ export default function page() {
                   <h2 className="text-3xl font-bold tracking-tighter text-gray-900 dark:text-white sm:text-5xl">
                     Ready to Let AI Help?
                   </h2>
-                  <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  <p className="max-w-[900px] text-gray-500 dark:text-gray-300 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                     Join thousands of users who are already benefiting from our
                     AI-powered tools.
                   </p>

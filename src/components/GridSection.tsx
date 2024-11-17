@@ -8,9 +8,10 @@ const GridSection = () => {
         <h1 className="z-50 text-3xl font-bold tracking-tighter dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
           Unleash the Power of AI
         </h1>
-        <h2 className="sm:text-md z-50 mx-auto max-w-[700px] text-sm text-black dark:text-white">
+        <h2 className="sm:text-md z-50 mx-auto max-w-[600px] text-sm text-black dark:text-white">
           LetAIHelp provides you AI tools that helps boost your productivity and
-          enhance creativity,
+          enhance creativity, From text to image, chatbots to code completion,
+          We have it all.
         </h2>
         <LinkButton name="Get Started" />
       </section>
