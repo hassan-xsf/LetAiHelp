@@ -11,7 +11,7 @@ export default function page() {
       <div className="mx-auto flex min-h-screen max-w-screen-xl flex-col bg-gray-50 tracking-tighter dark:bg-zinc-950">
         <main className="flex-1">
           <GridSection />
-          <section className="py-12 md:py-24 lg:py-32">
+          <section className="lg:py-22 py-12 md:py-24">
             <h2 className="text-center text-3xl font-bold tracking-tighter sm:text-5xl">
               Our AI Tools
             </h2>

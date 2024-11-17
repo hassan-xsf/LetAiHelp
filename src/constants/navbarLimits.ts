@@ -97,10 +97,6 @@ export const navbarItems = {
           title: "AI Summarizer",
           url: "/tools/summarizer",
         },
-        {
-          title: "Object Recognition",
-          url: "/tools/object-recognition",
-        },
       ],
     },
   ],

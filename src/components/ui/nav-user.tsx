@@ -19,7 +19,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { signOut, useSession } from "next-auth/react";
-import ThemeBtn from "../buttons/ThemeButton";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
