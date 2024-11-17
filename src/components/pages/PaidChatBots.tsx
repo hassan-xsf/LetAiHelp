@@ -214,7 +214,7 @@ export default function TextToImage() {
               type="submit"
               size="icon"
               disabled={isLoading}
-              className="absolute bottom-5 right-6 flex h-8 w-8 items-center justify-center rounded-full bg-primary p-0 text-black"
+              className="absolute bottom-5 right-6 flex h-8 w-8 items-center justify-center rounded-full bg-primary p-0 text-white dark:text-black"
             >
               <Send className="h-4 w-4" />
               <span className="sr-only">Send message</span>
