@@ -10,16 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useSearchParams } from "next/navigation";
 import ChatMessage from "../ChatMessage";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardFooter, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
-import { Input } from "../ui/input";
 import {
   paidTextFormType,
   paidTextModels,
@@ -58,13 +51,19 @@ export default function TextToImage() {
 
   const [message, setMessage] = useState<ChatType[]>([]);
 
-  const { register, handleSubmit, reset } = useForm<UpdatedPaidTextFormType>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UpdatedPaidTextFormType>({
     defaultValues: {
       prompt: "",
       model: paidTextModels[type],
     },
     resolver: zodResolver(updatedPaidTextSchema),
   });
+
   useEffect(() => {
     scrollToBottom();
   }, [message]);
@@ -167,7 +166,7 @@ export default function TextToImage() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
-      <Card className="mx-auto flex h-[68vh] w-full max-w-full flex-col">
+      <Card className="mx-auto flex h-[calc(100vh-25vh)] w-full max-w-full flex-col">
         <CardTitle className="flex items-center justify-center rounded-md bg-green-600 p-2 text-xl font-bold md:text-xl">
           <Bot className="mr-2 size-6 rounded-full bg-white p-1 text-green-600" />
           {paidTextModels[type].toUpperCase()}
@@ -187,25 +186,47 @@ export default function TextToImage() {
           </ScrollArea>
         </CardContent>
         <CardFooter className="p-0">
-          <div className="flex w-full items-center space-x-2 p-4 pt-0">
-            <Input
-              type="text"
+          <div className="relative flex w-full items-center space-x-2 p-4 pt-0">
+            <Textarea
               placeholder={
                 !isLoading ? "Type your message..." : "AI is typing..."
               }
               disabled={isLoading}
               {...register("prompt")}
-              onKeyDown={(e) =>
-                e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()
-              }
-              className="flex-grow text-xs"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSubmit(onSubmit)();
+                }
+              }}
+              onInput={(e) => {
+                const textarea = e.target as HTMLTextAreaElement;
+                textarea.style.height = "auto";
+                textarea.style.height = `${textarea.scrollHeight}px`;
+              }}
+              rows={1}
+              className="slim-scrollbar max-h-[160px] w-3/4 flex-grow resize-none overflow-y-auto pr-10 text-xs focus-visible:ring-0"
+              style={{
+                transition: "height 0.2s ease",
+              }}
             />
-            <Button type="submit" size="icon" disabled={isLoading}>
+            <Button
+              type="submit"
+              size="icon"
+              disabled={isLoading}
+              className="absolute bottom-5 right-6 flex h-8 w-8 items-center justify-center rounded-full bg-primary p-0 text-black"
+            >
               <Send className="h-4 w-4" />
               <span className="sr-only">Send message</span>
             </Button>
           </div>
         </CardFooter>
+
+        {errors.prompt && (
+          <p className="pl-4 text-start text-xs text-red-500">
+            {errors.prompt.message}
+          </p>
+        )}
       </Card>
     </form>
   );

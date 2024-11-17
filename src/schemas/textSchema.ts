@@ -39,8 +39,8 @@ export const textModels = [
 export const textSchema = z.object({
   prompt: z
     .string()
-    .min(0, { message: "Minimum prompt limit is atleast 2" })
-    .max(1000, "Maximum prompt words limit is 1000"),
+    .min(2, { message: "Minimum prompt limit is atleast 2" })
+    .max(2000, "Maximum prompt words limit is 2000"),
   model: z.enum(textModels),
   type: z
     .number()

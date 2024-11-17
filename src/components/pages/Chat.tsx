@@ -65,15 +65,21 @@ export default function TextToImage() {
 
   const [message, setMessage] = useState<ChatType[]>([]);
 
-  const { register, handleSubmit, setValue, getValues, reset } =
-    useForm<textFormType>({
-      defaultValues: {
-        prompt: "",
-        model: textModels[0],
-        type: chatValue,
-      },
-      resolver: zodResolver(textSchema),
-    });
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    reset,
+    formState: { errors },
+  } = useForm<textFormType>({
+    defaultValues: {
+      prompt: "",
+      model: textModels[0],
+      type: chatValue,
+    },
+    resolver: zodResolver(textSchema),
+  });
   useEffect(() => {
     scrollToBottom();
   }, [message]);
@@ -184,43 +190,41 @@ export default function TextToImage() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
-      <Card className="mx-auto flex h-[68vh] w-full max-w-full flex-col">
+      <Card className="mx-auto flex h-[calc(100vh-25vh)] w-full max-w-full flex-col">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 p-2 text-white">
           <CardTitle className="flex items-center justify-center text-xl font-bold md:text-xl">
             <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
             {chatTypeNames[chatValue].toUpperCase()}
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex-grow overflow-hidden rounded-md p-4">
-          <div className="flex w-full flex-col">
-            <div className="flex items-center space-x-2">
-              <p className="text-nowrap text-[10px] text-black dark:text-white">
-                MODEL
-              </p>
-              <Select
-                value={getValues("model")}
-                onValueChange={(value: (typeof textModels)[number]) =>
-                  setValue("model", value)
-                }
-              >
-                <SelectTrigger className="my-3 w-[120px] border border-green-400 bg-white text-[10px] text-black dark:bg-black dark:text-white sm:text-xs md:w-[300px]">
-                  <SelectValue placeholder="Select model" />
-                </SelectTrigger>
-                <SelectContent>
-                  {textModels.map((model) => (
-                    <SelectItem
-                      key={model}
-                      value={model}
-                      className="text-[10px] sm:text-xs"
-                    >
-                      {model}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+        <CardContent className="flex-grow overflow-hidden rounded-md p-1 px-4">
+          <div className="flex items-center space-x-2">
+            <p className="text-nowrap text-[10px] text-black dark:text-white">
+              MODEL
+            </p>
+            <Select
+              value={getValues("model")}
+              onValueChange={(value: (typeof textModels)[number]) =>
+                setValue("model", value)
+              }
+            >
+              <SelectTrigger className="my-3 w-[120px] border border-green-400 bg-white text-[10px] text-black dark:bg-black dark:text-white sm:text-xs md:w-[300px]">
+                <SelectValue placeholder="Select model" />
+              </SelectTrigger>
+              <SelectContent>
+                {textModels.map((model) => (
+                  <SelectItem
+                    key={model}
+                    value={model}
+                    className="text-[10px] sm:text-xs"
+                  >
+                    {model}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-          <ScrollArea className="h-[calc(100%-3rem)] w-full rounded-md border p-4">
+          <ScrollArea className="h-full w-full rounded-md border p-4">
             {message.map((msg) => (
               <>
                 <ChatMessage
@@ -235,24 +239,43 @@ export default function TextToImage() {
         </CardContent>
         <CardFooter className="p-0">
           <div className="flex w-full items-center space-x-2 p-4 pt-0">
-            <Input
-              type="text"
+            <Textarea
               placeholder={
                 !isLoading ? "Type your message..." : "AI is typing..."
               }
               disabled={isLoading}
               {...register("prompt")}
-              onKeyDown={(e) =>
-                e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()
-              }
-              className="flex-grow text-xs"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSubmit(onSubmit)();
+                }
+              }}
+              onInput={(e) => {
+                const textarea = e.target as HTMLTextAreaElement;
+                textarea.style.height = "auto";
+                textarea.style.height = `${textarea.scrollHeight}px`;
+              }}
+              rows={1} // Start with one row
+              className="slim-scrollbar max-h-[160px] flex-grow resize-none overflow-y-auto text-xs focus-visible:ring-0"
+              style={{ transition: "height 0.2s ease" }}
             />
-            <Button type="submit" size="icon" disabled={isLoading}>
+            <Button
+              type="submit"
+              size="icon"
+              disabled={isLoading}
+              className="self-end"
+            >
               <Send className="h-4 w-4" />
               <span className="sr-only">Send message</span>
             </Button>
           </div>
         </CardFooter>
+        {errors.prompt && (
+          <p className="pl-4 text-start text-xs text-red-500">
+            {errors.prompt.message}
+          </p>
+        )}
       </Card>
     </form>
   );

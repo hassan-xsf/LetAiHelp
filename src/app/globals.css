@@ -21,7 +21,42 @@
     text-wrap: balance;
   }
 }
+.slim-scrollbar {
+  width: 100%;
+  max-height: 160px; /* Limit the max height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  resize: none; /* Disable manual resizing */
+  padding: 8px; /* Add padding */
+  border: 1px solid #e5e7eb; /* Add a light border */
+  border-radius: 4px; /* Rounded corners */
+  outline: none; /* Remove focus outline */
+  font-size: 0.875rem; /* Adjust font size */
+  line-height: 1.25; /* Adjust line height */
+}
 
+/* Webkit (Chrome, Edge, Safari) Slim Scrollbar */
+.slim-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Slim scrollbar width */
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* Light gray scrollbar thumb */
+  border-radius: 4px; /* Rounded scrollbar thumb */
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8; /* Darker gray on hover */
+}
+
+.slim-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track */
+}
+
+/* Firefox Slim Scrollbar */
+.slim-scrollbar {
+  scrollbar-width: thin; /* Slim scrollbar */
+  scrollbar-color: #cbd5e1 transparent; /* Thumb and track colors */
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

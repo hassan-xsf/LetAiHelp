@@ -23,7 +23,7 @@ export const updatedPaidTextSchema = paidTextSchema
     prompt: z
       .string()
       .min(2, { message: "Minimum prompt limit is at least 2" })
-      .max(1000, { message: "Maximum prompt words limit is 1000" }),
+      .max(2000, { message: "Maximum prompt words limit is 2000" }),
   });
 
 export type UpdatedPaidTextFormType = z.infer<typeof updatedPaidTextSchema>;
