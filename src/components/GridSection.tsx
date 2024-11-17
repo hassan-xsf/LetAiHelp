@@ -11,7 +11,7 @@ const GridSection = () => {
         <h2 className="sm:text-md z-50 mx-auto max-w-[600px] text-sm text-black dark:text-white">
           LetAIHelp provides you AI tools that helps boost your productivity and
           enhance creativity, From text to image, chatbots to code completion,
-          We have it all.
+          We have it all for FREE
         </h2>
         <LinkButton name="Get Started" />
       </section>
