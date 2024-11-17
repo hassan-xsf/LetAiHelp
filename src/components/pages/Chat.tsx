@@ -188,7 +188,7 @@ export default function TextToImage() {
         <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 p-2 text-white">
           <CardTitle className="flex items-center justify-center text-xl font-bold md:text-xl">
             <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
-            {chatTypeNames[chatValue]}
+            {chatTypeNames[chatValue].toUpperCase()}
           </CardTitle>
         </CardHeader>
         <CardContent className="flex-grow overflow-hidden rounded-md p-4">
@@ -237,7 +237,10 @@ export default function TextToImage() {
           <div className="flex w-full items-center space-x-2 p-4 pt-0">
             <Input
               type="text"
-              placeholder="Type your message..."
+              placeholder={
+                !isLoading ? "Type your message..." : "AI is typing..."
+              }
+              disabled={isLoading}
               {...register("prompt")}
               onKeyDown={(e) =>
                 e.key === "Enter" && !e.shiftKey && handleSubmit(onSubmit)()

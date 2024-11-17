@@ -188,7 +188,8 @@ export default function TextToImage() {
         </CardContent>
         <CardFooter className="p-0">
           <div className="flex w-full items-center space-x-2 p-4 pt-0">
-            <Textarea
+            <Input
+              type="text"
               placeholder={
                 !isLoading ? "Type your message..." : "AI is typing..."
               }
