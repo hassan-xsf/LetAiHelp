@@ -13,7 +13,7 @@ function CreditChart({ totalCredit = 2500 }) {
   const percentage = (remainingCredit / totalCredit) * 100;
 
   return (
-    <div className="relative size-36">
+    <div className="relative size-24">
       <svg className="h-full w-full" viewBox="0 0 100 100">
         <circle
           className="stroke-current text-zinc-600"
@@ -37,10 +37,10 @@ function CreditChart({ totalCredit = 2500 }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="text-sm font-bold text-black dark:text-white md:text-xl xl:text-3xl">
+        <span className="text-sm font-bold text-black dark:text-white md:text-xl xl:text-2xl">
           {remainingCredit}
         </span>
-        <span className="text-xs font-medium text-muted-foreground">
+        <span className="text-[10px] font-medium text-muted-foreground">
           CREDITS
         </span>
       </div>

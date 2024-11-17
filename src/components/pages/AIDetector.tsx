@@ -52,9 +52,9 @@ export default function Component() {
     aiDetection.mutate({ input_text: text });
   };
   return (
-    <div className="mt-5 min-h-[62vh] rounded-md bg-white tracking-tighter text-white dark:bg-zinc-950">
-      <div className="flex items-center justify-center rounded-md bg-green-600 p-3 text-xl font-bold md:text-2xl">
-        <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
+    <div className="mt-5 min-h-[75vh] rounded-md bg-white tracking-tighter text-white dark:bg-zinc-950">
+      <div className="flex items-center justify-center rounded-md bg-green-600 p-2 text-xl font-bold md:text-xl">
+        <Bot className="mr-2 size-6 rounded-full bg-white p-1 text-green-600" />
         AI DETECTOR
       </div>
       <Card className="mx-auto border-none bg-transparent p-2 lg:max-w-7xl xl:p-10">

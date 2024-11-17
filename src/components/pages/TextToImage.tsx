@@ -124,7 +124,7 @@ export default function TextToImage() {
               placeholder="Write your desired text, make sure to refine your prompt using our AI tools for better results"
               {...register("text")}
               maxLength={textLimits.TextToImage}
-              className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400/30 bg-white text-xs text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-base md:min-h-40"
+              className="sm:min-h-30 mb-6 min-h-20 w-full border-green-400/30 bg-white text-black placeholder-zinc-400 dark:bg-zinc-900 dark:text-white sm:text-xs md:min-h-40"
             />
 
             {errors.text ? (
@@ -175,10 +175,10 @@ export default function TextToImage() {
               {imageGeneration.isPending ? (
                 <div className="flex items-center justify-center gap-2">
                   <Loader2 className="ml-2 size-7 animate-spin text-white" />
-                  Generating Image
+                  GENERATE IMAGING..
                 </div>
               ) : (
-                "Generate Image"
+                "GENERATE IMAGE"
               )}
             </Button>
           </div>
@@ -186,7 +186,7 @@ export default function TextToImage() {
           <div className="flex flex-col rounded-lg border-2 border-zinc-800 bg-white p-6 dark:bg-zinc-800">
             <div className="items-c enter mb-4 flex justify-between">
               <h2 className="text-xs font-semibold md:text-lg xl:text-xl">
-                Generated Image
+                GENERATED IMAGE
               </h2>
               <a
                 target="_blank"
@@ -213,7 +213,7 @@ export default function TextToImage() {
             ) : (
               <div className="flex flex-grow items-center justify-center rounded-lg border-2 border-dashed border-green-400/30">
                 <div className="text-center">
-                  <ImageIcon className="mx-auto mb-4 min-h-48 w-16 text-zinc-600" />
+                  <ImageIcon className="mx-auto mb-4 min-h-24 w-16 text-zinc-600" />
                   <p className="text-zinc-400">
                     Your generated image will appear here
                   </p>

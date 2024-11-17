@@ -168,7 +168,7 @@ export default function TextToImage() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
       <Card className="mx-auto flex h-[68vh] w-full max-w-full flex-col">
-        <CardTitle className="flex items-center justify-center rounded-md bg-green-600 p-1 text-xl font-bold md:text-xl">
+        <CardTitle className="flex items-center justify-center rounded-md bg-green-600 p-2 text-xl font-bold md:text-xl">
           <Bot className="mr-2 size-6 rounded-full bg-white p-1 text-green-600" />
           {paidTextModels[type].toUpperCase()}
         </CardTitle>

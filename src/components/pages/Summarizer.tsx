@@ -123,6 +123,15 @@ const Summarizer = () => {
           </Button>
         </Card>
       </div>
+      <div className="flex justify-center pt-4 tracking-tighter">
+        <Button
+          disabled={translation.isPending}
+          className="text-md bg-green-500 px-6 py-4 font-bold text-white transition-colors hover:bg-green-400 dark:text-black"
+        >
+          <Sparkles className="mr-2 size-6" />
+          {translation.isPending ? "SUMMARIZING..." : "SUMMARIZE"}
+        </Button>
+      </div>
     </form>
   );
 };
