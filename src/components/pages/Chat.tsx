@@ -185,8 +185,8 @@ export default function TextToImage() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5 rounded-md">
       <Card className="mx-auto flex h-[68vh] w-full max-w-full flex-col">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 text-white">
-          <CardTitle className="flex items-center justify-center text-xl font-bold md:text-2xl">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-md bg-green-600 p-2 text-white">
+          <CardTitle className="flex items-center justify-center text-xl font-bold md:text-xl">
             <Bot className="mr-2 h-6 w-6 rounded-full bg-white p-1 text-green-600" />
             {chatTypeNames[chatValue]}
           </CardTitle>
